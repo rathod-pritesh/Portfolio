@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: url("/static/webfonts/fa-solid-900.woff2") format("woff2"),
+       url("/static/webfonts/fa-solid-900.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  src: url("/static/webfonts/fa-brands-400.woff2") format("woff2"),
+       url("/static/webfonts/fa-brands-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: url("/static/webfonts/fa-regular-400.woff2") format("woff2"),
+       url("/static/webfonts/fa-regular-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Add classes for usage */
+.fas {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.far {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+}
+
+.fab {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+
+.fa, .fas, .far, .fab {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

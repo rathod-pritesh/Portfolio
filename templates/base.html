@@ -9,6 +9,9 @@
       href="{{ url_for('static', filename='css/bootstrap.min.css')}}"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+
     <!-- Font Awesome -->
     <link
       href="{{ url_for('static', filename='css/all.min.css')}}"
@@ -425,11 +428,6 @@
     <script src="{{url_for('static', filename='Js/script.js')}}"></script>
   </body>
   <script>
-    setTimeout(fucntion(){
-        var flash = document.getElementById("flash-message")
-        if(flash){
-            flash.style.display= "none";
-        }
-    })
+    
   </script>
 </html>

@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, redirect, request, flash, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import sqlite3
 import os
 
 app = Flask(__name__)
@@ -18,6 +19,43 @@ class Contact(db.Model):
 
 with app.app_context():
     db.create_all()
+
+def validate_admin(username, password):
+    conn = sqlite3.connect('admin.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM admin WHERE username = ? AND password = ?" ,(username, password))
+    admin = cursor.fetchone()
+    conn.close()
+    return admin
+
+@app.route('/admin/login', methods = ['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        admin = validate_admin(username, password)
+
+        if admin:
+            session['admin'] = True
+            flash('Login successful!', 'success')
+            return redirect(url_for('admin_dashboard'))
+        else:
+            flash('Invalid credentials.', 'danger')
+
+    return render_template('admin_login.html')
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    if not session.get('admin'):
+        return redirect(url_for('admin_login'))
+    return "<h1>Welcome Admin! Dashboard Loaded.</h1>"
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin', None)
+    flash('Logged out successfully!', 'info')
+    return redirect(url_for('admin_login'))
+
 
 @app.route('/')
 def home():
