@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# SQLite DB
+*.db
+
+# Your setup files
+create_db.py
+
+# VS Code & GitHub Codespaces
+.vscode/
+*.code-workspace
+
+# OS-specific
+.DS_Store
+Thumbs.db
