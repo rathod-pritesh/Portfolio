@@ -10,6 +10,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 db = SQLAlchemy(app)
 
+class PortfolioContent(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    hero_name = db.Column(db.String(100))
+    hero_title = db.Column(db.String(255))
+    about_title = db.Column(db.String(100))
+    about_content = db.Column(db.Text)
+    about_highlights = db.Column(db.String(255))
+    contact_title = db.Column(db.String(100))
+    contact_email = db.Column(db.String(100))
+    contact_linkedin = db.Column(db.String(255))
+    contact_github = db.Column(db.String(255))
+
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -48,7 +60,59 @@ def admin_login():
 def admin_dashboard():
     if not session.get('admin'):
         return redirect(url_for('admin_login'))
-    return "<h1>Welcome Admin! Dashboard Loaded.</h1>"
+    
+    content = PortfolioContent.query.first()
+    return render_template('admin_dashboard.html', content=content)
+
+@app.route('/admin/update_content', methods=['POST'])
+def update_content():
+    if not session.get('admin'):
+        return redirect(url_for('admin_login'))
+    
+    content = PortfolioContent.query.first()
+    if not content:
+        content = PortfolioContent()
+
+    # Only update the fields that exist in the form
+    form = request.form
+
+    if form.get('hero_name'):
+        content.hero_name = form.get('hero_name')
+    if form.get('hero_title'):
+        content.hero_title = form.get('hero_title')
+
+    if form.get('about_title'):
+        content.about_title = form.get('about_title')
+    if form.get('about_content'):
+        content.about_content = form.get('about_content')
+    if form.get('about_highlights'):
+        content.about_highlights = form.get('about_highlights')
+
+    if form.get('contact_title'):
+        content.contact_title = form.get('contact_title')
+    if form.get('contact_email'):
+        content.contact_email = form.get('contact_email')
+    if form.get('contact_linkedin'):
+        content.contact_linkedin = form.get('contact_linkedin')
+    if form.get('contact_github'):
+        content.contact_github = form.get('contact_github')
+
+    # Handle resume file upload
+    resume_file = request.files.get('resume')
+    if resume_file and resume_file.filename != '':
+        resume_path = os.path.join(app.root_path, 'static', 'resumes','resume.pdf')
+        resume_file.save(resume_path)
+
+    # Handle Profile image upload
+    profile_image = request.files.get('profile_image')
+    if profile_image and profile_image.filename != '':
+        image_path = os.path.join(app.root_path, 'static', 'images', 'Profile.png')
+        profile_image.save(image_path)
+
+    db.session.add(content)
+    db.session.commit()
+    flash("Content updated successfully!", "success")
+    return redirect(url_for('admin_dashboard'))
 
 @app.route('/admin/logout')
 def admin_logout():
@@ -56,10 +120,10 @@ def admin_logout():
     flash('Logged out successfully!', 'info')
     return redirect(url_for('admin_login'))
 
-
 @app.route('/')
 def home():
-    return render_template('base.html')
+    content = PortfolioContent.query.first()
+    return render_template('base.html', content = content)
 
 @app.route('/download-resume')
 def download_resume():

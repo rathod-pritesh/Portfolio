@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rathod Pritesh | Python & Java Developer</title>
+    <title>Pritesh Rathod | Python & Java Developer</title>
     <!-- Bootstrap CSS -->
     <link
       href="{{ url_for('static', filename='css/bootstrap.min.css')}}"
@@ -42,7 +42,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#hero">Rathod Pritesh</a>
+        <a class="navbar-brand" href="#hero">Pritesh Rathod</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -85,7 +85,7 @@
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 hero-content">
-              <h1 class="hero-title" data-aos="fade-up">Rathod Pritesh</h1>
+              <h1 class="hero-title text-secondary mt-5" data-aos="fade-up">{{ content.hero_name }}</h1>
               <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
                 <span id="typed-text"></span>
               </h2>
@@ -94,8 +94,7 @@
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
-                MSc (CA & IT) graduate passionate about creating intuitive and
-                efficient software solutions.
+                {{ content.hero_title }}
               </p>
               <div
                 class="d-flex flex-wrap gap-3 mt-3"
@@ -132,7 +131,7 @@
       <section id="about">
         <div class="container">
           <div class="section-title" data-aos="fade-up">
-            <h2>About Me</h2>
+            <h2>{{ content.about_title }}</h2>
           </div>
           <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -142,31 +141,9 @@
                 data-aos-delay="100"
               >
                 <p>
-                  I am an
-                  <span class="text-primary fw-bold"
-                    >MSc (CA & IT) graduate</span
-                  >
-                  from K.S. School of Business Management & Information
-                  Technology with a strong passion for software development and
-                  web technologies.
+                 {{ content.about_content }}
                 </p>
-                <p>
-                  My academic journey has equipped me with a solid foundation in
-                  computer applications and information technology, while my
-                  personal projects have helped me develop practical skills in
-                  <span class="fw-bold"
-                    >Python, Java, SQL, and web development</span
-                  >.
-                </p>
-                <p>
-                  I'm particularly interested in
-                  <span class="text-primary fw-bold"
-                    >building efficient backend systems</span
-                  >
-                  and creating intuitive user interfaces. My goal is to leverage
-                  my technical skills to develop solutions that solve real-world
-                  problems.
-                </p>
+                
               </div>
             </div>
           </div>
@@ -288,8 +265,8 @@
                   <div class="contact-text">
                     <h4>Email</h4>
                     <p>
-                      <a href="mailto:rathodpritesh0712@gmail.com"
-                        >rathodpritesh0712@gmail.com</a
+                      <a href="mailto:{{ content.contact_email }}"
+                        >{{ content.contact_email }}</a
                       >
                     </p>
                   </div>
@@ -301,7 +278,7 @@
                   <div class="contact-text">
                     <h4>LinkedIn</h4>
                     <p>
-                      <a href="https://www.linkedin.com/in/rathodpritesh/">Pritesh Rathod</a>
+                      <a href="{{ content.contact_linkedin }}">Pritesh Rathod</a>
                     </p>
                   </div>
                 </div>
@@ -312,7 +289,7 @@
                   <div class="contact-text">
                     <h4>GitHub</h4>
                     <p>
-                      <a href="https://github.com/rathod-pritesh">Pritesh Rathod</a>
+                      <a href="{{ content.contact_github }}">Pritesh Rathod</a>
                     </p>
                   </div>
                 </div>

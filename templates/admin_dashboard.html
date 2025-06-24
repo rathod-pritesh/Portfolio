@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Rathod Pritesh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #25354e, #1e40af);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #1e40af, #25354e);
+        }
+    </style>
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: '#6c757d',
+                        primary: '#0d6efd'
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body class="bg-transparent">
+    <div id="particles-js"></div>
+    <!-- Admin Navbar -->
+    <nav class="bg-gradient-to-r from-slate-800 to-blue-900 text-white shadow-lg">
+        <div class="mx-auto px-4">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span
+                        class="font-semibold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white">
+                        <i class="fas fa-cog mr-2"></i>Admin Panel
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
+
+                    <a href="/" class="text-gray-200 hover:text-white" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> View Portfolio
+                    </a>
+                    <a href="{{url_for('admin_logout') }}"
+                        class="px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium rounded transition duration-150">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="my-4">
+        {% for category, message in messages %}
+        <div class="px-4 py-3 rounded shadow bg-green-100 border-l-4 border-green-500 text-green-700" role="alert">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+
+    <!-- Admin Dashboard -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-secondary mb-8">Portfolio Content Management</h1>
+
+        <!-- Hero Section Editor -->
+        <form method="POST" action="/admin/update_content" enctype="multipart/form-data">
+            <div class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-secondary">
+                        <i class="fas fa-home mr-2"></i>Hero Section
+                    </h2>
+                    <button
+                        class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150">
+                        <i class="fas fa-save mr-1"></i>Save Changes
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Text Content -->
+                    <div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" name="hero_name" value="{{ content.hero_name }}"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Professional Title</label>
+                            <input type="text" name="hero_title" value="{{ content.hero_title }}"
+                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Resume File</label>
+                            <div class="flex items-center">
+                                <input type="file" name="resume" class="hidden" id="resumeUpload">
+                                <label for="resumeUpload"
+                                    class="px-4 py-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300">
+                                    <i class="fas fa-upload mr-2"></i>Upload New
+                                </label>
+                                <span class="ml-4 text-sm text-gray-600">current_resume.pdf</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Image -->
+                    <div>
+                        <label class="block text-gray-700 mb-2">Profile Image</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                            <img src="/static/images/Profile.png" alt="Current Profile"
+                                class="mx-auto mb-4 rounded-full w-40 h-40 object-cover">
+                            <input type="file" name="profile_image" class="hidden" id="profileUpload">
+                            <label for="profileUpload"
+                                class="px-4 py-2 bg-primary text-white rounded-lg cursor-pointer hover:bg-blue-700 inline-block">
+                                <i class="fas fa-camera mr-2"></i>Change Image
+                            </label>
+                            <p class="text-sm text-gray-500 mt-2">Recommended size: 350×350px</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- About Section Editor -->
+        <form method="POST" action="/admin/update_content">
+            <div class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-secondary">
+                        <i class="fas fa-user mr-2"></i>About Section
+                    </h2>
+                    <button
+                        class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150">
+                        <i class="fas fa-save mr-1"></i>Save Changes
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Section Title</label>
+                        <input type="text" name="about_title" value="{{ content.about_title }}"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">About Content</label>
+                        <textarea
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            name="about_content" rows="8">
+{{ content.about_content }}
+                    </textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">Highlighted Text (comma separated)</label>
+                        <input type="text" name="about_highlights" value="{{ content.about_highlights }}"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <p class="text-sm text-gray-500 mt-1">These phrases will be highlighted in the text</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Projects Section Editor -->
+        <form method="POST" action="/admin/update_content">
+            <div class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6 mb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-secondary">
+                        <i class="fas fa-code mr-2"></i>Projects Section
+                    </h2>
+                    <div class="space-x-2">
+                        <button
+                            class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150">
+                            <i class="fas fa-save mr-1"></i>Save Changes
+                        </button>
+                        <button
+                            class="px-3 py-1 bg-primary hover:bg-blue-700 text-white text-sm font-medium rounded transition duration-150">
+                            <i class="fas fa-plus mr-1"></i>Add Project
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Section Title</label>
+                        <input type="text" value="Projects"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <!-- Project 1 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-medium text-gray-800">Buildtrack - Construction Management System</h3>
+                            <div class="space-x-2">
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Project Title</label>
+                                <input type="text" value="Buildtrack - Construction Management System"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+
+                                <label class="block text-gray-700 mb-2 mt-3">Description</label>
+                                <textarea
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                    rows="4">A comprehensive web-based solution for construction companies to manage projects, resources, workers, and finances in one centralized platform.</textarea>
+
+                                <label class="block text-gray-700 mb-2 mt-3">GitHub Link</label>
+                                <input type="text" value="https://github.com/rathod-pritesh/BuildTrack"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Project Image</label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                    <img src="/static/images/BuildTrack.jpg" alt="Project Image"
+                                        class="mx-auto mb-4 max-h-40 object-contain">
+                                    <input type="file" class="hidden" id="project1Upload">
+                                    <label for="project1Upload"
+                                        class="px-4 py-2 bg-primary text-white rounded-lg cursor-pointer hover:bg-blue-700 inline-block">
+                                        <i class="fas fa-camera mr-2"></i>Change Image
+                                    </label>
+                                </div>
+
+                                <label class="block text-gray-700 mb-2 mt-3">Technologies (comma separated)</label>
+                                <input type="text" value="Python, Flask, MySQL, HTML/CSS, JS, Bootstrap"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-medium text-gray-800">Personal Portfolio Website</h3>
+                            <div class="space-x-2">
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Project Title</label>
+                                <input type="text" value="Personal Portfolio Website"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+
+                                <label class="block text-gray-700 mb-2 mt-3">Description</label>
+                                <textarea
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                    rows="4">A responsive portfolio website featuring my projects, skills, and professional information. Designed with modern UI/UX principles and animations.</textarea>
+
+                                <label class="block text-gray-700 mb-2 mt-3">GitHub Link</label>
+                                <input type="text" value="https://github.com/rathod-pritesh/Portfolio"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Project Image</label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                    <img src="/static/images/Portfolio.jpg" alt="Project Image"
+                                        class="mx-auto mb-4 max-h-40 object-contain">
+                                    <input type="file" class="hidden" id="project2Upload">
+                                    <label for="project2Upload"
+                                        class="px-4 py-2 bg-primary text-white rounded-lg cursor-pointer hover:bg-blue-700 inline-block">
+                                        <i class="fas fa-camera mr-2"></i>Change Image
+                                    </label>
+                                </div>
+
+                                <label class="block text-gray-700 mb-2 mt-3">Technologies (comma separated)</label>
+                                <input type="text" value="HTML, CSS, JavaScript, Bootstrap, Flask"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Certificates Section Editor -->
+        <form method="POST" action="/admin/update_content">
+            <div class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6 mb-8">
+
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-secondary">
+                        <i class="fas fa-certificate mr-2"></i>Certificates Section
+                    </h2>
+                    <div class="space-x-2">
+                        <button
+                            class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150">
+                            <i class="fas fa-save mr-1"></i>Save Changes
+                        </button>
+                        <button
+                            class="px-3 py-1 bg-primary hover:bg-blue-700 text-white text-sm font-medium rounded transition duration-150">
+                            <i class="fas fa-plus mr-1"></i>Add Certificate
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Section Title</label>
+                        <input type="text" value="Certificates"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <!-- Certificate List -->
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Certificate 1 -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-800">Python Certificate</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Certificate Name</label>
+                                    <input type="text" value="Python"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Issuing Organization</label>
+                                    <input type="text" value="Udemy"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Date</label>
+                                    <input type="text" value="2, July 2024"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Emoji Icon</label>
+                                    <input type="text" value="🐍"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 2 -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-800">Golang Certificate</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Certificate Name</label>
+                                    <input type="text" value="Golang (Basics)"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Issuing Organization</label>
+                                    <input type="text" value="Great Learning"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Date</label>
+                                    <input type="text" value="May 2024"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Emoji Icon</label>
+                                    <input type="text" value="🐹"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 3 -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-800">Java Certificate</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Certificate Name</label>
+                                    <input type="text" value="Java"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Issuing Organization</label>
+                                    <input type="text" value="Udemy"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Date</label>
+                                    <input type="text" value="13, July 2024"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-1">Emoji Icon</label>
+                                    <input type="text" value="☕"
+                                        class="w-full px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Contact Section Editor -->
+        <form method="POST" action="/admin/update_content">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-secondary">
+                        <i class="fas fa-envelope mr-2"></i>Contact Section
+                    </h2>
+                    <button
+                        class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150">
+                        <i class="fas fa-save mr-1"></i>Save Changes
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Section Title</label>
+                        <input type="text" name="contact_title" value="Contact Me"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+
+                        <h3 class="text-lg font-medium text-gray-800 mt-6 mb-3">Contact Information</h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="text" name="contact_email" value="rathodpritesh0712@gmail.com"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">LinkedIn URL</label>
+                                <input type="text" name="contact_linkedin"
+                                    value="https://www.linkedin.com/in/rathodpritesh/"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">GitHub URL</label>
+                                <input type="text" name="contact_github" value="https://github.com/rathod-pritesh"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-800 mb-3">Contact Form Settings</h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Form Action URL</label>
+                                <input type="text" value="{{url_for('submit_contact')}}"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Success Message</label>
+                                <input type="text" value="Thank you for your message! I'll get back to you soon."
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Error Message</label>
+                                <input type="text"
+                                    value="There was an error sending your message. Please try again later."
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+
+    <script src="{{url_for('static', filename='Js/particles.min.js')}}"></script>
+
+    <script>
+        // Toggle collapsible sections
+        document.querySelectorAll('.overflow-hidden > div:first-child').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.classList.toggle('hidden');
+                const icon = header.querySelector('i.fa-chevron-down');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Simulate form submission
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Save')) {
+                button.addEventListener('click', () => {
+                    alert('Changes saved successfully!');
+                });
+            }
+        });
+
+        // Particles.js config
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4a6bff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4a6bff",
+                    opacity: 0.4,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true,
+                },
+            },
+        });
+    </script>
+  
+</body>
+
+</html>
