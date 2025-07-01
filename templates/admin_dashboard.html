@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Rathod Pritesh</title>
+    <link rel="icon" type="image/x-icon" href="static/images/programmer.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 0;
+        left: 0;
+      }
+
+      body {
+        position: relative;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #e0e0e0;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #25354e, #1e40af);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #1e40af, #25354e);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              secondary: "#6c757d",
+              primary: "#0d6efd",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-transparent">
+    <div id="particles-js"></div>
+
+    <!-- Admin Navbar -->
+    <nav
+      class="bg-gradient-to-r from-slate-800 to-blue-900 text-white shadow-lg fixed w-full z-50 top-0"
+    >
+      <div
+        class="container mx-auto flex justify-between items-center h-16 px-4"
+      >
+        <div class="flex items-center">
+          <span
+            class="font-semibold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white"
+          >
+            <i class="fas fa-cog mr-2"></i>Admin Panel
+          </span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a
+            href="/"
+            class="text-gray-200 hover:text-white transition"
+            target="_blank"
+          >
+            <i class="fas fa-external-link-alt"></i> View Portfolio
+          </a>
+          <a
+            href="admin/logout"
+            class="px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium rounded transition"
+          >
+            Logout
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    
+    <!-- Admin Dashboard -->
+    <div class="container mx-auto px-4 py-24">
+      <h1 class="text-3xl font-bold text-secondary mb-8">
+        Portfolio Content Management
+      </h1>
+
+      <!-- Hero Section Editor -->
+      <form
+        method="POST"
+        action="/admin/update_content"
+        enctype="multipart/form-data"
+        class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-semibold text-secondary">
+            <i class="fas fa-home mr-2"></i>Hero Section
+          </h2>
+          <button
+            class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition"
+          >
+            <i class="fas fa-save mr-2"></i>Save Changes
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Text Content -->
+          <div>
+            <div class="mb-5">
+              <label class="block text-gray-700 mb-2">Your Name</label>
+              <input
+                type="text"
+                name="hero_name"
+                value="{{.HeroName}}"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div class="mb-5">
+              <label class="block text-gray-700 mb-2">Professional Title</label>
+              <input
+                type="text"
+                name="hero_title"
+                value="{{.HeroDescription}}"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 mb-2">Resume File</label>
+              <div class="flex items-center">
+                <input
+                  type="file"
+                  name="resume"
+                  id="resumeUpload"
+                  class="hidden"
+                  value=""
+                />
+                <label
+                  for="resumeUpload"
+                  class="px-4 py-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300"
+                >
+                  <i class="fas fa-upload mr-2"></i>Upload New
+                </label>
+                <span class="ml-4 text-sm text-gray-600">{{.ResumeFile}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Image -->
+          <div class="text-center">
+            <label class="block text-gray-700 mb-4">Profile Image</label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6">
+              <img
+                src="/static/images/{{.ProfileImage}}"
+                alt="Current Profile"
+                class="mx-auto mb-4 rounded-full w-40 h-40 object-cover"
+              />
+              <input
+                type="file"
+                name="profile_image"
+                id="profileUpload"
+                class="hidden"
+              />
+              <label
+                for="profileUpload"
+                class="px-4 py-2 bg-primary text-white rounded-lg cursor-pointer hover:bg-blue-700 inline-block"
+              >
+                <i class="fas fa-camera mr-2"></i>Change Image
+              </label>
+              <p class="text-sm text-gray-500 mt-3">
+                Recommended size: 350×350px
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- About Section Editor -->
+      <form
+        method="POST"
+        action="/admin/update_content"
+        enctype="multipart/form-data"
+      >
+        <div
+          class="bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-md p-6 mb-8"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-secondary">
+              <i class="fas fa-user mr-2"></i>About Section
+            </h2>
+            <button
+              class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded transition duration-150"
+            >
+              <i class="fas fa-save mr-1"></i>Save Changes
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-gray-700 mb-2">Section Title</label>
+              <input
+                type="text"
+                name="about_title"
+                value="{{.AboutTitle }}"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 mb-2">About Content</label>
+              <textarea
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                name="about_content"
+                rows="8"
+              >{{.AboutText}}</textarea>
+            </div>
+
+            <div>
+              <label class="block text-gray-700 mb-2"
+                >Highlighted Text (comma separated)</label
+              >
+              <textarea
+                type="text"
+                name="about_highlights"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                row="5"
+              >{{ .AboutHighlightsStr }}</textarea>
+              <p class="text-sm text-gray-500 mt-1">
+                These phrases will be highlighted in the text
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="static/Js/typed.min.js"></script>
+    <script src="static/js/particles.min.js"></script>
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#4a6bff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#4a6bff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: { enable: true, speed: 2 },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
