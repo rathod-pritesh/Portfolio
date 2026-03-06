@@ -1,5 +1,4 @@
 <script>
-  import data from "$lib/data/chatbot-data.json";
   import { tick } from "svelte";
 
   let open = false;
@@ -11,106 +10,128 @@
     },
   ];
   let chatContainer;
+  let loading = false;
+  let inputEl;
 
-  function getAnswer(userInput) {
-    const input = userInput.toLowerCase();
+  async function getAnswer(userInput) {
+    try {
+      const res = await fetch("/n8n/webhook/portfolio-reply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userInput }),
+      });
 
-    for (const item of data) {
-      for (const q of item.questions) {
-        if (input.includes(q)) {
-          return item.answer;
-        }
-      }
+      const text = await res.text();
+      return text || "Sorry 😅 I couldn't get a response. Try again.";
+    } catch (err) {
+      console.error("FULL ERROR:", err);
+      return "Error: " + err.message;
     }
-    return "Sorry 😅 I don’t have an answer for that yet. Try asking about skills or projects.";
   }
 
   async function sendMessage() {
-    if (!message.trim()) return;
-
+    if (!message.trim() || loading) return;
     const userText = message;
-
     messages = [...messages, { from: "user", text: userText }];
     message = "";
-
+    loading = true;
     await tick();
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    setTimeout(async () => {
-      const reply = getAnswer(userText);
-      messages = [...messages, { from: "bot", text: reply }];
-
-      await tick()
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }, 400);
+    const reply = await getAnswer(userText);
+    messages = [...messages, { from: "bot", text: reply }];
+    loading = false;
+    await tick();
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    inputEl.focus()
   }
 </script>
 
-<!-- Chat button -->
+<!-- Toggle button -->
 <button
   on:click={() => (open = !open)}
   class="fixed bottom-6 right-6 z-50
          w-14 h-14 rounded-full
-         bg-gradient-to-r from-[#6366f1] to-[#06b6d4]
+         bg-gradient-to-r from-slate-200 to-slate-500
          flex items-center justify-center
-         shadow-xl hover:scale-110 transition"
+         shadow-xl hover:scale-110 transition-transform duration-200"
   aria-label="Open Chat"
 >
-  <i class="fa-solid fa-robot text-white text-xl"></i>
+  <i class="fa-solid fa-robot text-slate-900 text-xl"></i>
 </button>
 
 <!-- Chat window -->
 {#if open}
   <div
-    class="fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[420px] bg-[#0f172a] border border-gray-800
-           rounded-2xl shadow-2xl
-           flex flex-col overflow-hidden
+    class="fixed bottom-24 right-6 z-50
+           w-80 sm:w-96 h-[420px]
+           bg-[#020617] border border-gray-700
+           rounded-2xl shadow-2xl flex flex-col overflow-hidden
            animate-slideUp"
   >
-    <!-- Header -->
+    <!-- Header-->
     <div
-      class="px-4 py-3 bg-gradient-to-r from-[#6366f1] to-[#06b6d4]
-                text-white font-semibold flex justify-between items-center"
+      class="px-4 py-3 bg-gradient-to-r from-slate-200 to-slate-500 flex justify-between items-center"
     >
-      <span>Ask Pritesh</span>
-      <button on:click={() => (open = false)} aria-label="Close">
-        <i class="fa-solid fa-xmark"></i>
+      <span class="text-slate-900 font-semibold">Ask About Pritesh</span>
+      <button
+        on:click={() => (open = false)}
+        aria-label="Close"
+        class="text-slate-800 hover:text-slate-900 transition-colors"
+      >
+        <i class="fa-solid fa-xmark text-lg"></i>
       </button>
     </div>
 
-    <!-- messages -->
-    <div class="flex-1 p-4 space-y-3 overflow-y-auto text-sm" bind:this={chatContainer}>
+    <!-- Messages -->
+    <div
+      class="flex-1 p-4 space-y-3 overflow-y-auto text-sm"
+      bind:this={chatContainer}
+    >
       {#each messages as msg}
         <div
-          class={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
+          class="flex {msg.from === 'user' ? 'justify-end' : 'justify-start'}"
         >
           <div
-            class={`px-3 py-2 rounded-xl max-w-[80%] ${
-              msg.from === "user"
-                ? "bg-[#6366f1] text-white"
-                : "bg-gray-800 text-gray-200"
-            }`}
+            class="px-3 py-2 rounded-xl max-w-[80%] leading-relaxed
+                   {msg.from === 'user'
+              ? 'bg-slate-200 text-slate-900'
+              : 'bg-gray-800 text-gray-200'}"
           >
             {msg.text}
           </div>
         </div>
       {/each}
+
+      {#if loading}
+        <div class="flex justify-start">
+          <div
+            class="px-3 py-2 rounded-xl bg-gray-800 text-gray-400 text-sm animate-pulse"
+          >
+            Thinking...
+          </div>
+        </div>
+      {/if}
     </div>
 
-    <!-- Input -->
-    <div class="p-3 border-t border-gray-800 flex gap-2">
+    <!-- Input row -->
+    <div class="p-3 border-t border-gray-700 flex gap-2">
       <input
+        bind:this={inputEl}
         bind:value={message}
         on:keydown={(e) => e.key === "Enter" && sendMessage()}
         placeholder="Ask something..."
-        class="flex-1 bg-gray-900 text-white
-               rounded-lg px-3 py-2 text-sm
-               focus:outline-none focus:ring-1 focus:ring-[#6366f1]"
+        disabled={loading}
+        class="flex-1 bg-gray-900 text-white placeholder-gray-500 rounded-lg px-3 py-2 text-sm
+               focus:outline-none focus:ring-1 focus:ring-slate-400 disabled:opacity-50"
       />
       <button
         on:click={sendMessage}
-        class="bg-[#6366f1] text-white
-               px-4 rounded-lg hover:opacity-90"
+        disabled={loading}
+        class="bg-slate-200 text-slate-900 font-semibold px-4 rounded-lg
+               hover:bg-slate-300 transition-colors duration-200 disabled:opacity-50"
       >
         Send
       </button>

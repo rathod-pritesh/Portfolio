@@ -1,71 +1,49 @@
 @import "tailwindcss";
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
-.bg-primary {
-  background-color: #6366f1;
-}
+@theme {
+  --color-primary:   #e2e8f0;
+  --color-secondary: #94a3b8;
+  --color-accent:    #cbd5e1;
+  --color-dark:      #0f172a;
+  --color-darker:    #020617;
 
-.text-primary {
-  color: #6366f1;
-}
+  --animate-rotate: rotate 4s linear infinite;
 
-.bg-darker {
-  background-color: #0f172a;
+  @keyframes rotate {
+    0%   { transform: rotate(0deg)   scale(3); }
+    100% { transform: rotate(360deg) scale(3); }
+  }
 }
 
 .gradient-text {
-  display: inline-block; 
-  background: linear-gradient(to right, #6366f1, #06b6d4);
+  display: inline-block;
+  background: linear-gradient(to right, #e2e8f0, #94a3b8);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
 
+/* Slide animations */
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
+.animate-slideUp { animation: slideUp 0.25s ease-out; }
 
-.animate-slideUp {
-  animation: slideUp 0.25s ease-out;
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 }
+.animate-slideDown { animation: slideDown 0.2s ease-out; }
 
 @layer base {
-  * {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-black text-white;
-  }
+  * { scroll-behavior: smooth; }
+  body { @apply bg-black text-white; }
 }
 
 @layer utilities {
-  .section-padding {
-    @apply py-20 px-6 md:px-12 lg:px-20;
-  }
-
-  .container-max {
-    @apply max-w-7xl mx-auto;
-  }
-}
-
-@theme {
-  --animate-rotate: rotate 4s linear infinite;
-
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg) scale(3);
-    }
-    100% {
-      transform: rotate(360deg) scale(3);
-    }
-  }
+  .section-padding { @apply py-20 px-6 md:px-12 lg:px-20; }
+  .container-max   { @apply max-w-7xl mx-auto; }
 }

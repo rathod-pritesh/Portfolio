@@ -18,49 +18,42 @@
 		update(width, height) {
 			this.x += this.vx;
 			this.y += this.vy;
-
-			if (this.x < 0 || this.x > width) this.vx = -this.vx;
-			if (this.y < 0 || this.y > height) this.vy = -this.vy;
+			if (this.x < 0 || this.x > width)  this.vx = -this.vx;
+			if (this.y < 0 || this.y > height)  this.vy = -this.vy;
 		}
 
 		draw(ctx) {
 			ctx.beginPath();
 			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-			ctx.fillStyle = `rgba(99, 102, 241, ${0.5})`;
+			/* slate-200 — matches --color-primary */
+			ctx.fillStyle = `rgba(226, 232, 240, 0.5)`;
 			ctx.fill();
 		}
 	}
 
 	function initParticles() {
 		if (!canvas) return;
-		
-		const width = window.innerWidth;
+		const width  = window.innerWidth;
 		const height = window.innerHeight;
-		
-		canvas.width = width;
+		canvas.width  = width;
 		canvas.height = height;
-		
 		particles = [];
-		const particleCount = Math.floor((width * height) / 10000);
-		
-		for (let i = 0; i < particleCount; i++) {
-			particles.push(new Particle(width, height));
-		}
+		const count = Math.floor((width * height) / 10000);
+		for (let i = 0; i < count; i++) particles.push(new Particle(width, height));
 	}
 
 	function drawLines() {
-		const maxDistance = 150;
-		
+		const maxDist = 150;
 		for (let i = 0; i < particles.length; i++) {
 			for (let j = i + 1; j < particles.length; j++) {
-				const dx = particles[i].x - particles[j].x;
-				const dy = particles[i].y - particles[j].y;
-				const distance = Math.sqrt(dx * dx + dy * dy);
-				
-				if (distance < maxDistance) {
-					const opacity = (1 - distance / maxDistance) * 0.3;
+				const dx   = particles[i].x - particles[j].x;
+				const dy   = particles[i].y - particles[j].y;
+				const dist = Math.sqrt(dx * dx + dy * dy);
+				if (dist < maxDist) {
+					const opacity = (1 - dist / maxDist) * 0.25;
 					ctx.beginPath();
-					ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+					/* slate-400 — matches --color-secondary */
+					ctx.strokeStyle = `rgba(148, 163, 184, ${opacity})`;
 					ctx.lineWidth = 1;
 					ctx.moveTo(particles[i].x, particles[i].y);
 					ctx.lineTo(particles[j].x, particles[j].y);
@@ -72,16 +65,9 @@
 
 	function animate() {
 		if (!ctx) return;
-		
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		
-		particles.forEach(particle => {
-			particle.update(canvas.width, canvas.height);
-			particle.draw(ctx);
-		});
-		
+		particles.forEach(p => { p.update(canvas.width, canvas.height); p.draw(ctx); });
 		drawLines();
-		
 		animationFrameId = requestAnimationFrame(animate);
 	}
 
@@ -91,18 +77,11 @@
 			initParticles();
 			animate();
 		}
-
-		const handleResize = () => {
-			initParticles();
-		};
-
-		window.addEventListener('resize', handleResize);
-
+		const onResize = () => initParticles();
+		window.addEventListener('resize', onResize);
 		return () => {
-			window.removeEventListener('resize', handleResize);
-			if (animationFrameId) {
-				cancelAnimationFrame(animationFrameId);
-			}
+			window.removeEventListener('resize', onResize);
+			if (animationFrameId) cancelAnimationFrame(animationFrameId);
 		};
 	});
 </script>
@@ -110,4 +89,3 @@
 <div class="fixed inset-0 z-0 pointer-events-none">
 	<canvas bind:this={canvas} class="w-full h-full"></canvas>
 </div>
-

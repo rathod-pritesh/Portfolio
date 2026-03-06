@@ -15,16 +15,15 @@
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						isVisible = true;
-
 						if (window.location.hash !== `#${id}`) {
-							replaceState(`#${id}`)
+							replaceState(`#${id}`);
 						}
 					}
 				});
 			},
-			{ 
+			{
 				rootMargin: '-80px 0px -70% 0px',
-				threshold: 0 
+				threshold: 0
 			}
 		);
 
