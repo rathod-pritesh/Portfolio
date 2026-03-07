@@ -25,6 +25,34 @@
   color: transparent;
 }
 
+body.light {
+  background-color: #f8fafc;   
+  color: #0f172a;
+}
+
+body.light .gradient-text {
+  background: linear-gradient(to right, #0f172a, #334155);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light .card,
+body.light .section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+body.light .card:hover {
+  border-color: #cbd5e1;
+}
+
+body.light nav {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
 /* Slide animations */
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }

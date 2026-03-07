@@ -7,6 +7,7 @@
   let showScrollTop = false;
   let activeSection = "home";
   let isMenuOpen = false;
+  let isDark = true;
 
   const navItems = [
     { label: "Home",     href: "#home",     id: "home"     },
@@ -15,6 +16,11 @@
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Contact",  href: "#contact",  id: "contact"  },
   ];
+
+  function toggleTheme() {
+    isDark = !isDark;
+    document.body.classList.toggle('light', !isDark);
+  }
 
   onMount(() => {
     const handleScroll = () => {
@@ -77,6 +83,20 @@
             </li>
           {/each}
         </ul>
+
+        <button 
+          on:click={toggleTheme}
+          class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 hover:border-gray-400 transition-colors"
+          aria-label="Toggle theme"
+        >
+
+          {#if isDark}
+            <i class="fa-solid fa-circle-half-stroke"></i>
+          {:else}
+            <i class="fa-solid fa-circle-half-stroke"></i>
+          {/if}
+
+        </button>
 
         <!-- Mobile hamburger -->
         <button
