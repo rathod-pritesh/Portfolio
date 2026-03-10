@@ -18,7 +18,11 @@
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^7.1.0",
+		"@n8n_io/n8n-demo-component": "^1.0.20",
 		"@tailwindcss/vite": "^4.1.18",
+		"@webcomponents/webcomponentsjs": "^2.8.0",
+		"lit": "^3.3.2",
+		"svelvet": "^11.0.5",
 		"tailwindcss": "^4.1.18"
 	}
 }

@@ -17,6 +17,7 @@ func main() {
 	r.GET("/api/home", controllers.GetHome)
 	r.GET("/api/about", controllers.GetAbout)
 	r.GET("/api/skills", controllers.GetSkills)
+	r.GET("/api/automations", controllers.GetAutomations)
 	r.GET("/api/projects", controllers.GetProjects)
 
 	for _, route := range r.Routes() {

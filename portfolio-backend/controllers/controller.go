@@ -54,6 +54,23 @@ func GetSkills(c *gin.Context) {
 	c.JSON(200, skills)
 }
 
+// Automation API
+func GetAutomations(c *gin.Context) {
+	client := db.GetClient()
+	collection := client.Database("portfolio").Collection("automations")
+
+	cursor, err := collection.Find(context.TODO(), bson.M{})
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	var automations []models.Automation
+	cursor.All(context.TODO(), &automations)
+
+	c.JSON(200, automations)
+}
+
 // Projects API
 func GetProjects(c *gin.Context) {
 
