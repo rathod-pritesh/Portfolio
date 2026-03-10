@@ -56,37 +56,48 @@
     return JSON.stringify({ nodes, connections });
   }
 
-  function nodeType(id = '') {
+  function nodeType(id = "") {
     const lower = id.toLowerCase();
-    if (lower.includes('webhook'))  return 'n8n-nodes-base.webhook';
-    if (lower.includes('http'))     return 'n8n-nodes-base.httpRequest';
-    if (lower.includes('respond'))  return 'n8n-nodes-base.respondToWebhook';
-    if (lower.includes('gmail'))    return 'n8n-nodes-base.gmail';
-    if (lower.includes('schedule')) return 'n8n-nodes-base.scheduleTrigger';
-    if (lower.includes('rss'))      return 'n8n-nodes-base.rssFeedRead';
-    if (lower.includes('ai') || lower.includes('openai')) return '@n8n/n8n-nodes-langchain.openAi';
-    if (lower.includes('slack'))    return 'n8n-nodes-base.slack';
-    if (lower.includes('sheet') || lower.includes('google')) return 'n8n-nodes-base.googleSheets';
+    if (lower.includes("webhook")) return "n8n-nodes-base.webhook";
+    if (lower.includes("http")) return "n8n-nodes-base.httpRequest";
+    if (lower.includes("respond")) return "n8n-nodes-base.respondToWebhook";
+    if (lower.includes("gmail")) return "n8n-nodes-base.gmail";
+    if (lower.includes("schedule")) return "n8n-nodes-base.scheduleTrigger";
+    if (lower.includes("rss")) return "n8n-nodes-base.rssFeedRead";
+    if (lower.includes("ai") || lower.includes("openai"))
+      return "@n8n/n8n-nodes-langchain.openAi";
+    if (lower.includes("slack")) return "n8n-nodes-base.slack";
+    if (lower.includes("edit") || lower.includes("set") || lower.includes("fields")) return "n8n-nodes-base.set";
+    if (lower.includes("sheet") || lower.includes("google"))
+      return "n8n-nodes-base.googleSheets";
 
-    return 'n8n-nodes-base.noOp';
+    return "n8n-nodes-base.noOp";
   }
 </script>
 
-
-<div class="border border-gray-700 rounded-2xl overflow-hidden bg-gray-900/70 backdrop-blur">
-
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-gray-800">
-
+<div
+  class="border border-gray-700 rounded-2xl overflow-hidden bg-gray-900/70 backdrop-blur"
+>
+  <div
+    class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-gray-800"
+  >
     <div>
-      <p class="text-xs tracking-widest text-purple-400 uppercase mb-1 font-mono">
-        Workflow
-      </p>
+      <div
+        class="inline-flex items-center gap-1.5 bg-purple-500/10 border border-purple-500/30 rounded-full px-3 py-1 mb-2"
+      >
+        <span class="text-purple-400 font-bold text-sm">#</span>
+        <span class="text-purple-300 font-bold text-sm">{automation.flow}</span>
+      </div>
 
-      <h3 class="text-lg font-bold text-white">
+      <h3
+        class="text-xl md:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-snug"
+      >
         {automation.title}
       </h3>
 
-      <p class="text-sm text-gray-400 mt-1 max-w-xl">
+      <p
+        class="text-sm md:text-base text-gray-400 mt-2 max-w-xl leading-relaxed"
+      >
         {automation.description}
       </p>
     </div>
@@ -97,33 +108,31 @@
     >
       {expanded ? "Hide Flow ▲" : "Show Flow ▼"}
     </button>
-
   </div>
 
   {#if expanded}
-
-  <div class="bg-[#0a0a0f] p-4 overflow-hidden">
-
-    <div class="min-w-[500px] h-[280px]">
-
-      {#if browser && ready}
-
-        <n8n-demo
-          workflow={toWorkflow(automation)}
-          tidyup="true"
-          style="width:100%;height:100%;display:block;"
-        ></n8n-demo>
-
-      {:else}
-
-        <div class="flex items-center justify-center h-full gap-2">
-          <div class="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
-          <div class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-150"></div>
-          <div class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-300"></div>
-        </div>
-
-      {/if}
+    <div class="bg-[#0a0a0f] p-4 overflow-hidden">
+      <div class="min-w-[500px] h-[280px]">
+        {#if browser && ready}
+          <n8n-demo
+            workflow={toWorkflow(automation)}
+            tidyup="true"
+            style="width:100%;height:100%;display:block;"
+          ></n8n-demo>
+        {:else}
+          <div class="flex items-center justify-center h-full gap-2">
+            <div
+              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce"
+            ></div>
+            <div
+              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-150"
+            ></div>
+            <div
+              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-300"
+            ></div>
+          </div>
+        {/if}
+      </div>
     </div>
-  </div>
   {/if}
 </div>

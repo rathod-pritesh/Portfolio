@@ -55,6 +55,7 @@ type AutomationEdge struct {
 
 type Automation struct {
 	ID          string           `bson:"_id" json:"_id"`
+	Flow        string           `bson:"flow" json:"flow"`
 	Title       string           `bson:"title" json:"title"`
 	Description string           `bson:"description" json:"description"`
 	Nodes       []AutomationNode `bson:"nodes" json:"nodes"`
