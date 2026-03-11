@@ -10,8 +10,8 @@
 </script>
 
 <svelte:head>
-	<title>Pritesh Rathod | Aspiring Full-Stack Developer</title>
-	<meta name="description" content="Portfolio of Pritesh Rathod - Aspiring Full-Stack Developer" />
+	<title>Pritesh Rathod | Aspiring AI/ML Engineer</title>
+	<meta name="description" content="Portfolio of Pritesh Rathod - Aspiring AI/ML Engineer" />
 </svelte:head>
 
 <ParticlesBackground />

@@ -26,12 +26,18 @@
 }
 
 body.light {
-  background-color: #f8fafc;   
-  color: #0f172a;
+  --color-primary:   #0f2d52;   
+  --color-secondary: #1e4d7b;   
+  --color-accent:    #2563eb;   
+  --color-dark:      #f0f6ff;   
+  --color-darker:    #e2edf9;   
+
+  background-color: #f0f6ff;
+  color: #0f2d52;              
 }
 
 body.light .gradient-text {
-  background: linear-gradient(to right, #0f172a, #334155);
+  background: linear-gradient(to right, #0f2d52, #1e4d7b);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40,18 +46,40 @@ body.light .gradient-text {
 body.light .card,
 body.light .section {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #bdd4ee;
 }
 
 body.light .card:hover {
-  border-color: #cbd5e1;
+  border-color: #2563eb;
 }
 
 body.light nav {
-  background: rgba(255,255,255,0.7);
+  background: rgba(240, 246, 255, 0.80);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #bdd4ee;
 }
+
+body.light h2,
+body.light p,
+body.light label,
+body.light a,
+body.light h3,
+body.light span,
+body.light button {
+  color: #2B2A2A;
+}
+
+body.light .btn-link {
+  background: #f0f6ff;
+  border: 1px solid #bdd4ee;
+  color: #2B2A2A;
+}
+
+body.light .btn-link:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
 
 /* Slide animations */
 @keyframes slideUp {

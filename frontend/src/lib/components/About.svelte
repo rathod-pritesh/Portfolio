@@ -22,11 +22,11 @@
 		</div>
 
 		<!-- Highlight stats -->
-		<div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-8">
 			{#each about.highlights as highlight}
-				<div class="text-center space-y-2 p-6 rounded-lg bg-dark/50 border border-gray-800 hover:border-primary transition-colors duration-300">
-					<h3 class="text-3xl md:text-4xl font-bold text-primary">{highlight.label}</h3>
-					<p class="text-gray-400 text-sm md:text-base">{highlight.description}</p>
+				<div class="text-center space-y-1 p-3 rounded-lg bg-dark/50 border border-gray-800 hover:border-primary transition-colors duration-300">
+					<h3 class="text-sm md:text-base font-bold text-primary leading-tight">{highlight.label}</h3>
+					<p class="text-gray-400 text-xs md:text-sm leading-snug">{highlight.description}</p>
 				</div>
 			{/each}
 		</div>

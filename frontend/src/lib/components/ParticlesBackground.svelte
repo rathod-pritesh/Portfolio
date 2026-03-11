@@ -6,6 +6,14 @@
 	let particles = [];
 	let animationFrameId;
 
+	function getColors() {
+		const isLight = document.body.classList.contains('light');
+		return {
+			particle: isLight ? `rgba(30, 77, 123, 0.4)` : `rgba(226, 232, 240, 0.5)`,
+			line: isLight ? `15, 45, 82` : `148, 163, 184`
+		}
+	}
+
 	class Particle {
 		constructor(width, height) {
 			this.x = Math.random() * width;
@@ -25,8 +33,7 @@
 		draw(ctx) {
 			ctx.beginPath();
 			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-			/* slate-200 — matches --color-primary */
-			ctx.fillStyle = `rgba(226, 232, 240, 0.5)`;
+			ctx.fillStyle = getColors().particle;
 			ctx.fill();
 		}
 	}
@@ -44,6 +51,7 @@
 
 	function drawLines() {
 		const maxDist = 150;
+		const {line} = getColors();
 		for (let i = 0; i < particles.length; i++) {
 			for (let j = i + 1; j < particles.length; j++) {
 				const dx   = particles[i].x - particles[j].x;
@@ -52,8 +60,7 @@
 				if (dist < maxDist) {
 					const opacity = (1 - dist / maxDist) * 0.25;
 					ctx.beginPath();
-					/* slate-400 — matches --color-secondary */
-					ctx.strokeStyle = `rgba(148, 163, 184, ${opacity})`;
+					ctx.strokeStyle = `rgba(${line}, ${opacity})`;
 					ctx.lineWidth = 1;
 					ctx.moveTo(particles[i].x, particles[i].y);
 					ctx.lineTo(particles[j].x, particles[j].y);

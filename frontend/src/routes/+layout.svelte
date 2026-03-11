@@ -86,16 +86,11 @@
 
         <button 
           on:click={toggleTheme}
-          class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 hover:border-gray-400 transition-colors"
+          class="flex items-center justify-center w-9 h-9 rounded-full border transition-colors"
+          style="border-color: var(--border); color: var(--text);"
           aria-label="Toggle theme"
         >
-
-          {#if isDark}
-            <i class="fa-solid fa-circle-half-stroke"></i>
-          {:else}
-            <i class="fa-solid fa-circle-half-stroke"></i>
-          {/if}
-
+          <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
 
         <!-- Mobile hamburger -->

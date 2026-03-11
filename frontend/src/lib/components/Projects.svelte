@@ -56,7 +56,7 @@
 									href={project.github}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300
+									class="btn-link flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300
 									       hover:border-primary hover:text-primary transition-all duration-300"
 								>
 									<i class="fa-brands fa-github"></i>
@@ -68,7 +68,7 @@
 									href={project.liveUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300
+									class="btn-link flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300
 									       hover:border-primary hover:text-primary transition-all duration-300"
 								>
 									<i class="fa-solid fa-arrow-up-right-from-square"></i>
