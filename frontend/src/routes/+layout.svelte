@@ -8,18 +8,28 @@
   let activeSection = "home";
   let isMenuOpen = false;
   let isDark = true;
+  let skillsDropdownOpen = false;
+
+  function toggleSkillsDropdown(e) {
+    e.stopPropagation();
+    skillsDropdownOpen = !skillsDropdownOpen;
+  }
+
+  function closeSkillsDropdown() {
+    skillsDropdownOpen = false;
+  }
 
   const navItems = [
-    { label: "Home",     href: "#home",     id: "home"     },
-    { label: "About",    href: "#about",    id: "about"    },
-    { label: "Skills",   href: "#skills",   id: "skills"   },
+    { label: "Home", href: "#home", id: "home" },
+    { label: "About", href: "#about", id: "about" },
+    { label: "Skills", href: "#skills", id: "skills" },
     { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Contact",  href: "#contact",  id: "contact"  },
+    { label: "Contact", href: "#contact", id: "contact" },
   ];
 
   function toggleTheme() {
     isDark = !isDark;
-    document.body.classList.toggle('light', !isDark);
+    document.body.classList.toggle("light", !isDark);
   }
 
   onMount(() => {
@@ -44,17 +54,21 @@
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
   }
 
-  function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
-  function closeMenu()    { isMenuOpen = false; }
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function closeMenu() {
+    isMenuOpen = false;
+  }
 </script>
 
 <div class="min-h-screen relative">
-
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-gray-800">
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-gray-800"
+  >
     <div class="container-max">
       <div class="flex items-center justify-between py-4 px-6">
-
         <!-- Logo -->
         <a
           href="#home"
@@ -67,24 +81,79 @@
         <!-- Desktop links -->
         <ul class="hidden md:flex items-center gap-8">
           {#each navItems as item}
-            <li>
-              <a
-                href={item.href}
-                class="relative text-gray-400 hover:text-white transition-colors duration-300 group"
-                class:text-primary={activeSection === item.id}
-              >
-                {item.label}
-                <!-- Active underline -->
-                <span
-                  class="absolute left-0 -bottom-1 h-0.5 w-full bg-primary origin-left transform transition-transform duration-300
-                         {activeSection === item.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}"
-                ></span>
-              </a>
+            <li class="relative">
+              {#if item.id === "skills"}
+                <!-- skills with dropdown -->
+                <div class="relative">
+                  <button
+                    on:click={toggleSkillsDropdown}
+                    class="relative flex items-center gap-1 text-gray-400 hover:text-white transition-colors duration-300 group {activeSection ===
+                      'skills' || activeSection === 'certifications'
+                      ? 'text-primary'
+                      : ''}"
+                    >{item.label}
+                    <i
+                      class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200
+                              {skillsDropdownOpen ? 'rotate-180' : ''}"
+                    ></i>
+
+                    <span
+                      class="absolute left-0 -bottom-1 h-0.5 w-full bg-primary origin-left transform transition-transform duration-300
+                             {activeSection === 'skills' ||
+                      activeSection === 'certifications'
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'}"
+                    ></span>
+                  </button>
+
+                  {#if skillsDropdownOpen}
+                    <div
+                      class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50 w-44 rounded-xl bg-gray-900 border border-white/10 shadow-xl animate-fadeIn"
+                    >
+                      <div class="py-1.5">
+                        <a
+                          href="#skills"
+                          on:click={closeSkillsDropdown}
+                          class="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors duration-150"
+                        >
+                          <i class="fa-solid fa-code text-xs text-primary"></i>
+                          Tech Skills
+                        </a>
+                        <a
+                          href="#certifications"
+                          on:click={closeSkillsDropdown}
+                          class="flex items-center gap-2 px-4 py-2 text-sm text-gray-300
+                                 hover:bg-white/5 hover:text-white transition-colors duration-150"
+                        >
+                          <i
+                            class="fa-solid fa-certificate text-xs text-primary"
+                          ></i>
+                          Certifications
+                        </a>
+                      </div>
+                    </div>
+                  {/if}
+                </div>
+              {:else}
+                <a
+                  href={item.href}
+                  class="relative text-gray-400 hover:text-white transition-colors duration-300 group"
+                  class:text-primary={activeSection === item.id}
+                >
+                  {item.label}
+                  <span
+                    class="absolute left-0 -bottom-1 h-0.5 w-full bg-primary origin-left transform transition-transform duration-300
+                           {activeSection === item.id
+                      ? 'scale-x-100'
+                      : 'scale-x-0 group-hover:scale-x-100'}"
+                  ></span>
+                </a>
+              {/if}
             </li>
           {/each}
         </ul>
 
-        <button 
+        <button
           on:click={toggleTheme}
           class="flex items-center justify-center w-9 h-9 rounded-full border transition-colors"
           style="border-color: var(--border); color: var(--text);"
@@ -113,7 +182,9 @@
         ></button>
 
         <!-- Mobile menu -->
-        <div class="fixed top-16 left-0 right-0 z-50 md:hidden bg-darker border-t border-gray-800 px-6 py-4 animate-slideDown">
+        <div
+          class="fixed top-16 left-0 right-0 z-50 md:hidden bg-darker border-t border-gray-800 px-6 py-4 animate-slideDown"
+        >
           <ul class="space-y-4">
             {#each navItems as item}
               <li>
@@ -125,6 +196,27 @@
                 >
                   {item.label}
                 </a>
+                {#if item.id === "skills"}
+                  <div
+                    class="pl-4 mt-1 space-y-1 border-l border-gray-700 ml-1"
+                  >
+                    <a
+                      href="#skills"
+                      on:click={closeMenu}
+                      class="flex items-center gap-2 text-gray-500 hover:text-white transition-colors py-1 text-sm"
+                      class:text-primary={activeSection === "skills"}
+                      ><i class="fa-solid fa-code text-xs"></i> Tech Skills</a
+                    >
+                    <a
+                      href="#certifications"
+                      on:click={closeMenu}
+                      class="flex items-center gap-2 text-gray-500 hover:text-white transition-colors py-1 text-sm"
+                      class:text-primary={activeSection === "certifications"}
+                    >
+                      <i class="fa-solid fa-certificate text-xs"></i> Certifications
+                    </a>
+                  </div>
+                {/if}
               </li>
             {/each}
           </ul>
@@ -153,5 +245,20 @@
       <i class="fa-solid fa-arrow-up font-bold"></i>
     </button>
   {/if}
-
 </div>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.15s ease-out;
+  }
+</style>

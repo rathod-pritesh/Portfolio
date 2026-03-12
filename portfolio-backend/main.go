@@ -19,6 +19,7 @@ func main() {
 	r.GET("/api/skills", controllers.GetSkills)
 	r.GET("/api/automations", controllers.GetAutomations)
 	r.GET("/api/projects", controllers.GetProjects)
+	r.GET("/api/certifications", controllers.GetCertifications)
 
 	for _, route := range r.Routes() {
 		println(route.Method, route.Path)

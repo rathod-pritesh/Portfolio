@@ -8,6 +8,7 @@
   // Main tabs
   let mainTab = 'tech'; 
 
+
   let activeCategory;
   $: if (skills?.categories?.length && !activeCategory) {
     activeCategory = skills.categories[0].name;
@@ -25,7 +26,7 @@
       <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
     </div>
 
-    <!-- ── Main tabs: Tech Skills/Automations ── -->
+    <!-- ── Main tabs: -->
     <div class="flex justify-center gap-3">
 
       <button
@@ -38,6 +39,7 @@
         🛠 Tech Skills
       </button>
 
+      <!-- Automations -->
       <button
         on:click={() => (mainTab = 'automations')}
         class="px-8 py-2.5 rounded-full border text-sm font-semibold transition-all duration-300

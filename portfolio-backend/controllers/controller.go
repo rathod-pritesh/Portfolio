@@ -7,6 +7,7 @@ import (
 	"github.com/rathod-pritesh/portfolio/db"
 	"github.com/rathod-pritesh/portfolio/models"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -69,6 +70,28 @@ func GetAutomations(c *gin.Context) {
 	cursor.All(context.TODO(), &automations)
 
 	c.JSON(200, automations)
+}
+
+// Certification API
+func GetCertifications(c *gin.Context) {
+	client := db.GetClient()
+	collection := client.Database("portfolio").Collection("certifications")
+
+	opts := options.Find().SetSort(bson.D{{Key: "order", Value: 1}})
+
+	cursor, err := collection.Find(context.TODO(), bson.M{}, opts)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	var certifications []models.Certification
+	if err := cursor.All(context.TODO(), &certifications); err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(200, certifications)
 }
 
 // Projects API

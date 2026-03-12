@@ -6,9 +6,14 @@
 
   let expanded = false;
   let ready = false;
+  let n8nLoading = false;
 
   function toggle() {
     expanded = !expanded;
+    if (expanded) {
+      n8nLoading = true;
+      setTimeout(() => (n8nLoading = false), 1400);
+    }
   }
 
   onMount(() => {
@@ -73,10 +78,12 @@
 
     return "n8n-nodes-base.noOp";
   }
+
+  $: skeletonCount = Math.max(3, (automation.nodes ?? []).length);
 </script>
 
 <div
-  class="border border-gray-700 rounded-2xl overflow-hidden bg-gray-900/70 backdrop-blur"
+  class="automation-card border border-gray-700 rounded-2xl overflow-hidden bg-gray-900/70 backdrop-blur"
 >
   <div
     class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b border-gray-800"
@@ -104,35 +111,115 @@
 
     <button
       on:click={toggle}
-      class="self-start md:self-auto px-4 py-2 text-sm rounded-lg bg-gray-800 hover:bg-gray-700 transition text-white"
+      class="toggle-btn shrink-0 self-start sm:self-center px-4 py-2 text-sm rounded-lg bg-gray-800 hover:bg-gray-700 transition text-white whitespace-nowrap"
     >
       {expanded ? "Hide Flow ▲" : "Show Flow ▼"}
     </button>
   </div>
 
   {#if expanded}
-    <div class="bg-[#0a0a0f] p-4 overflow-hidden">
-      <div class="min-w-[500px] h-[280px]">
-        {#if browser && ready}
-          <n8n-demo
-            workflow={toWorkflow(automation)}
-            tidyup="true"
-            style="width:100%;height:100%;display:block;"
-          ></n8n-demo>
-        {:else}
-          <div class="flex items-center justify-center h-full gap-2">
-            <div
-              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce"
-            ></div>
-            <div
-              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-150"
-            ></div>
-            <div
-              class="w-2 h-2 bg-purple-500 rounded-full animate-bounce delay-300"
-            ></div>
+    <div class="bg-[#0a0a0f] p-3 sm:p-4 overflow-x-auto">
+      <div class="relative h-[260px] sm:h-[300px]" style="min-width: min(100%, 500px);">
+
+        {#if n8nLoading || !ready}
+          <div class="skeleton-canvas absolute inset-0 flex items-center px-6 gap-0 overflow-hidden">
+            {#each Array(skeletonCount) as _, i}
+              <div class="skeleton-node shrink-0" style="animation-delay: {i * 120}ms;">
+                <div class="node-icon shimmer"></div>
+                <div class="node-label shimmer"></div>
+              </div>
+
+              <!-- Arrow -->
+              {#if i < skeletonCount - 1}
+                <div class="connector" style="animation-delay: { i * 120 + 80 }ms;">
+                  <div class="connector-line shimmer"></div>
+                  <i class="fa-solid fa-chevron-right arrow-head"></i>
+                </div>
+              {/if}
+            {/each}
           </div>
         {/if}
+
+        <!-- Actual n8n flow -->
+        {#if browser && ready}
+          <n8n-demo workflow={toWorkflow(automation)} tidyup="true" style="width: 100%;height: 100%;display: block;opacity: {n8nLoading ? 0 : 1};transition: opacity 0.4s ease;"></n8n-demo>
+        {/if}
+
       </div>
     </div>
   {/if}
 </div>
+
+
+<style>
+  .skeleton-canvas {
+    background: #0a0a0f;
+    border-radius: 4px;
+  }
+
+  .skeleton-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: nodeAppear 0.35s ease forwards;
+  }
+ 
+  .node-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+  }
+ 
+  .node-label {
+    width: 64px;
+    height: 10px;
+    border-radius: 6px;
+  }
+ 
+  .connector {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 40px;
+    max-width: 80px;
+    opacity: 0;
+    animation: nodeAppear 0.3s ease forwards;
+  }
+ 
+  .connector-line {
+    flex: 1;
+    height: 2px;
+    border-radius: 2px;
+  }
+ 
+  .arrow-head {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-left: -2px;
+    opacity: 0.6;
+  }
+ 
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #1e1e2e 25%,
+      #2d2b55 50%,
+      #1e1e2e 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite linear;
+  }
+ 
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+ 
+  @keyframes nodeAppear {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

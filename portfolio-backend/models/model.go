@@ -63,6 +63,15 @@ type Automation struct {
 	Order       int              `bson:"order" json:"order"`
 }
 
+type Certification struct {
+	ID string `bson:"_id,omitempty" json:"_id,omitempty"`
+	Name string `bson:"name" json:"name"`
+	Company string `bson:"company" json:"company"`
+	Link string `bson:"link" json:"link"`
+	IssueDate string `bson:"issueDate" json:"issueDate"`
+	Order int `bson:"order" json:"order"`
+}
+
 type Project struct {
 	ID           string   `bson:"_id" json:"_id"`
 	Title        string   `bson:"title" json:"title"`
