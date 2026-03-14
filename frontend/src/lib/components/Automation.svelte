@@ -4,15 +4,15 @@
   export let automations = [];
 </script>
 
-<section id="automations" class="min-h-[400px]">
+<section id="automations" class="min-h-100">
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center space-y-4">
-			<h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary gradient-text underline decoration-[#94a3b8]">
+			<h2 class="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary gradient-text underline decoration-secondary">
 				Automations
 			</h2>
       
-			<div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+			<div class="w-20 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
 
       <p class="text-gray-400 text-center mb-12">
       Workflows I've built with automation tools

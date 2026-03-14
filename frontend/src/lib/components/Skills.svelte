@@ -20,10 +20,10 @@
 
     <!-- Heading -->
     <div class="text-center space-y-4">
-      <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary gradient-text underline decoration-[#94a3b8]">
+      <h2 class="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary gradient-text underline decoration-secondary">
         {skills.title}
       </h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+      <div class="w-20 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
     </div>
 
     <!-- ── Main tabs: -->
@@ -33,7 +33,7 @@
         on:click={() => (mainTab = 'tech')}
         class="px-8 py-2.5 rounded-full border text-sm font-semibold transition-all duration-300
                {mainTab === 'tech'
-                 ? 'bg-gradient-to-r from-primary to-secondary text-slate-900 border-primary'
+                 ? 'bg-linear-to-r from-primary to-secondary text-slate-900 border-primary'
                  : 'bg-dark/40 text-gray-300 border-gray-700 hover:border-primary hover:text-white'}"
       >
         🛠 Tech Skills
@@ -44,7 +44,7 @@
         on:click={() => (mainTab = 'automations')}
         class="px-8 py-2.5 rounded-full border text-sm font-semibold transition-all duration-300
                {mainTab === 'automations'
-                 ? 'bg-gradient-to-r from-primary to-secondary text-slate-900 border-primary'
+                 ? 'bg-linear-to-r from-primary to-secondary text-slate-900 border-primary'
                  : 'bg-dark/40 text-gray-300 border-gray-700 hover:border-primary hover:text-white'}"
       >
         ⚡ Automations
@@ -60,7 +60,7 @@
             <button
               class="px-6 py-2 rounded-full border transition-all duration-300
                      {activeCategory === category.name
-                       ? 'bg-gradient-to-r from-primary to-secondary text-slate-900 border-primary font-semibold'
+                       ? 'bg-linear-to-r from-primary to-secondary text-slate-900 border-primary font-semibold'
                        : 'bg-dark/40 text-gray-300 border-gray-700 hover:border-primary hover:text-white'}"
               on:click={() => (activeCategory = category.name)}
             >
@@ -81,7 +81,7 @@
               <div class="flex flex-wrap gap-4">
                 {#each category.skills as item}
                   <div class="flex items-center gap-3 px-4 py-3
-                              bg-gradient-to-r from-primary/10 to-secondary/10
+                              bg-linear-to-r from-primary/10 to-secondary/10
                               border border-primary/25 rounded-xl
                               hover:scale-105 hover:border-primary/50
                               transition-all duration-300">

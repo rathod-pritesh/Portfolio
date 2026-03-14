@@ -8,10 +8,10 @@
 <Section id="certifications">
   <div class="space-y-10">
     <div class="text-center space-y-4">
-      <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary gradient-text underline decoration-[#94a3b8]">
+      <h2 class="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary gradient-text underline decoration-secondary">
         Certifications
       </h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+      <div class="w-20 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
     </div>
 
     <!-- Cards -->

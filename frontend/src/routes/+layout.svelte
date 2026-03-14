@@ -72,7 +72,7 @@
         <!-- Logo -->
         <a
           href="#home"
-          class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary gradient-text"
+          class="text-2xl font-bold bg-linear-to-r from-primary to-secondary gradient-text"
           aria-label="home"
         >
           Pritesh Rathod
@@ -237,7 +237,7 @@
     <button
       on:click={scrollToTop}
       class="fixed bottom-24 right-6 z-40
-             bg-gradient-to-r from-primary to-secondary text-slate-900
+             bg-linear-to-r from-primary to-secondary text-slate-900
              p-3 rounded-full shadow-lg hover:shadow-xl
              transition-all duration-300 hover:scale-110"
       aria-label="Scroll to top"

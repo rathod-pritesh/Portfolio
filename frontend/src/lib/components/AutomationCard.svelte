@@ -97,7 +97,7 @@
       </div>
 
       <h3
-        class="text-xl md:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-snug"
+        class="text-xl md:text-2xl font-bold bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent leading-snug"
       >
         {automation.title}
       </h3>
@@ -119,7 +119,7 @@
 
   {#if expanded}
     <div class="bg-[#0a0a0f] p-3 sm:p-4 overflow-x-auto">
-      <div class="relative h-[260px] sm:h-[300px]" style="min-width: min(100%, 500px);">
+      <div class="relative h-65 sm:h-75" style="min-width: min(100%, 500px);">
 
         {#if n8nLoading || !ready}
           <div class="skeleton-canvas absolute inset-0 flex items-center px-6 gap-0 overflow-hidden">

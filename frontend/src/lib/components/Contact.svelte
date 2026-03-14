@@ -58,12 +58,12 @@
     <!-- Heading -->
     <div class="text-center space-y-4">
       <h2
-        class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary gradient-text underline decoration-[#94a3b8]"
+        class="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary gradient-text underline decoration-secondary"
       >
         Get In Touch
       </h2>
       <div
-        class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"
+        class="w-20 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"
       ></div>
       <p class="text-gray-400 text-lg max-w-2xl mx-auto">
         Have a project in mind or just want to say hello? Feel free to reach
@@ -130,7 +130,7 @@
           <button
             type="submit"
             disabled={isSubmitting}
-            class="w-full px-8 py-3 bg-gradient-to-r from-primary to-secondary
+            class="w-full px-8 py-3 bg-linear-to-r from-primary to-secondary
 						       text-slate-900 font-semibold rounded-lg
 						       hover:shadow-lg hover:shadow-primary/25 hover:scale-105
 						       transition-all duration-300

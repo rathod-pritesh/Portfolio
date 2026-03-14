@@ -54,7 +54,7 @@
   on:click={() => (open = !open)}
   class="fixed bottom-6 right-6 z-50
          w-14 h-14 rounded-full
-         bg-gradient-to-r from-slate-200 to-slate-500
+         bg-linear-to-r from-slate-200 to-slate-500
          flex items-center justify-center
          shadow-xl hover:scale-110 transition-transform duration-200"
   aria-label="Open Chat"
@@ -66,14 +66,14 @@
 {#if open}
   <div
     class="fixed bottom-24 right-6 z-50
-           w-80 sm:w-96 h-[420px]
-           bg-[#020617] border border-gray-700
+           w-80 sm:w-96 h-105
+           bg-darker border border-gray-700
            rounded-2xl shadow-2xl flex flex-col overflow-hidden
            animate-slideUp"
   >
     <!-- Header-->
     <div
-      class="px-4 py-3 bg-gradient-to-r from-slate-200 to-slate-500 flex justify-between items-center"
+      class="px-4 py-3 bg-linear-to-r from-slate-200 to-slate-500 flex justify-between items-center"
     >
       <span class="text-slate-900 font-semibold">Ask About Pritesh</span>
       <button
