@@ -41,35 +41,22 @@ type Skills struct {
 	Categories []Category `bson:"categories" json:"categories"`
 }
 
-type AutomationNode struct {
-	ID    string `bson:"id" json:"id"`
-	Label string `bson:"label" json:"label"`
-	X     int    `bson:"x" json:"x"`
-	Y     int    `bson:"y" json:"y"`
-}
-
-type AutomationEdge struct {
-	From string `bson:"from" json:"from"`
-	To   string `bson:"to" json:"to"`
-}
-
 type Automation struct {
-	ID          string           `bson:"_id" json:"_id"`
-	Flow        string           `bson:"flow" json:"flow"`
-	Title       string           `bson:"title" json:"title"`
-	Description string           `bson:"description" json:"description"`
-	Nodes       []AutomationNode `bson:"nodes" json:"nodes"`
-	Edges       []AutomationEdge `bson:"edges" json:"edges"`
-	Order       int              `bson:"order" json:"order"`
+	ID          string              `bson:"_id" json:"_id"`
+	Flow        string              `bson:"flow" json:"flow"`
+	Title       string              `bson:"title" json:"title"`
+	Description string              `bson:"description" json:"description"`
+	WorkflowJson map[string]interface{} `bson:"workflowJson" json:"workflowJson"`
+	Order       int                 `bson:"order" json:"order"`
 }
 
 type Certification struct {
-	ID string `bson:"_id,omitempty" json:"_id,omitempty"`
-	Name string `bson:"name" json:"name"`
-	Company string `bson:"company" json:"company"`
-	Link string `bson:"link" json:"link"`
+	ID        string `bson:"_id,omitempty" json:"_id,omitempty"`
+	Name      string `bson:"name" json:"name"`
+	Company   string `bson:"company" json:"company"`
+	Link      string `bson:"link" json:"link"`
 	IssueDate string `bson:"issueDate" json:"issueDate"`
-	Order int `bson:"order" json:"order"`
+	Order     int    `bson:"order" json:"order"`
 }
 
 type Project struct {

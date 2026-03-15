@@ -31,52 +31,7 @@
   });
 
   function toWorkflow(auto) {
-    const nodes = (auto.nodes ?? []).map((n, i) => ({
-      name: n.label,
-      type: nodeType(n.id),
-      position: [200 + i * 220, 300],
-      parameters: {},
-      typeVersion: 1,
-    }));
-
-    const connections = {};
-
-    for (const e of auto.edges ?? []) {
-      const src = auto.nodes.find((n) => n.id === e.from);
-      const dst = auto.nodes.find((n) => n.id === e.to);
-
-      if (!src || !dst) continue;
-
-      if (!connections[src.label]) {
-        connections[src.label] = { main: [[]] };
-      }
-
-      connections[src.label].main[0].push({
-        node: dst.label,
-        type: "main",
-        index: 0,
-      });
-    }
-
-    return JSON.stringify({ nodes, connections });
-  }
-
-  function nodeType(id = "") {
-    const lower = id.toLowerCase();
-    if (lower.includes("webhook")) return "n8n-nodes-base.webhook";
-    if (lower.includes("http")) return "n8n-nodes-base.httpRequest";
-    if (lower.includes("respond")) return "n8n-nodes-base.respondToWebhook";
-    if (lower.includes("gmail")) return "n8n-nodes-base.gmail";
-    if (lower.includes("schedule")) return "n8n-nodes-base.scheduleTrigger";
-    if (lower.includes("rss")) return "n8n-nodes-base.rssFeedRead";
-    if (lower.includes("ai") || lower.includes("openai"))
-      return "@n8n/n8n-nodes-langchain.openAi";
-    if (lower.includes("slack")) return "n8n-nodes-base.slack";
-    if (lower.includes("edit") || lower.includes("set") || lower.includes("fields")) return "n8n-nodes-base.set";
-    if (lower.includes("sheet") || lower.includes("google"))
-      return "n8n-nodes-base.googleSheets";
-
-    return "n8n-nodes-base.noOp";
+    return JSON.stringify(auto.workflowJson);
   }
 
   $: skeletonCount = Math.max(3, (automation.nodes ?? []).length);
@@ -120,18 +75,25 @@
   {#if expanded}
     <div class="bg-[#0a0a0f] p-3 sm:p-4 overflow-x-auto">
       <div class="relative h-65 sm:h-75" style="min-width: min(100%, 500px);">
-
         {#if n8nLoading || !ready}
-          <div class="skeleton-canvas absolute inset-0 flex items-center px-6 gap-0 overflow-hidden">
+          <div
+            class="skeleton-canvas absolute inset-0 flex items-center px-6 gap-0 overflow-hidden"
+          >
             {#each Array(skeletonCount) as _, i}
-              <div class="skeleton-node shrink-0" style="animation-delay: {i * 120}ms;">
+              <div
+                class="skeleton-node shrink-0"
+                style="animation-delay: {i * 120}ms;"
+              >
                 <div class="node-icon shimmer"></div>
                 <div class="node-label shimmer"></div>
               </div>
 
               <!-- Arrow -->
               {#if i < skeletonCount - 1}
-                <div class="connector" style="animation-delay: { i * 120 + 80 }ms;">
+                <div
+                  class="connector"
+                  style="animation-delay: {i * 120 + 80}ms;"
+                >
                   <div class="connector-line shimmer"></div>
                   <i class="fa-solid fa-chevron-right arrow-head"></i>
                 </div>
@@ -142,14 +104,18 @@
 
         <!-- Actual n8n flow -->
         {#if browser && ready}
-          <n8n-demo workflow={toWorkflow(automation)} tidyup="true" style="width: 100%;height: 100%;display: block;opacity: {n8nLoading ? 0 : 1};transition: opacity 0.4s ease;"></n8n-demo>
+          <n8n-demo
+            workflow={toWorkflow(automation)}
+            tidyup="true"
+            style="width: 100%;height: 100%;display: block;opacity: {n8nLoading
+              ? 0
+              : 1};transition: opacity 0.4s ease;"
+          ></n8n-demo>
         {/if}
-
       </div>
     </div>
   {/if}
 </div>
-
 
 <style>
   .skeleton-canvas {
@@ -165,19 +131,19 @@
     opacity: 0;
     animation: nodeAppear 0.35s ease forwards;
   }
- 
+
   .node-icon {
     width: 56px;
     height: 56px;
     border-radius: 12px;
   }
- 
+
   .node-label {
     width: 64px;
     height: 10px;
     border-radius: 6px;
   }
- 
+
   .connector {
     display: flex;
     align-items: center;
@@ -187,13 +153,13 @@
     opacity: 0;
     animation: nodeAppear 0.3s ease forwards;
   }
- 
+
   .connector-line {
     flex: 1;
     height: 2px;
     border-radius: 2px;
   }
- 
+
   .arrow-head {
     width: 14px;
     height: 14px;
@@ -201,25 +167,30 @@
     margin-left: -2px;
     opacity: 0.6;
   }
- 
+
   .shimmer {
-    background: linear-gradient(
-      90deg,
-      #1e1e2e 25%,
-      #2d2b55 50%,
-      #1e1e2e 75%
-    );
+    background: linear-gradient(90deg, #1e1e2e 25%, #2d2b55 50%, #1e1e2e 75%);
     background-size: 200% 100%;
     animation: shimmer 1.4s infinite linear;
   }
- 
+
   @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
- 
+
   @keyframes nodeAppear {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
