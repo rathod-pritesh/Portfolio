@@ -1,0 +1,127 @@
+<script>
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
+
+  let checking = true;
+
+  onMount(async () => {
+    if ($page.url.pathname === "/admin/login") {
+      checking = false;
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8080/api/admin/verify", {
+        credentials: "include",
+      });
+      if (!res.ok) {
+        goto("/admin/login");
+        return;
+      }
+    } catch {
+      goto("/admin/login");
+      return;
+    }
+    checking = false;
+  });
+
+  async function handleLogout() {
+    await fetch("http://127.0.0.1:8080/api/admin/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    goto("/admin/login");
+  }
+
+  const navLinks = [
+    { href: "/admin/home", label: "Home", icon: "fa-house" },
+    { href: "/admin/about", label: "About", icon: "fa-user" },
+    { href: "/admin/skills", label: "Skills", icon: "fa-layer-group" },
+    { href: "/admin/projects", label: "Projects", icon: "fa-diagram-project" },
+  ];
+</script>
+
+{#if checking && $page.url.pathname !== "/admin/login"}
+  <div class="min-h-screen bg-darker flex items-center justify-center">
+    <span
+      class="w-8 h-8 rounded-full border-2 border-white/8 border-t-primary animate-spin"
+    ></span>
+  </div>
+
+  <!-- login page -->
+{:else if $page.url.pathname === "/admin/login"}
+  <slot />
+
+  <!-- Admin shell -->
+{:else}
+  <div class="min-h-screen bg-darker flex flex-col">
+    <!-- Navbar -->
+    <header
+      class="sticky top-0 z-50 border-b border-white/6
+                   bg-[rgba(10,10,15,0.85)] backdrop-blur-md"
+    >
+      <div
+        class="max-w-300 mx-auto px-5 h-15
+                  flex items-center justify-between gap-4"
+      >
+        <a
+          href="/admin/home"
+          class="flex items-center gap-2 text-[15px] font-semibold
+                  text-primary no-underline shrink-0"
+        >
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Admin</span>
+        </a>
+
+        <!-- center nav -->
+        <nav class="flex items-center gap-1">
+          {#each navLinks as link}
+            <a
+              href={link.href}
+              class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium
+                     no-underline whitespace-nowrap transition-colors duration-150
+                     {$page.url.pathname === link.href
+                ? 'text-primary bg-primary/10'
+                : 'text-white/45 hover:text-white/85 hover:bg-white/5'}"
+            >
+              <i class="fa-solid {link.icon}"></i>
+              <span>{link.label}</span>
+            </a>
+          {/each}
+        </nav>
+
+        <div class="flex items-center gap-1.5 shrink-0">
+          <!-- View portfolio -->
+          <a
+            href="/"
+            target="_blank"
+            title="View portfolio"
+            class="flex items-center justify-center w-8.5 h-8.5 rounded-lg
+                    border border-white/8 text-white/40 text-[13px]
+                    hover:text-white/85 hover:border-white/15 hover:bg-white/5
+                    no-underline transition-colors duration-150"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>View Portfolio
+          </a>
+          <!-- Logout -->
+          <button
+            on:click={handleLogout}
+            title="Logout"
+            class="flex items-center justify-center w-8.5 h-8.5 rounded-lg
+                   border border-white/8 bg-transparent text-white/40 text-[13px]
+                   hover:text-red-400 hover:border-red-400/30 hover:bg-red-400/8
+                   cursor-pointer transition-colors duration-150"
+          >
+            <i class="fa-solid fa-right-from-bracket"></i>Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Slot -->
+    <main class="flex-1 p-4 md:p-8 overflow-y-auto">
+      <slot />
+    </main>
+  </div>
+{/if}

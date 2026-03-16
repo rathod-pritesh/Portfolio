@@ -13,7 +13,6 @@ frontend/.next
 frontend/dist
 frontend/build
 frontend/.svelte-kit
-frontend/src/routes/admin
 
 # Logs
 npm-debug.log*

@@ -8,7 +8,6 @@ import (
 	"github.com/rathod-pritesh/portfolio/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"golang.org/x/crypto/bcrypt"
 )
 
 // Home API
@@ -107,32 +106,4 @@ func GetProjects(c *gin.Context) {
 	cursor.All(context.TODO(), &projects)
 
 	c.JSON(200, projects)
-}
-
-func AdminLoginHandler(c *gin.Context) {
-	var input models.Admin
-	var storedAdmin models.Admin
-
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(400, gin.H{"error": "Invalid request format"})
-		return
-	}
-
-	// find the admin in MongoDB by email
-	collection := db.DB.Collection("admin")
-	err := collection.FindOne(context.TODO(), bson.M{"email": input.Email}).Decode(&storedAdmin)
-
-	if err != nil {
-		c.JSON(401, gin.H{"error": "Invalid email or password"})
-		return
-	}
-
-	// Compare the hashed password from DB with plain password from Input
-	err = bcrypt.CompareHashAndPassword([]byte(storedAdmin.Password), []byte(input.Password))
-	if err != nil {
-		c.JSON(401, gin.H{"error": "Invalid email or password"})
-		return
-	}
-
-	c.JSON(200, gin.H{"message": "Welcome", "redirect": "/admin/dashboard"})
 }
