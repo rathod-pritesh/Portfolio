@@ -38,6 +38,8 @@ func main() {
 		// Home section
 		admin.GET("/home", controllers.AdminGetHome)
 		admin.PUT("/home", controllers.AdminUpdateHome)
+		admin.GET("/about",controllers.AdminGetAbout)
+		admin.PUT("/about", controllers.AdminUpdateAbout)
 	}
 
 	for _, route := range r.Routes() {

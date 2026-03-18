@@ -1,5 +1,5 @@
 <script>
-  import "../app.css";
+  import '$lib/app.css';
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
   import ChatBot from "$lib/components/ChatBot.svelte";
