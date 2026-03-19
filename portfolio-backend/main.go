@@ -38,8 +38,26 @@ func main() {
 		// Home section
 		admin.GET("/home", controllers.AdminGetHome)
 		admin.PUT("/home", controllers.AdminUpdateHome)
+
+		// About
 		admin.GET("/about",controllers.AdminGetAbout)
 		admin.PUT("/about", controllers.AdminUpdateAbout)
+
+		// Skills
+		admin.GET("/skills", controllers.AdminGetSkills)
+		admin.PUT("/skills/title", controllers.AdminUpdateSkillsTitle)
+		admin.POST("/skills/category", controllers.AdminAddCategory)
+		admin.PUT("/skills/category/:ci", controllers.AdminUpdateCategory)
+		admin.DELETE("/skills/category/:ci", controllers.AdminDeleteCategory)
+		admin.POST("/skills/category/:ci/skill", controllers.AdminAddSkills)
+		admin.PUT("/skills/category/:ci/skill/:si", controllers.AdminUpdateSkill)
+		admin.DELETE("/skills/category/:ci/skill/:si", controllers.AdminDeleteSkill)
+
+		// Certification
+		admin.GET("/certifications", controllers.AdminGetCertifications)
+		admin.POST("/certifications", controllers.AdminAddCertification)
+		admin.PUT("/certifications/:id", controllers.AdminUpdateCertification)
+		admin.DELETE("/certifications/:id", controllers.AdminDeleteCertification)
 	}
 
 	for _, route := range r.Routes() {

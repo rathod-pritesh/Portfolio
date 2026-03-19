@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { onMount } from "svelte";
+  import ParticlesBackground from "$lib/components/ParticlesBackground.svelte";
 
   let checking = true;
 
@@ -52,6 +53,7 @@
 {:else if $page.url.pathname === "/admin/login"}
   <slot />
 {:else}
+  <ParticlesBackground />
   <div class="min-h-screen bg-darker flex flex-col">
     <header
       class="sticky top-0 z-50 border-b border-white/6 bg-[rgba(10,10,15,0.85)] backdrop-blur-md"
