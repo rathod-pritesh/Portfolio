@@ -49,6 +49,7 @@ Portfolio
 git clone https://github.com/YOUR_USERNAME/Portfolio.git
 cd Portfolio
 ```
+> Replace `YOUR_USERNAME` with your GitHub username
 
 ### 2️⃣ Run Frontend
 ```bash
