@@ -58,6 +58,13 @@ func main() {
 		admin.POST("/certifications", controllers.AdminAddCertification)
 		admin.PUT("/certifications/:id", controllers.AdminUpdateCertification)
 		admin.DELETE("/certifications/:id", controllers.AdminDeleteCertification)
+
+		// Project
+		admin.GET("/projects", controllers.AdminGetProjects)
+		admin.POST("/projects", controllers.AdminAddProject)
+		admin.PUT("/projects/reorder", controllers.AdminReorderProject)
+		admin.PUT("/projects/:id", controllers.AdminUpdateProject)
+		admin.DELETE("/projects/:id", controllers.AdminDeleteProject)
 	}
 
 	for _, route := range r.Routes() {

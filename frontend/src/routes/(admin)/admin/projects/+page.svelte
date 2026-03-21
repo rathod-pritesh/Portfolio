@@ -29,14 +29,8 @@
 
 {#if showAddForm}
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-      <button
-        onclick={toggleModal}
-        class="absolute top-4 right-4 text-slate-400 hover:text-white z-10"
-      ><i class="fa-solid fa-xmark text-2xl"></i>Cancel</button>
-
-      <AdminProjectAddForm onCancel={toggleModal} />
-    </div>
-  </div>
+  <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <AdminProjectAddForm onCancel={toggleModal} />
+  </div></div>
 {/if}
 
