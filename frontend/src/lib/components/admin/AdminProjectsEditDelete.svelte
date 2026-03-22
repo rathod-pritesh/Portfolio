@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { showToast } from "$lib/stores/toastStore";
   import AdminProjectAddForm from "./AdminProjectAddForm.svelte";
   import {
     projects,
@@ -24,8 +25,9 @@
     if (!confirm("Are you sure want to delete this project?")) return;
     try {
       await deleteProject(id);
+      showToast("Project deleted successfully");
     } catch (err) {
-      alert(err.message);
+      showToast(err.message, "error");
     }
   }
 
@@ -149,20 +151,6 @@
                     >
                       <i class="fa-brands fa-github text-lg"></i>
                     </a>
-                  {/if}
-                  {#if project.liveUrl}
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      class="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
-                      title="Live Site"
-                    >
-                      <i class="fa-solid fa-arrow-up-right-from-square text-lg"
-                      ></i>
-                    </a>
-                  {/if}
-                  {#if !project.github && !project.liveUrl}
-                    <span class="text-slate-700 text-xs">N/A</span>
                   {/if}
                 </div>
               </td>

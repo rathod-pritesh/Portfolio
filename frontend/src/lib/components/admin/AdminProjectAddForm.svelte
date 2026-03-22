@@ -1,6 +1,6 @@
 <script>
   import { addProject, updateProject } from "$lib/stores/projectStore";
-  import { or } from "ajv/dist/compile/codegen";
+  import { showToast } from "$lib/stores/toastStore";
 
   let { onCancel, project=null } = $props();
 
@@ -50,9 +50,10 @@
       } else {
         await addProject(payload);
       }
+      showToast(isEdit ? "Project updated successfully" : "Project edited successfully");
       onCancel();
     } catch (err) {
-      formError = err.message;
+      showToast(err.message, "error")
     } finally {
       submitting = false;
     }
@@ -71,6 +72,7 @@
         <input
           type="text"
           id="title"
+          name="title"
           bind:value={title}
           placeholder="Enter project title"
           required
@@ -83,6 +85,7 @@
         <input
           type="number"
           id="order"
+          name="order"
           bind:value={order}
           placeholder="0"
           required
@@ -95,6 +98,7 @@
       <label for="description" class="block text-sm font-medium mb-2 text-slate-400">Description*</label>
       <textarea
         id="description"
+        name="description"
         bind:value={description}
         rows="3"
         placeholder="Describe the project..."
@@ -109,6 +113,7 @@
         <input
           type="text"
           id="image"
+          name="image"
           bind:value={image}
           placeholder="https://..."
           class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -119,6 +124,7 @@
         <input
           type="text"
           id="github"
+          name="github"
           bind:value={github}
           placeholder="https://github.com/..."
           class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -131,6 +137,7 @@
         <input
           type="text"
           id="gradient"
+          name="gradient"
           bind:value={gradient}
           placeholder="from-blue-500 to-purple-600"
           class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -142,6 +149,7 @@
       <input
         type="text"
         id="technologies"
+        name="technologies"
         bind:value={technologies}
         placeholder="Go, SvelteKit, Tailwind"
         class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -152,6 +160,7 @@
       <input
         type="checkbox"
         id="featured"
+        name="featured"
         bind:checked={isFeatured}
         class="w-5 h-5 rounded border-slate-700 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-slate-900"
       />

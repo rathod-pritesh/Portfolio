@@ -1,4 +1,5 @@
 <script>
+  import { showToast } from "$lib/stores/toastStore";
   const BASE = 'http://localhost:8080/api/admin/skills';
 
   let skills      = null;
@@ -24,12 +25,6 @@
     }
   }
   fetchSkills();
-
-  //  toast 
-  function showToast(msg, type = 'success') {
-    toast = { msg, type };
-    setTimeout(() => (toast = null), 3000);
-  }
 
   //  title 
   async function saveTitle() {
@@ -129,15 +124,6 @@
   </div>
 
 {:else if skills}
-
-<!--  toast  -->
-{#if toast}
-  <div role="status" aria-live="polite"
-    class="fixed top-5 right-5 z-50 px-5 py-3 rounded-xl text-sm font-medium shadow-xl animate-slideIn
-           {toast.type === 'error' ? 'bg-red-500/90 text-white' : 'bg-emerald-500/90 text-white'}">
-    <i class="fa-solid {toast.type === 'error' ? 'fa-circle-xmark' : 'fa-circle-check'} mr-2"></i>{toast.msg}
-  </div>
-{/if}
 
 <div class="space-y-8">
 
@@ -421,11 +407,3 @@
     </div>
   </div>
 {/if}
-
-<style>
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(1rem); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .animate-slideIn { animation: slideIn 0.25s ease-out; }
-</style>

@@ -65,7 +65,7 @@
 <div class="min-h-screen relative">
   <!-- Navbar -->
   <nav
-    class="fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-gray-800"
+    class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800"
   >
     <div class="container-max">
       <div class="flex items-center justify-between py-4 px-6">
@@ -183,7 +183,7 @@
 
         <!-- Mobile menu -->
         <div
-          class="fixed top-16 left-0 right-0 z-50 md:hidden bg-darker border-t border-gray-800 px-6 py-4 animate-slideDown"
+          class="fixed top-16 left-0 right-0 z-50 md:hidden bg-black border-t border-gray-800 px-6 py-4 animate-slideDown"
         >
           <ul class="space-y-4">
             {#each navItems as item}

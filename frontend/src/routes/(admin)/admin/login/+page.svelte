@@ -7,6 +7,7 @@
   let error = "";
   let loading = false;
   let showPassword = false;
+  let fadeIn = false;
 
   // If already logged in redirect to dashboard
   onMount(async () => {
@@ -42,6 +43,9 @@
       if (!res.ok) {
         error = data.error ?? "Login failed";
       } else {
+        loading = false;
+        fadeIn = true;
+        await new Promise((r) => setTimeout(r, 900));
         goto("/admin/home");
       }
     } catch {
@@ -199,3 +203,30 @@
  
   </div>
 </div>
+
+{#if fadeIn}
+  <div class="login-overlay">
+    <div class="flex flex-col items-center gap-4">
+      <span class="w-10 h-10 rounded-full border-2 border-white/20 border-t-white animate-spin"></span>
+      <p class="text-white/70 text-sm font-medium tracking-wide">Signing in...</p>
+    </div>
+  </div>
+{/if}
+
+
+<style>
+  .login-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 15, 0);
+    animation: fadeToBlack 0.9s ease-out forwards;
+  }
+  @keyframes fadeToBlack {
+    from { background: rgba(10, 10, 15, 0); }
+    to   { background: rgba(10, 10, 15, 1); }
+  }
+</style>
