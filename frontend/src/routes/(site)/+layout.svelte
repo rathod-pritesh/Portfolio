@@ -29,7 +29,7 @@
 
   function toggleTheme() {
     isDark = !isDark;
-    document.body.classList.toggle("light", !isDark);
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
   }
 
   onMount(() => {
@@ -46,6 +46,8 @@
         }
       }
     };
+
+    document.documentElement.dataset.theme = "dark";
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
@@ -155,11 +157,10 @@
 
         <button
           on:click={toggleTheme}
-          class="flex items-center justify-center w-9 h-9 rounded-full border transition-colors"
-          style="border-color: var(--border); color: var(--text);"
+          class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors"
           aria-label="Toggle theme"
         >
-          <i class="fa-solid fa-circle-half-stroke"></i>
+          <i class="fa-solid {isDark ? 'fa-sun' : 'fa-moon'}"></i>
         </button>
 
         <!-- Mobile hamburger -->
@@ -183,7 +184,7 @@
 
         <!-- Mobile menu -->
         <div
-          class="fixed top-16 left-0 right-0 z-50 md:hidden bg-black border-t border-gray-800 px-6 py-4 animate-slideDown"
+          class="mobile-menu fixed top-16 left-0 right-0 z-50 md:hidden bg-black border-t border-gray-800 px-6 py-4 animate-slideDown"
         >
           <ul class="space-y-4">
             {#each navItems as item}

@@ -76,132 +76,133 @@
 }
 
 /* light theme */
-body.light {
+[data-theme="light"] {
   --color-primary: #0f2d52;
   --color-secondary: #1e4d7b;
   --color-accent: #2563eb;
   --color-dark: #f0f6ff;
   --color-darker: #e2edf9;
+}
 
-  background-color: #f0f6ff;
+[data-theme="light"] body {
+  background-color: #ffffff !important;
   color: #0f2d52;
 }
 
-body.light .gradient-text {
+[data-theme="light"] .gradient-text {
   background: linear-gradient(to right, #2563eb, #0ea5e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-body.light .card,
-body.light .section {
+[data-theme="light"] .card,
+[data-theme="light"] .section {
   background: #ffffff;
   border: 1px solid #bdd4ee;
 }
 
-body.light .card:hover {
+[data-theme="light"] .card:hover {
   border-color: #2563eb;
 }
 
-body.light .btn-link {
+[data-theme="light"] .btn-link {
   background: #f0f6ff;
   border: 1px solid #bdd4ee;
   color: #2b2a2a;
 }
 
-body.light .btn-link:hover {
+[data-theme="light"] .btn-link:hover {
   border-color: #2563eb;
   color: #2563eb;
 }
 
-body.light h2,
-body.light h3,
-body.light h4,
-body.light p,
-body.light label,
-body.light span,
-body.light a,
-body.light button {
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] p,
+[data-theme="light"] label,
+[data-theme="light"] span,
+[data-theme="light"] a,
+[data-theme="light"] button {
   color: #2b2a2a;
 }
 
-body.light nav {
+[data-theme="light"] nav {
   background: rgba(240, 246, 255, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #bdd4ee;
 }
 
-body.light nav a,
-body.light nav button {
+[data-theme="light"] nav a,
+[data-theme="light"] nav button {
   color: #1e3a5f;
 }
 
-body.light nav a:hover,
-body.light nav button:hover {
+[data-theme="light"] nav a:hover,
+[data-theme="light"] nav button:hover {
   color: #2563eb;
 }
 
-body.light .nav-dropdown {
+[data-theme="light"] .nav-dropdown {
   background: #ffffff;
   border: 1px solid #bdd4ee;
   box-shadow: 0 8px 24px rgba(15, 45, 82, 0.12);
 }
 
-body.light .nav-dropdown a {
+[data-theme="light"] .nav-dropdown a {
   color: #1e3a5f;
 }
-body.light .nav-dropdown a:hover {
+[data-theme="light"] .nav-dropdown a:hover {
   background: #f0f6ff;
   color: #2563eb;
 }
 
-body.light .mobile-menu {
-  background: #f0f6ff;
+[data-theme="light"] .mobile-menu {
+  background: #ffffff !important;
   border-color: #bdd4ee;
 }
-body.light .mobile-menu a {
+[data-theme="light"] .mobile-menu a {
   color: #1e3a5f;
 }
-body.light .mobile-menu .sub-links {
+[data-theme="light"] .mobile-menu .sub-links {
   border-color: #bdd4ee;
 }
 
-/* ── AutomationCard light mode ───────────────────────────── */
-body.light .automation-card {
+[data-theme="light"] .automation-card {
   background: #ffffff;
   border-color: #bdd4ee;
 }
 
-body.light .automation-card-header {
+[data-theme="light"] .automation-card-header {
   border-color: #bdd4ee;
 }
 
-body.light .automation-card h3 {
+[data-theme="light"] .automation-card h3 {
   background: linear-gradient(to right, #0f2d52, #2563eb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-body.light .automation-card p {
+[data-theme="light"] .automation-card p {
   color: #4a6080 !important;
 }
 
-body.light .automation-card .flow-badge {
+[data-theme="light"] .automation-card .flow-badge {
   background: rgba(37, 99, 235, 0.1);
   border-color: rgba(37, 99, 235, 0.3);
 }
 
-body.light .automation-card .flow-badge span {
+[data-theme="light"] .automation-card .flow-badge span {
   color: #2563eb !important;
 }
 
-body.light .automation-card .toggle-btn {
+[data-theme="light"] .automation-card .toggle-btn {
   background: #e2edf9;
   color: #0f2d52 !important;
 }
 
-body.light .automation-card .toggle-btn:hover {
+[data-theme="light"] .automation-card .toggle-btn:hover {
   background: #bdd4ee;
 }
