@@ -26,6 +26,7 @@ func main() {
 	r.GET("/api/automations", controllers.GetAutomations)
 	r.GET("/api/projects", controllers.GetProjects)
 	r.GET("/api/certifications", controllers.GetCertifications)
+	r.GET("/api/education", controllers.GetEducation)
 
 	// Admin Auth
 	r.POST("/api/admin/login", controllers.AdminLoginHandler)
@@ -35,7 +36,7 @@ func main() {
 	// Admin CRUD
 	admin := r.Group("/api/admin", controllers.AdminAuthMiddleware)
 	{
-		// Home section
+		// Home 
 		admin.GET("/home", controllers.AdminGetHome)
 		admin.PUT("/home", controllers.AdminUpdateHome)
 

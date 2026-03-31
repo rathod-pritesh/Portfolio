@@ -4,7 +4,6 @@
   let form = {
     title: "",
     description: "",
-    highlights: [],
   };
 
   let loading = true;
@@ -21,12 +20,10 @@
         error = "Failed to load about data.";
         return;
       }
-
       const data = await res.json();
       form = {
         title: data.title ?? "",
         description: data.description ?? "",
-        highlights: data.highlights ?? [],
       };
     } catch {
       error = "Could not reach server.";
@@ -35,33 +32,6 @@
     }
   });
 
-  function addHighlight() {
-    form.highlights = [...form.highlights, { label: "", description: "" }];
-  }
-
-  function removeHighlight(index) {
-    form.highlights = form.highlights.filter((_, i) => i !== index);
-  }
-
-  function updateHighlight(index, field, value) {
-    form.highlights[index][field] = value;
-    form.highlights = [...form.highlights];
-  }
-
-  function moveUp(index) {
-    if (index === 0) return;
-    const arr = [...form.highlights];
-    [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
-    form.highlights = arr;
-  }
-
-  function moveDown(index) {
-    if (index === form.highlights.length - 1) return;
-    const arr = [...form.highlights];
-    [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
-    form.highlights = arr;
-  }
-
   async function handleSave() {
     error = "";
     success = false;
@@ -69,13 +39,6 @@
     if (!form.title || !form.description) {
       error = "Title and Description are required.";
       return;
-    }
-
-    for (let i = 0; i < form.highlights.length; i++) {
-      if (!form.highlights[i].label || !form.highlights[i].description) {
-        error = `Highlights #${i + 1}: both Label and Description are required.`;
-        return;
-      }
     }
 
     saving = true;
@@ -115,7 +78,7 @@
     </div>
     <h1 class="text-2xl font-bold text-white">About Section</h1>
     <p class="text-sm text-white/40 mt-1">
-      Edit your about title, description and highlight cards.
+      Edit your about title and description.
     </p>
   </div>
 
@@ -192,107 +155,6 @@
           </p>
         </div>
       </div>
-    </div>
-
-    <div
-      class="bg-dark border border-white/[0.07] rounded-2xl p-5 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.35)] mb-6"
-    >
-      <div
-        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
-      >
-        <h2 class="text-sm font-semibold text-white/70 flex items-center gap-2">
-          <i class="fa-solid fa-list-check text-primary text-xs"></i>
-          Highlights
-          <span class="text-xs font-normal text-white/30 ml-1"
-            >({form.highlights.length})</span
-          >
-        </h2>
-        <button
-          on:click={addHighlight}
-          class="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium text-primary border border-primary/30 bg-primary/5 hover:bg-primary/15 transition-all cursor-pointer"
-        >
-          <i class="fa-solid fa-plus text-[10px]"></i> Add Highlight
-        </button>
-      </div>
-
-      {#if form.highlights.length === 0}
-        <div
-          class="flex flex-col items-center justify-center py-12 border border-dashed border-white/10 rounded-xl text-center"
-        >
-          <i class="fa-solid fa-rectangle-list text-3xl text-white/10 mb-3"></i>
-          <p class="text-sm text-white/30">No highlights yet.</p>
-        </div>
-      {:else}
-        <div class="space-y-4">
-          {#each form.highlights as highlight, i}
-            <div
-              class="border border-white/[0.07] rounded-xl p-4 sm:p-5 bg-darker/30 relative"
-            >
-              <div class="flex items-center justify-between mb-4">
-                <span
-                  class="text-[10px] font-bold text-white/20 bg-white/[0.03] px-2 py-1 rounded"
-                  >#{i + 1}</span
-                >
-                <div class="flex items-center gap-2">
-                  <button
-                    aria-label="move-up"
-                    on:click={() => moveUp(i)}
-                    disabled={i === 0}
-                    class="w-8 h-8 flex items-center justify-center rounded-md border border-white/[0.08] text-white/30 hover:text-white/70 disabled:opacity-20 transition-all"
-                    ><i class="fa-solid fa-chevron-up text-xs"></i></button
-                  >
-                  <button
-                    aria-label="move-down"
-                    on:click={() => moveDown(i)}
-                    disabled={i === form.highlights.length - 1}
-                    class="w-8 h-8 flex items-center justify-center rounded-md border border-white/[0.08] text-white/30 hover:text-white/70 disabled:opacity-20 transition-all"
-                    ><i class="fa-solid fa-chevron-down text-xs"></i></button
-                  >
-                  <button
-                    aria-label="removehighlight"
-                    on:click={() => removeHighlight(i)}
-                    class="w-8 h-8 flex items-center justify-center rounded-md border border-white/[0.08] text-white/30 hover:text-red-400 hover:bg-red-400/10 transition-all"
-                    ><i class="fa-solid fa-trash-can text-xs"></i></button
-                  >
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex flex-col gap-1.5">
-                  <label
-                    for="label"
-                    class="text-[10px] font-medium text-white/40 uppercase tracking-widest"
-                    >Label</label
-                  >
-                  <input
-                    type="text"
-                    value={highlight.label}
-                    on:input={(e) =>
-                      updateHighlight(i, "label", e.currentTarget.value)}
-                    placeholder="Experience"
-                    class="w-full bg-darker border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white outline-none focus:border-primary/50 transition-all"
-                  />
-                </div>
-                <div class="flex flex-col gap-1.5">
-                  <label
-                    for="value"
-                    class="text-[10px] font-medium text-white/40 uppercase tracking-widest"
-                    >Value</label
-                  >
-                  <input
-                    type="text"
-                    value={highlight.description}
-                    on:input={(e) =>
-                      updateHighlight(i, "description", e.currentTarget.value)}
-                    placeholder="2+ Years"
-                    class="w-full bg-darker border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white outline-none focus:border-primary/50 transition-all"
-                  />
-                </div>
-              </div>
-            </div>
-          {/each}
-        </div>
-      {/if}
     </div>
 
     <div

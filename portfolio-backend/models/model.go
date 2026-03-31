@@ -11,16 +11,22 @@ type Home struct {
 	ProfileImage string `bson:"profileImage" json:"profileImage"`
 }
 
-type Highlight struct {
-	Label       string `bson:"label" json:"label"`
-	Description string `bson:"description" json:"description"`
+type Education struct {
+	ID          string `bson:"_id,omitempty" json:"_id,omitempty"`
+	Degree      string `bson:"degree" json:"degree"`
+	Institution string `bson:"institution" json:"institution"`
+	YearStart   string `bson:"yearStart" json:"yearStart"`
+	YearEnd     string `bson:"yearEnd" json:"yearEnd"`
+	Score       string `bson:"score" json:"score"`
+	ScoreType   string `bson:"scoreType" json:"scoreType"`
+	Status      string `bson:"status" json:"status"`
+	Order       int    `bson:"order" json:"order"`
 }
 
 type About struct {
 	ID          string      `bson:"_id" json:"_id"`
 	Title       string      `bson:"title" json:"title"`
 	Description string      `bson:"description" json:"description"`
-	Highlights  []Highlight `bson:"highlights" json:"highlights"`
 }
 
 type Skill struct {
@@ -42,12 +48,12 @@ type Skills struct {
 }
 
 type Automation struct {
-	ID          string              `bson:"_id" json:"_id"`
-	Flow        string              `bson:"flow" json:"flow"`
-	Title       string              `bson:"title" json:"title"`
-	Description string              `bson:"description" json:"description"`
+	ID           string                 `bson:"_id" json:"_id"`
+	Flow         string                 `bson:"flow" json:"flow"`
+	Title        string                 `bson:"title" json:"title"`
+	Description  string                 `bson:"description" json:"description"`
 	WorkflowJson map[string]interface{} `bson:"workflowJson" json:"workflowJson"`
-	Order       int                 `bson:"order" json:"order"`
+	Order        int                    `bson:"order" json:"order"`
 }
 
 type Certification struct {

@@ -19,7 +19,7 @@
 
 <div class="relative z-10">
 	<Home home={data.home}/>
-	<About about={data.about}/>
+	<About about={data.about} education={data.education}/>
 	<Skills skills={data.skills} automations={data.automations} />
 	<Certification certifications={data.certifications} />
 	<Projects projects={data.projects}/>

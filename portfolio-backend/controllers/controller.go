@@ -107,3 +107,25 @@ func GetProjects(c *gin.Context) {
 
 	c.JSON(200, projects)
 }
+
+// Education API
+func GetEducation(c *gin.Context) {
+	client := db.GetClient()
+	collection := client.Database("portfolio").Collection("education")
+
+	opts := options.Find().SetSort(bson.D{{Key: "order", Value: -1}}) //descending
+
+	cursor, err := collection.Find(context.TODO(), bson.M{}, opts)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	var education []models.Education
+	if err := cursor.All(context.TODO(), &education); err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(200, education)
+}

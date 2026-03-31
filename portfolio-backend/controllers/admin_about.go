@@ -39,7 +39,6 @@ func AdminUpdateAbout(c *gin.Context) {
 		"$set": bson.M{
 			"title":         input.Title,
 			"description":   input.Description,
-			"highlights":    input.Highlights,
 		},
 	}
 
