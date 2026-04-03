@@ -32,10 +32,11 @@ A modern full-stack developer portfolio built with **Svelte (Frontend)** and **G
 ---
 
 ## 📁 Project Structure
-
+```
 Portfolio
 ├── frontend              # Svelte frontend
 └── portfolio-backend     # Golang backend
+```
 
 ---
 
