@@ -1,11 +1,9 @@
 # 🌐 Personal Portfolio – Pritesh Rathod
-
 A modern full-stack developer portfolio built with **Svelte (Frontend)** and **Golang (Backend)** showcasing projects, skills, resume, and an AI-powered chatbot assistant.
 
 ---
 
 ## 🚀 Live Features
-
 - 🎨 Interactive UI with smooth animations
 - 🤖 Personal chatbot assistant
 - 📂 Projects showcase section
@@ -28,7 +26,7 @@ A modern full-stack developer portfolio built with **Svelte (Frontend)** and **G
 
 ### Backend
 - Golang
-- MongoDB
+- MongoDB Atlas (Cloud Cluster)
 - REST APIs
 
 ---
@@ -36,9 +34,8 @@ A modern full-stack developer portfolio built with **Svelte (Frontend)** and **G
 ## 📁 Project Structure
 
 Portfolio
-├── frontend # Svelte frontend
-└── portfolio-backend # Golang backend
-
+├── frontend              # Svelte frontend
+└── portfolio-backend     # Golang backend
 
 ---
 
@@ -51,43 +48,47 @@ cd Portfolio
 ```
 > Replace `YOUR_USERNAME` with your GitHub username
 
-### 2️⃣ Run Frontend
+### 2️⃣ Configure Environment Variables
+Create a `.env` file inside `portfolio-backend/`:
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.ayfdlm5.mongodb.net/portfolio
+DB_NAME=portfolio
+```
+> Replace `<username>` and `<password>` with your MongoDB Atlas credentials
+
+### 3️⃣ Run Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-
 ### Frontend runs on:
 http://localhost:5173
 
-### 3️⃣ Run Backend
+### 4️⃣ Run Backend
 ```bash
 cd portfolio-backend
 go mod tidy
 go run main.go
 ```
 
-🛠️ Upcoming Features
+---
 
-Admin dashboard
+## 🛠️ Upcoming Features
+- Admin dashboard
+- Dynamic project editing
+- Blog section
+- Contact form email integration
+- Analytics panel
 
-Dynamic project editing
+---
 
-Blog section
-
-Contact form email integration
-
-Analytics panel
-
-📜 License
-
+## 📜 License
 This project is open-source and available under the MIT License.
 
-👤 Author
+---
 
+## 👤 Author
 Pritesh Rathod
-
-GitHub: https://github.com/rathod-pritesh
-
-LinkedIn: https://www.linkedin.com/in/rathodpritesh/
+- GitHub: https://github.com/rathod-pritesh
+- LinkedIn: https://www.linkedin.com/in/rathodpritesh/
