@@ -1,12 +1,14 @@
+import { API_BASE } from "$lib/config/api";
+
 export async function load({ fetch }) {
   const [homeRes, aboutRes, skillsRes, projectsRes, automationRes, certificationRes, educationRes] = await Promise.all([
-    fetch("http://127.0.0.1:8080/api/home"),
-    fetch("http://127.0.0.1:8080/api/about"),
-    fetch("http://127.0.0.1:8080/api/skills"),
-    fetch("http://127.0.0.1:8080/api/projects"),
-    fetch("http://127.0.0.1:8080/api/automations"),
-    fetch("http://127.0.0.1:8080/api/certifications"),
-    fetch("http://127.0.0.1:8080/api/education"),
+    fetch(`${API_BASE}/api/home`),
+    fetch(`${API_BASE}/api/about`),
+    fetch(`${API_BASE}/api/skills`),
+    fetch(`${API_BASE}/api/projects`),
+    fetch(`${API_BASE}/api/automations`),
+    fetch(`${API_BASE}/api/certifications`),
+    fetch(`${API_BASE}/api/education`),
   ]);
 
   return {
