@@ -80,16 +80,25 @@ func AdminLoginHandler(c *gin.Context) {
 		return
 	}
 
+	isProd := os.Getenv("GIN_MODE") == "release"
+
 	// HTTP cookie - browser stores it
-	c.SetCookie(
-		"admin_token", //name
-		token,				// value
-		3600*24,				// 24 hour
-		"/",					// path
-		"",	//domain
-		false,				// secure
-		true,				// httpOnly
-	)
+	cookie := &http.Cookie{
+		Name: "admin_token",
+		Value: token,
+		Path: "/",
+		MaxAge: 3600*24,
+		HttpOnly: true,
+		Secure: isProd,
+	}
+
+	if isProd {
+		cookie.SameSite = http.SameSiteNoneMode
+	} else {
+		cookie.SameSite = http.SameSiteLaxMode
+	}
+
+	http.SetCookie(c.Writer, cookie)
 
 	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
 }
@@ -114,7 +123,17 @@ func AdminVerifyHandler(c *gin.Context) {
 // Admin logout
 func AdminLogoutHandler(c *gin.Context) {
 	// clear cookie
-	c.SetCookie("admin_token", "", -1, "/", "", false, true)
+	cookie := &http.Cookie{
+    Name:     "admin_token",
+    Value:    "",
+    Path:     "/",
+    MaxAge:   -1,
+    HttpOnly: true,
+    Secure:   true,
+    SameSite: http.SameSiteNoneMode,
+	}
+
+	http.SetCookie(c.Writer, cookie)
 	c.JSON(http.StatusOK, gin.H{"message": "Logged out"})
 }
 

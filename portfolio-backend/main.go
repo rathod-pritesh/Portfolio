@@ -19,8 +19,16 @@ func main() {
 			"http://localhost:5173",
 			"https://portfolio-pied-five-58.vercel.app",
 		},
-		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowHeaders: []string{"Content-Type", "Authorization"},
+		AllowMethods: []string{
+			"GET", "POST", "PUT", "DELETE", "OPTIONS",
+		},
+		AllowHeaders: []string{
+			"Origin",
+			"Content-Type",
+			"Accept", 
+			"Authorization",
+			"Cookie",
+		},
 		AllowCredentials: true,
 	}))
 
