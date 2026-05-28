@@ -1,1 +1,5 @@
-export const API_BASE = import.meta.env.VITE_API_BASE || '${API_BASE}';
+const dev = import.meta.env.DEV;
+
+export const API_BASE = dev
+    ? "http://localhost:8080"
+    : "https://portfolio-i5x9.onrender.com";
