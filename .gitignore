@@ -1,0 +1,50 @@
+# ----------------------
+# OS FILES
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# NODE (FRONTEND)
+# ----------------------
+frontend/node_modules
+frontend/.env
+frontend/.next
+frontend/dist
+frontend/build
+frontend/.svelte-kit
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ----------------------
+# GOLANG (BACKEND)
+# ----------------------
+portfolio-backend/bin/
+portfolio-backend/tmp/
+portfolio-backend/vendor/
+portfolio-backend/*.exe
+portfolio-backend/*.exe~
+portfolio-backend/*.dll
+portfolio-backend/*.so
+portfolio-backend/*.dylib
+
+# env files
+portfolio-backend/.env
+
+# build output
+*.out
+*.test
+
+# ----------------------
+# IDE
+# ----------------------
+.vscode/
+.idea/
+
+# ----------------------
+# GO MODULE CACHE (optional)
+# ----------------------
+go.sum
