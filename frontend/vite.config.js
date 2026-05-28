@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
+import { API_BASE } from "$lib/config/api";
 
 export default defineConfig({
 	plugins: [
