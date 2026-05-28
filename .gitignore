@@ -43,8 +43,3 @@ portfolio-backend/.env
 # ----------------------
 .vscode/
 .idea/
-
-# ----------------------
-# GO MODULE CACHE (optional)
-# ----------------------
-go.sum
