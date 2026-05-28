@@ -1,5 +1,6 @@
 <script>
     import { onMount } from "svelte";
+    import { API_BASE } from "$lib/config/api";
 
     let form = {
         title: "",
@@ -13,7 +14,7 @@
 
     onMount(async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/admin/about", {
+            const res = await fetch(`${API_BASE}/api/admin/about`, {
                 credentials: "include",
             });
             if (!res.ok) {
@@ -43,7 +44,7 @@
 
         saving = true;
         try {
-            const res = await fetch("http://localhost:8080/api/admin/about", {
+            const res = await fetch(`${API_BASE}/api/admin/about`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

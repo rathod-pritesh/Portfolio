@@ -1,6 +1,7 @@
 <script>
   import { showToast } from "$lib/stores/toastStore";
-  const BASE = 'http://localhost:8080/api/admin/certifications';
+  import { API_BASE } from "$lib/config/api";
+  const BASE = `${API_BASE}/api/admin/certifications`;
 
   let certs         = [];
   let loading       = true;

@@ -6,6 +6,7 @@
   import ParticlesBackground from "$lib/components/ParticlesBackground.svelte";
   import ToastMessage from "$lib/components/admin/ToastMessage.svelte";
   import { showToast } from "$lib/stores/toastStore";
+  import { API_BASE } from "$lib/config/api";
 
   let checking    = true;
   let loggingOut  = false;
@@ -18,7 +19,7 @@
       return;
     }
     try {
-      const res = await fetch("http://localhost:8080/api/admin/verify", {
+      const res = await fetch(`${API_BASE}/api/admin/verify`, {
         credentials: "include",
       });
       if (!res.ok) { checking = false; goto("/admin/login"); return; }
@@ -40,7 +41,7 @@
   async function confirmLogout() {
     showConfirm = false;
     loggingOut  = true;
-    await fetch("http://localhost:8080/api/admin/logout", { method: "POST", credentials: "include" });
+    await fetch(`${API_BASE}/api/admin/logout`, { method: "POST", credentials: "include" });
     showToast("Logged out successfully");
     await new Promise((r) => setTimeout(r, 400));
     fadeOut = true;

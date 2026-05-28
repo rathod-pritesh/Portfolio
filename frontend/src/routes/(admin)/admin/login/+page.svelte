@@ -1,6 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
+  import { API_BASE } from "$lib/config/api";
 
   let email = "";
   let password = "";
@@ -11,7 +12,7 @@
 
   onMount(async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/admin/verify", {
+      const res = await fetch(`${API_BASE}/api/admin/verify`, {
         credentials: "include",
       });
       if (res.ok) goto("/admin/home");
@@ -30,7 +31,7 @@
 
     loading = true;
     try {
-      const res = await fetch("http://localhost:8080/api/admin/login", {
+      const res = await fetch(`${API_BASE}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

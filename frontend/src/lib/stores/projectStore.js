@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
+import { API_BASE } from "$lib/config/api";
 
-const BASE = "http://localhost:8080/api/admin";
+const BASE = `${API_BASE}/api/admin`;
 
 export const projects = writable([]);
 export const loading = writable(true);
