@@ -1,5 +1,6 @@
 <script>
   import Section from "./Section.svelte";
+  import { API_BASE } from "$lib/config/api.js";
 
   // Form state
   let formData = { name: "", email: "", message: "" };
@@ -12,7 +13,7 @@
 
     try {
       const response = await fetch(
-        "/api/contact",
+        `${API_BASE}/api/contact`,
         {
           method: "POST",
           headers: {
