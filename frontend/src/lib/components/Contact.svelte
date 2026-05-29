@@ -12,16 +12,13 @@
     isSubmitting = true;
 
     try {
-      const response = await fetch(
-        `${API_BASE}/api/contact`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
         submitStatus = "success";
@@ -87,8 +84,7 @@
               bind:value={formData.name}
               required
               placeholder="Your Name"
-              class="w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg
-							       text-white placeholder-gray-500
+              class="contact-input w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg placeholder-gray-500
 							       focus:outline-none focus:border-primary transition-colors"
             />
           </div>
@@ -104,8 +100,7 @@
               bind:value={formData.email}
               required
               placeholder="your@email.com"
-              class="w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg
-							       text-white placeholder-gray-500
+              class="contact-input w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg placeholder-gray-500
 							       focus:outline-none focus:border-primary transition-colors"
             />
           </div>
@@ -122,8 +117,7 @@
               required
               rows="5"
               placeholder="Your message here..."
-              class="w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg
-							       text-white placeholder-gray-500 resize-none
+              class="contact-input w-full px-4 py-3 bg-darker border border-gray-700 rounded-lg placeholder-gray-500
 							       focus:outline-none focus:border-primary transition-colors"
             ></textarea>
           </div>
@@ -215,9 +209,10 @@
                 <img
                   src={social.icon}
                   alt={social.name}
-                  class="w-6 h-6 object-contain
-									       transition-all duration-300
-									       group-hover:brightness-0 group-hover:invert"
+                  class={`w-6 h-6 object-contain
+          transition-all duration-300
+          group-hover:brightness-0 group-hover:invert
+          ${social.name === 'GitHub' ? 'github-icon' : ''}`}
                 />
               </a>
             {/each}
@@ -227,3 +222,29 @@
     </div>
   </div>
 </Section>
+
+<style>
+  .contact-input {
+    color: white !important;
+  }
+
+  :global([data-theme="light"]) .contact-input {
+    color: black !important;
+  }
+
+  .contact-input::placeholder {
+    color: #6b7280;
+  }
+
+  :global([data-theme="light"]) .contact-input::placeholder {
+    color: #9ca3af;
+  }
+
+   :global([data-theme="light"]) .github-icon {
+    filter: brightness(0);
+  }
+
+  :global([data-theme="light"]) .group:hover .github-icon {
+    filter: brightness(0) invert(1);
+  }
+</style>
