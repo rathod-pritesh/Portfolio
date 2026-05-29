@@ -118,7 +118,6 @@
                           on:click={closeSkillsDropdown}
                           class="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors duration-150"
                         >
-                          <i class="fa-solid fa-code text-xs text-primary"></i>
                           Tech Skills
                         </a>
                         <a
@@ -127,9 +126,6 @@
                           class="flex items-center gap-2 px-4 py-2 text-sm text-gray-300
                                  hover:bg-white/5 hover:text-white transition-colors duration-150"
                         >
-                          <i
-                            class="fa-solid fa-certificate text-xs text-primary"
-                          ></i>
                           Certifications
                         </a>
                       </div>
@@ -238,15 +234,14 @@
                       on:click={closeMenu}
                       class="flex items-center gap-2 text-gray-500 hover:text-white transition-colors py-1 text-sm"
                       class:text-primary={activeSection === "skills"}
-                      ><i class="fa-solid fa-code text-xs"></i> Tech Skills</a
+                      >Tech Skills</a
                     >
                     <a
                       href="#certifications"
                       on:click={closeMenu}
                       class="flex items-center gap-2 text-gray-500 hover:text-white transition-colors py-1 text-sm"
                       class:text-primary={activeSection === "certifications"}
-                    >
-                      <i class="fa-solid fa-certificate text-xs"></i> Certifications
+                    >Certifications
                     </a>
                   </div>
                 {/if}
