@@ -1,5 +1,5 @@
 <script>
-	import ParticlesBackground from '$lib/components/ParticlesBackground.svelte';
+	import BackgroundTile from '$lib/components/Background_tile.svelte';
 	import Home from '$lib/components/Home.svelte';
 	import About from '$lib/components/About.svelte';
 	import Skills from '$lib/components/Skills.svelte';
@@ -15,7 +15,7 @@
 	<meta name="description" content="Portfolio of Pritesh Rathod" />
 </svelte:head>
 
-<ParticlesBackground />
+<BackgroundTile />
 
 <div class="relative z-10">
 	<Home home={data.home}/>

@@ -3,7 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import ParticlesBackground from "$lib/components/ParticlesBackground.svelte";
+  import BackgroundTile from "$lib/components/Background_tile.svelte";
   import ToastMessage from "$lib/components/admin/ToastMessage.svelte";
   import { showToast } from "$lib/stores/toastStore";
   import { API_BASE } from "$lib/config/api";
@@ -66,7 +66,7 @@
   <slot />
 
 {:else}
-  <ParticlesBackground />
+  <BackgroundTile />
 
   {#if fadeOut}
     <div class="logout-overlay">
