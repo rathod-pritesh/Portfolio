@@ -36,7 +36,7 @@
 
 <section {id} class="section-padding container-max relative z-10">
   <div
-    class="transition-all duration-1000 {isVisible
+    class="transition-opacity duration-500 {isVisible
       ? 'opacity-100 translate-y-0'
       : 'opacity-0 translate-y-10'}"
   >

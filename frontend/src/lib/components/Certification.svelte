@@ -6,7 +6,7 @@
 </script>
 
 <Section id="certifications">
-  <div class="space-y-10">
+  <div class="space-y-16">
     <div class="text-center space-y-4">
       <h2 class="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary gradient-text underline decoration-secondary">
         Certifications

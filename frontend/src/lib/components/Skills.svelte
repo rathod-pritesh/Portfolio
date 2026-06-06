@@ -16,7 +16,7 @@
 </script>
 
 <Section id="skills">
-  <div class="space-y-10">
+  <div class="space-y-16">
 
     <!-- Heading -->
     <div class="text-center space-y-4">

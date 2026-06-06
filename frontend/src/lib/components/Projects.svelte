@@ -4,7 +4,7 @@
 </script>
 
 <Section id="projects">
-	<div class="space-y-20">
+	<div class="space-y-16">
 
 		<!-- Heading -->
 		<div class="text-center space-y-4">
@@ -20,38 +20,28 @@
 				<!-- Alternates: even = image left, odd = image right -->
 				<div class="project-row group relative flex flex-col {i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} 
 				            gap-0 overflow-hidden rounded-2xl border border-gray-800
-				            hover:border-primary/50 transition-all duration-500
-				            hover:shadow-2xl hover:shadow-primary/10">
-
-					<!-- Accent bar (left edge for even, right edge for odd) -->
-					<div class="absolute top-0 bottom-0 {i % 2 === 0 ? 'left-0' : 'right-0'} w-[3px]
-					            bg-linear-to-b from-primary via-secondary to-transparent
-					            opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+				            hover:border-primary/40 transition-colors duration-300">
 
 					<!-- Image pane -->
 					<div class="relative w-full md:w-[45%] shrink-0 overflow-hidden" style="min-height: 260px;">
 						<img
 							src={project.image}
 							alt={project.title}
+							loading="lazy"
+							decoding="async"
 							class="absolute inset-0 w-full h-full object-cover
-							       scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
+							       scale-100 group-hover:scale-102 transition-transform duration-300 ease-out"
 						/>
-						<!-- gradient overlay matching project.gradient -->
-						<div class="absolute inset-0 bg-linear-to-b {project.gradient} opacity-40 group-hover:opacity-20 transition-opacity duration-500"></div>
 
 						<!-- Project number watermark -->
-						<span class="absolute bottom-3 {i % 2 === 0 ? 'right-4' : 'left-4'}
+						<span class="absolute bottom-3
 						             text-6xl font-black text-white/10 select-none leading-none
 						             group-hover:text-white/20 transition-colors duration-500">
-							{String(i + 1).padStart(2, '0')}
 						</span>
 					</div>
 
-					<!-- Divider line -->
-					<div class="hidden md:block w-px self-stretch bg-gray-800 group-hover:bg-primary/30 transition-colors duration-500 shrink-0"></div>
-
 					<!-- Content pane -->
-					<div class="flex flex-col justify-center gap-5 p-8 flex-1 bg-dark/60 backdrop-blur-sm">
+					<div class="flex flex-col justify-center gap-5 p-8 flex-1 bg-dark/60">
 
 						<!-- Index label + title -->
 						<div class="space-y-1">

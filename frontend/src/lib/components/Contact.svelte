@@ -52,7 +52,7 @@
 </script>
 
 <Section id="contact">
-  <div class="space-y-12">
+  <div class="space-y-16">
     <!-- Heading -->
     <div class="text-center space-y-4">
       <h2
