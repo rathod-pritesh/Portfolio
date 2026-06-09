@@ -1,10 +1,17 @@
 export const knowledgeBase = [
+  // greeting
+  {
+    tags: ["hi", "hello", "hey"],
+    question: "Hii!",
+    answer:
+      "Hii, How can I help you?",
+  },
   // ─── Identity & Background ───────────────────────────────────────────────
   {
     tags: ["who", "about", "introduce", "yourself", "pritesh", "background"],
     question: "Who is Pritesh Rathod? / Tell me about yourself",
     answer:
-      "Hey! I'm Pritesh Rathod — a backend-focused developer with a passion for building AI-powered applications, scalable APIs, and clean web systems. I'm currently pursuing my M.Sc. in Computer Applications & IT from Gujarat University. My go-to stack is Python, FastAPI, Golang, and SvelteKit, and I love exploring where AI meets real-world engineering.",
+  "Hi, I'm Pritesh Rathod. I'm a backend-focused developer from Gujarat, India, currently pursuing an M.Sc. in Computer Applications & IT at Gujarat University. I enjoy building scalable APIs, AI-powered applications, automation systems, and modern web projects using Python, Golang, and SvelteKit.",
   },
 
   // ─── Skills ──────────────────────────────────────────────────────────────
@@ -12,13 +19,13 @@ export const knowledgeBase = [
     tags: ["skills", "technologies", "tech stack", "know", "expertise", "proficient"],
     question: "What are your technical skills? / What technologies do you work with?",
     answer:
-      "My technical toolkit spans a pretty wide range! On the backend I work with Python, Golang, FastAPI, and Flask. For frontends I use SvelteKit with TailwindCSS. In the AI/ML space I'm comfortable with LangChain, Pinecone, HuggingFace embeddings, Groq LLMs, OpenCV, and RAG pipelines. I also work with MySQL, MongoDB Atlas, AstraDB, Docker, and n8n for automation workflows.",
+  "I work mainly with Python, Golang, FastAPI, Flask, SvelteKit, JavaScript, TailwindCSS, MySQL, MongoDB Atlas, Docker, LangChain, Pinecone, Hugging Face models, OpenCV, and n8n automation workflows.",
   },
   {
     tags: ["backend", "server", "api", "rest"],
     question: "What backend technologies do you use?",
     answer:
-      "Backend is where I feel most at home! I primarily build with FastAPI and Flask in Python, and Golang for performance-critical services. I design RESTful APIs, work with MySQL and MongoDB Atlas for data persistence, and have explored AstraDB for NoSQL cloud use cases. I focus a lot on clean architecture and making systems that actually scale.",
+      "My main focus is backend development. I build APIs using FastAPI, Flask, and Golang, work with MySQL and MongoDB, and enjoy designing clean and scalable systems. I design RESTful APIs, work with MySQL and MongoDB Atlas for data persistence, and have explored AstraDB for NoSQL cloud use cases. I focus a lot on clean architecture and making systems that actually scale.",
   },
   {
     tags: ["frontend", "ui", "svelte", "tailwind", "web design"],
@@ -30,7 +37,7 @@ export const knowledgeBase = [
     tags: ["ai", "machine learning", "llm", "chatbot", "nlp", "rag", "langchain"],
     question: "What AI / ML technologies do you work with?",
     answer:
-      "AI development is one of my favourite areas! I've built RAG (Retrieval-Augmented Generation) systems using LangChain and Pinecone, integrated HuggingFace embedding models, and used Groq LLMs for fast inference. I've also worked with OpenCV for computer vision tasks, built NLP-based voice assistants, and created AI chatbots that hook into real data sources.",
+      "I enjoy working on AI-powered applications, especially RAG systems, chatbots, automation workflows, and computer vision projects. I've built RAG (Retrieval-Augmented Generation) systems using LangChain and Pinecone, integrated HuggingFace embedding models, and used Groq LLMs for fast inference. I've also worked with OpenCV for computer vision tasks, built NLP-based voice assistants, and created AI chatbots that hook into real data sources.",
   },
   {
     tags: ["database", "mysql", "mongodb", "pinecone", "astradb", "nosql"],
@@ -50,7 +57,7 @@ export const knowledgeBase = [
     tags: ["projects", "built", "work", "portfolio", "showcase"],
     question: "What projects have you built?",
     answer:
-      "I've built quite a few things I'm proud of! The highlights include: an AI Voice Assistant, a Medical Chatbot using RAG, BuildTrack (a construction management system), an AI Image Generator, my personal portfolio with an embedded AI chatbot, EcomTrack (an ecommerce analytics backend), and several automation workflows with n8n. Want details on any specific one?",
+  "My portfolio is built with SvelteKit on the frontend and Golang on the backend. It uses MongoDB Atlas for data storage and includes an AI-powered chatbot that can answer questions about my background, projects, skills, education, and experience.",
   },
   {
     tags: ["voice assistant", "ai voice", "speech", "nlp assistant"],
@@ -100,7 +107,7 @@ export const knowledgeBase = [
     tags: ["education", "degree", "university", "study", "college", "qualification", "gujarat"],
     question: "What is your educational background?",
     answer:
-      "I completed my B.Sc. in Computer Applications & IT from Gujarat University, and I'm currently pursuing my M.Sc. in Computer Applications & IT — also from Gujarat University. Academia and hands-on project work have gone hand-in-hand for me throughout my studies.",
+  "I completed my B.Sc. in Computer Applications & IT from Gujarat University and am currently pursuing my M.Sc. in the same field. Alongside academics, I spend most of my time building practical software projects and exploring new technologies.",
   },
 
   // ─── Certifications ───────────────────────────────────────────────────────
@@ -116,13 +123,13 @@ export const knowledgeBase = [
     tags: ["job", "role", "career", "interest", "looking for", "hire", "open to", "opportunity"],
     question: "What kind of roles are you interested in?",
     answer:
-      "I'm most interested in backend engineering roles, especially where AI integration, REST API design, or scalable system architecture is involved. Positions around AI-powered application development, automation engineering, or full-stack work with a strong backend focus are right in my wheelhouse. I love building things that are both technically solid and genuinely useful.",
+  "I'm interested in backend development, AI-powered applications, API development, automation systems, and full-stack projects with a strong backend focus. I'm always looking for opportunities to learn, build, and solve real-world problems.",
   },
   {
     tags: ["hire", "available", "work with", "collaborate", "freelance"],
     question: "Are you open to new opportunities / can I hire you?",
     answer:
-      "Absolutely, I'm open to discussing new opportunities! Whether it's a full-time role, freelance project, or collaboration, feel free to reach out. You can connect with me through GitHub or the contact form on this portfolio.",
+      "Yes, I'm open to internships, freelance work, collaborations, and backend development opportunities. Feel free to reach out through the contact section of this portfolio. Whether it's a full-time role, freelance project, or collaboration, feel free to reach out. You can connect with me through GitHub or the contact form on this portfolio.",
   },
 
   // ─── GitHub / Links ───────────────────────────────────────────────────────
@@ -130,7 +137,7 @@ export const knowledgeBase = [
     tags: ["github", "code", "source", "repository", "projects link"],
     question: "Where can I find your code / GitHub profile?",
     answer:
-      "All my projects and source code are up on GitHub — check them out at: https://github.com/rathod-pritesh. Feel free to explore, star anything you find useful, or open an issue if you have questions!",
+  "You can find my projects, source code, and experiments on GitHub: https://github.com/rathod-pritesh",
   },
 
   // ─── General / Catch-all ─────────────────────────────────────────────────
@@ -158,4 +165,10 @@ export const knowledgeBase = [
     answer:
       "I work with Docker for containerising applications and managing consistent deployment environments. While my primary focus is backend and AI development, I understand the DevOps side enough to containerise services, write Dockerfiles, and manage basic deployment pipelines.",
   },
+  {
+  tags: ["unknown", "default"],
+  question: "fallback",
+  answer:
+    "I may not have information about that yet. You can ask me about Pritesh's projects, skills, education, certifications, technologies, experience, or contact details.",
+}
 ];
