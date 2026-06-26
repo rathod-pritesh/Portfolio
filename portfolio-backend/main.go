@@ -17,7 +17,7 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
 			"http://localhost:5173",
-			"https://portfolio-pied-five-58.vercel.app",
+			"https://priteshrathod.vercel.app",
 		},
 		AllowMethods: []string{
 			"GET", "POST", "PUT", "DELETE", "OPTIONS",
