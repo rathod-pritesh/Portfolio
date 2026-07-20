@@ -85,4 +85,3 @@ This project is open-source and available under the MIT License.
 ## 👤 Author
 Pritesh Rathod
 - GitHub: https://github.com/rathod-pritesh
-- LinkedIn: https://www.linkedin.com/in/rathodpritesh/
