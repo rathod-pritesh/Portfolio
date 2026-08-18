@@ -152,7 +152,7 @@
           {/each}
         </ul>
 
-        <!-- <button
+        <button
           on:click={toggleTheme}
           class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors"
           aria-label="Toggle theme"
@@ -190,7 +190,7 @@
               />
             </svg>
           {/if}
-        </button> -->
+        </button>
 
         <!-- Mobile hamburger -->
         <button
