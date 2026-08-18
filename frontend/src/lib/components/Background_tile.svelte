@@ -1,221 +1,310 @@
 <script>
 	import { onMount } from 'svelte';
-	import * as THREE from 'three';
 
-	let container;
+	let canvas;
 
-	const technologies = [
-		{ src: '/tech/Python.png',  pos: [-14,  7,   0],  scale: 1.9 },
-		{ src: '/tech/LangChain.png',  pos: [ 18,  9,  -22], scale: 1.0 },
-		{ src: '/tech/Go.png',      pos: [  6, -4,  -10], scale: 1.5 },
-		{ src: '/tech/FastAPI.png', pos: [-20, -9,  -6],  scale: 1.3 },
-		{ src: '/tech/MongoDB.png', pos: [  2,  14, -28], scale: 0.95 },
-		{ src: '/tech/MySQL.png',   pos: [ 22,  -5, -14], scale: 1.1 },
-		{ src: '/tech/n8n.png',     pos: [ 14, -16, -20], scale: 1.0 },
-		{ src: '/tech/Svelte.png',  pos: [ -6, -18, -32], scale: 0.9 }
-	];
+	// Color theme definitions
+	const DARK_THEME = {
+		isDark: true,
+		particleColors: [
+			'rgba(122, 139, 111, ', // #7a8b6f sage accent
+			'rgba(163, 176, 150, ', // #a3b096 light sage
+			'rgba(236, 238, 234, ', // #eceeea light primary
+			'rgba(150, 161, 144, ', // #96a190 sage grey secondary
+			'rgba(122, 139, 111, '  // #7a8b6f accent
+		],
+		lineColor: [150, 161, 144], // #96a190 muted sage grey
+		mouseLineColor: [122, 139, 111], // #7a8b6f accent
+		glowColor1: 'rgba(122, 139, 111, 0.05)',
+		glowColor2: 'rgba(163, 176, 150, 0.035)',
+		baseAlpha: 0.75,
+		maxLineDistance: 130
+	};
+
+	const LIGHT_THEME = {
+		isDark: false,
+		particleColors: [
+			'rgba(95, 115, 85, ',   // #5f7355 sage accent
+			'rgba(64, 90, 55, ',    // #405a37 deep olive
+			'rgba(24, 28, 22, ',    // #181c16 dark primary
+			'rgba(95, 107, 88, ',   // #5f6b58 muted olive secondary
+			'rgba(95, 115, 85, '    // #5f7355 accent
+		],
+		lineColor: [95, 107, 88],    // #5f6b58 muted sage grey
+		mouseLineColor: [95, 115, 85], // #5f7355 accent
+		glowColor1: 'rgba(95, 115, 85, 0.045)',
+		glowColor2: 'rgba(64, 90, 55, 0.03)',
+		baseAlpha: 0.65,
+		maxLineDistance: 125
+	};
+
+	function createParticle(w, h, theme, initial = true) {
+		const baseSize = 1.2 + Math.random() * 1.8;
+		return {
+			x: initial ? Math.random() * w : (Math.random() > 0.5 ? 0 : w),
+			y: initial ? Math.random() * h : Math.random() * h,
+			baseSize,
+			size: baseSize,
+			vx: (Math.random() - 0.5) * 0.42,
+			vy: (Math.random() - 0.5) * 0.42,
+			colorIndex: Math.floor(Math.random() * theme.particleColors.length),
+			alpha: 0.2 + Math.random() * 0.6,
+			baseAlpha: 0.2 + Math.random() * 0.6,
+			pulseSpeed: 0.015 + Math.random() * 0.02,
+			pulseAngle: Math.random() * Math.PI * 2
+		};
+	}
 
 	onMount(() => {
-		const scene = new THREE.Scene();
-		const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-		camera.position.z = 35;
+		if (!canvas) return;
 
-		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		container.appendChild(renderer.domElement);
+		const ctx = canvas.getContext('2d');
+		let animationFrameId;
+		let width = 0;
+		let height = 0;
+		let dpr = 1;
 
-		const isLight = () => document.documentElement.getAttribute('data-theme') === 'light';
-
-		const LIGHT = {
-			tile:    0xe8ecf2,
-			ambient: { color: 0xffffff, intensity: 1.6 },
-			key:     { color: 0xffffff, intensity: 3.0 },
-			fill:    { color: 0xd0dcff, intensity: 1.0 },
-			rim:     { color: 0xffeedd, intensity: 0.5 },
+		// Mouse state
+		const mouse = {
+			x: -1000,
+			y: -1000,
+			targetX: -1000,
+			targetY: -1000,
+			radius: 140,
+			active: false
 		};
 
-		const DARK = {
-			tile:    0x26231e,
-			ambient: { color: 0xffffff, intensity: 1.0 },
-			key:     { color: 0x7eb8ff, intensity: 2.5 },
-			fill:    { color: 0x4466aa, intensity: 1.2 },
-			rim:     { color: 0x3355cc, intensity: 0.8 },
-		};
-
-		const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
-		scene.add(ambientLight);
-		const keyLight = new THREE.DirectionalLight(0xffffff, 3.0);
-		keyLight.position.set(8, 12, 18);
-		scene.add(keyLight);
-		const fillLight = new THREE.DirectionalLight(0xd0dcff, 1.0);
-		fillLight.position.set(-12, -6, 10);
-		scene.add(fillLight);
-		const rimLight = new THREE.DirectionalLight(0xffeedd, 0.5);
-		rimLight.position.set(0, -10, -5);
-		scene.add(rimLight);
-
-		function applyTheme(tileMaterials) {
-			const t = isLight() ? LIGHT : DARK;
-			ambientLight.color.setHex(t.ambient.color);
-			ambientLight.intensity = t.ambient.intensity;
-			keyLight.color.setHex(t.key.color);
-			keyLight.intensity = t.key.intensity;
-			fillLight.color.setHex(t.fill.color);
-			fillLight.intensity = t.fill.intensity;
-			rimLight.color.setHex(t.rim.color);
-			rimLight.intensity = t.rim.intensity;
-			tileMaterials.forEach(mat => {
-				mat.color.setHex(t.tile);
-				mat.needsUpdate = true;
-			});
+		function getCurrentTheme() {
+			const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+			return isLight ? LIGHT_THEME : DARK_THEME;
 		}
 
-		function createRoundedRectShape(w, h, r) {
-			const shape = new THREE.Shape();
-			const x = -w / 2, y = -h / 2;
-			shape.moveTo(x + r, y);
-			shape.lineTo(x + w - r, y);
-			shape.quadraticCurveTo(x + w, y, x + w, y + r);
-			shape.lineTo(x + w, y + h - r);
-			shape.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-			shape.lineTo(x + r, y + h);
-			shape.quadraticCurveTo(x, y + h, x, y + h - r);
-			shape.lineTo(x, y + r);
-			shape.quadraticCurveTo(x, y, x + r, y);
-			return shape;
+		let theme = getCurrentTheme();
+		let particles = [];
+
+		function initParticles() {
+			const area = width * height;
+			const count = Math.min(110, Math.max(38, Math.floor(area / 16000)));
+			particles = [];
+			for (let i = 0; i < count; i++) {
+				particles.push(createParticle(width, height, theme, true));
+			}
 		}
 
-		// Returns a 0-1 factor: 1 = desktop, shrinks toward 0 on mobile
-		function getResponsiveFactor() {
-			const w = window.innerWidth;
-			if (w >= 1024) return 1.0;       // desktop
-			if (w >= 768)  return 0.7;        // tablet
-			return 0.45;                       // mobile
+		function resize() {
+			width = window.innerWidth;
+			height = window.innerHeight;
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+			canvas.width = width * dpr;
+			canvas.height = height * dpr;
+			canvas.style.width = `${width}px`;
+			canvas.style.height = `${height}px`;
+
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+			ctx.scale(dpr, dpr);
+
+			initParticles();
 		}
 
-		const textureLoader = new THREE.TextureLoader();
-		const tiles = [];
-		const tileMaterials = [];
-		const tileGroups = [];
+		function updateTheme() {
+			theme = getCurrentTheme();
+			for (let p of particles) {
+				p.colorIndex = Math.floor(Math.random() * theme.particleColors.length);
+			}
+		}
 
-		technologies.forEach((tech) => {
-			const group = new THREE.Group();
-
-			const shape = createRoundedRectShape(4, 5, 0.65);
-			const tileGeo = new THREE.ExtrudeGeometry(shape, {
-				depth: 0.6,
-				bevelEnabled: true,
-				bevelSegments: 14,
-				bevelSize: 0.14,
-				bevelThickness: 0.1
-			});
-
-			const tileMat = new THREE.MeshPhysicalMaterial({
-				color: 0xe8ecf2,
-				roughness: 0.9,
-				metalness: 0.02,
-				clearcoat: 0.2,
-				clearcoatRoughness: 0.6
-			});
-			tileMaterials.push(tileMat);
-
-			const tile = new THREE.Mesh(tileGeo, tileMat);
-			group.add(tile);
-
-			const texture = textureLoader.load(tech.src);
-			texture.colorSpace = THREE.SRGBColorSpace;
-			const logo = new THREE.Mesh(
-				new THREE.PlaneGeometry(2.6, 2.6),
-				new THREE.MeshBasicMaterial({ map: texture, transparent: true, alphaTest: 0.05 })
-			);
-			logo.position.z = 0.72;
-			group.add(logo);
-
-			// Apply responsive scaling to position
-			const f = getResponsiveFactor();
-			group.position.set(tech.pos[0] * f, tech.pos[1] * f, tech.pos[2]);
-
-			// Scale down tiles on small screens too
-			const s = (tech.scale || 1) * (window.innerWidth < 768 ? 0.55 : window.innerWidth < 1024 ? 0.75 : 1.0);
-			group.scale.set(s, s, s);
-
-			group.rotation.x = (Math.random() - 0.5) * 0.35;
-			group.rotation.y = (Math.random() - 0.5) * 0.35;
-			scene.add(group);
-
-			tileGroups.push({ group, tech });
-
-			tiles.push({
-				mesh:   group,
-				phase:  Math.random() * Math.PI * 2,
-				speed:  0.22 + Math.random() * 0.13,
-				baseY:  tech.pos[1] * f,
-				baseRX: (Math.random() - 0.5) * 0.4,
-				baseRY: (Math.random() - 0.5) * 0.4
-			});
+		const themeObserver = new MutationObserver(() => {
+			updateTheme();
 		});
 
-		applyTheme(tileMaterials);
-
-		const observer = new MutationObserver(() => applyTheme(tileMaterials));
-		observer.observe(document.documentElement, {
+		themeObserver.observe(document.documentElement, {
 			attributes: true,
-			attributeFilter: ['data-theme']
+			attributeFilter: ['data-theme', 'class']
 		});
 
-		let mouseX = 0, mouseY = 0;
-		const handleMouse = (e) => {
-			mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
-			mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+		const handleMouseMove = (e) => {
+			mouse.targetX = e.clientX;
+			mouse.targetY = e.clientY;
+			mouse.active = true;
 		};
-		window.addEventListener('mousemove', handleMouse);
 
-		const handleResize = () => {
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize(window.innerWidth, window.innerHeight);
-
-			// Reposition + rescale all tiles on resize
-			const f = getResponsiveFactor();
-			const tileScale = window.innerWidth < 768 ? 0.55 : window.innerWidth < 1024 ? 0.75 : 1.0;
-
-			tileGroups.forEach(({ group, tech }, i) => {
-				group.position.set(tech.pos[0] * f, tech.pos[1] * f, tech.pos[2]);
-				const s = (tech.scale || 1) * tileScale;
-				group.scale.set(s, s, s);
-				// Update baseY for animation
-				tiles[i].baseY = tech.pos[1] * f;
-			});
+		const handleMouseLeave = () => {
+			mouse.active = false;
 		};
-		window.addEventListener('resize', handleResize);
 
-		function animate(time) {
-			requestAnimationFrame(animate);
-			const t = time * 0.001;
-			tiles.forEach(({ mesh, phase, speed, baseY, baseRX, baseRY }) => {
-				mesh.position.y = baseY + Math.sin(t * speed + phase) * 0.75;
-				mesh.rotation.x = baseRX + Math.sin(t * speed       + phase) * 0.07;
-				mesh.rotation.y = baseRY + Math.cos(t * speed * 0.9 + phase) * 0.07;
-				mesh.rotation.z =          Math.sin(t * speed * 0.5 + phase) * 0.04;
-			});
-			scene.rotation.y += (mouseX * 0.03  - scene.rotation.y) * 0.03;
-			scene.rotation.x += (-mouseY * 0.02 - scene.rotation.x) * 0.03;
-			renderer.render(scene, camera);
+		const handleTouchMove = (e) => {
+			if (e.touches && e.touches.length > 0) {
+				mouse.targetX = e.touches[0].clientX;
+				mouse.targetY = e.touches[0].clientY;
+				mouse.active = true;
+			}
+		};
+
+		const handleTouchEnd = () => {
+			mouse.active = false;
+		};
+
+		window.addEventListener('mousemove', handleMouseMove, { passive: true });
+		document.addEventListener('mouseleave', handleMouseLeave);
+		window.addEventListener('touchmove', handleTouchMove, { passive: true });
+		window.addEventListener('touchend', handleTouchEnd);
+		window.addEventListener('resize', resize, { passive: true });
+
+		let isRunning = true;
+		const handleVisibilityChange = () => {
+			if (document.hidden) {
+				isRunning = false;
+				if (animationFrameId) cancelAnimationFrame(animationFrameId);
+			} else {
+				isRunning = true;
+				loop();
+			}
+		};
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+
+		resize();
+
+		function loop() {
+			if (!isRunning) return;
+
+			// Smooth cursor interpolation
+			if (mouse.active) {
+				mouse.x += (mouse.targetX - mouse.x) * 0.12;
+				mouse.y += (mouse.targetY - mouse.y) * 0.12;
+			} else {
+				mouse.x += (-1000 - mouse.x) * 0.1;
+				mouse.y += (-1000 - mouse.y) * 0.1;
+			}
+
+			ctx.clearRect(0, 0, width, height);
+
+			// Draw soft ambient spotlight following cursor
+			if (mouse.active && mouse.x > -100 && mouse.x < width + 100 && mouse.y > -100 && mouse.y < height + 100) {
+				const spotlight = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 350);
+				spotlight.addColorStop(0, theme.glowColor1);
+				spotlight.addColorStop(0.6, theme.glowColor2);
+				spotlight.addColorStop(1, 'transparent');
+				ctx.fillStyle = spotlight;
+				ctx.fillRect(0, 0, width, height);
+			}
+
+			// Update & render particles
+			const pLen = particles.length;
+			for (let i = 0; i < pLen; i++) {
+				const p = particles[i];
+
+				// Organic pulse
+				p.pulseAngle += p.pulseSpeed;
+				p.alpha = p.baseAlpha + Math.sin(p.pulseAngle) * 0.18;
+
+				// Gentle drift
+				p.x += p.vx;
+				p.y += p.vy;
+
+				// Boundary wrap
+				if (p.x < -20) p.x = width + 20;
+				else if (p.x > width + 20) p.x = -20;
+				if (p.y < -20) p.y = height + 20;
+				else if (p.y > height + 20) p.y = -20;
+
+				// Mouse deflection
+				if (mouse.active) {
+					const dx = mouse.x - p.x;
+					const dy = mouse.y - p.y;
+					const distance = Math.hypot(dx, dy);
+
+					if (distance < mouse.radius && distance > 0) {
+						const force = (1 - distance / mouse.radius) * 1.5;
+						const angle = Math.atan2(dy, dx);
+						p.x -= Math.cos(angle) * force;
+						p.y -= Math.sin(angle) * force;
+					}
+				}
+
+				// Draw particle
+				const col = theme.particleColors[p.colorIndex];
+				const a = Math.max(0.05, Math.min(1, p.alpha * theme.baseAlpha));
+
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+				ctx.fillStyle = `${col}${a})`;
+				ctx.fill();
+
+				if (p.baseSize > 2.0) {
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, p.size * 2.2, 0, Math.PI * 2);
+					ctx.fillStyle = `${col}${a * 0.2})`;
+					ctx.fill();
+				}
+			}
+
+			// Connect nearby particles with subtle lines
+			const maxDist = theme.maxLineDistance;
+			const maxDistSq = maxDist * maxDist;
+			const [r, g, b] = theme.lineColor;
+
+			ctx.lineWidth = 0.75;
+			for (let i = 0; i < pLen; i++) {
+				const pi = particles[i];
+				for (let j = i + 1; j < pLen; j++) {
+					const pj = particles[j];
+					const dx = pi.x - pj.x;
+					const dy = pi.y - pj.y;
+					const distSq = dx * dx + dy * dy;
+
+					if (distSq < maxDistSq) {
+						const dist = Math.sqrt(distSq);
+						const alpha = (1 - dist / maxDist) * 0.18 * (theme.isDark ? 1 : 0.85);
+						ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+						ctx.beginPath();
+						ctx.moveTo(pi.x, pi.y);
+						ctx.lineTo(pj.x, pj.y);
+						ctx.stroke();
+					}
+				}
+
+				// Connect particles to mouse cursor within proximity
+				if (mouse.active) {
+					const mdx = pi.x - mouse.x;
+					const mdy = pi.y - mouse.y;
+					const mDistSq = mdx * mdx + mdy * mdy;
+					const mRadiusSq = mouse.radius * mouse.radius;
+
+					if (mDistSq < mRadiusSq) {
+						const mDist = Math.sqrt(mDistSq);
+						const mAlpha = (1 - mDist / mouse.radius) * 0.32;
+						const [mr, mg, mb] = theme.mouseLineColor;
+						ctx.strokeStyle = `rgba(${mr}, ${mg}, ${mb}, ${mAlpha})`;
+						ctx.beginPath();
+						ctx.moveTo(pi.x, pi.y);
+						ctx.lineTo(mouse.x, mouse.y);
+						ctx.stroke();
+					}
+				}
+			}
+
+			animationFrameId = requestAnimationFrame(loop);
 		}
 
-		animate(0);
+		loop();
 
 		return () => {
-			window.removeEventListener('mousemove', handleMouse);
-			window.removeEventListener('resize', handleResize);
-			observer.disconnect();
-			renderer.dispose();
+			isRunning = false;
+			if (animationFrameId) cancelAnimationFrame(animationFrameId);
+			window.removeEventListener('mousemove', handleMouseMove);
+			document.removeEventListener('mouseleave', handleMouseLeave);
+			window.removeEventListener('touchmove', handleTouchMove);
+			window.removeEventListener('touchend', handleTouchEnd);
+			window.removeEventListener('resize', resize);
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			themeObserver.disconnect();
 		};
 	});
 </script>
 
-<div
-	bind:this={container}
-	class="fixed inset-0 z-0 pointer-events-none overflow-hidden"
-></div>
+<canvas
+	bind:this={canvas}
+	class="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none"
+	aria-hidden="true"
+></canvas>
