@@ -6,6 +6,7 @@
 	import Projects from '$lib/components/Projects.svelte';
 	import Contact from '$lib/components/Contact.svelte';
 	import Certification from '$lib/components/Certification.svelte';
+	import Experience from '$lib/components/Experience.svelte';
 
 	export let data;
 </script>
@@ -23,5 +24,6 @@
 	<Skills skills={data.skills} automations={data.automations} />
 	<Certification certifications={data.certifications} />
 	<Projects projects={data.projects}/>
+	<Experience experience={data.experience} />
 	<Contact />
 </div>

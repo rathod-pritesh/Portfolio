@@ -24,6 +24,7 @@
     { label: "About", href: "#about", id: "about" },
     { label: "Skills", href: "#skills", id: "skills" },
     { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Experience", href: "#experience", id: "experience" },
     { label: "Contact", href: "#contact", id: "contact" },
   ];
 
@@ -151,13 +152,13 @@
           {/each}
         </ul>
 
-        <button
+        <!-- <button
           on:click={toggleTheme}
           class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors"
           aria-label="Toggle theme"
         >
           {#if isDark}
-            <!-- Sun Icon -->
+            
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-5 h-5"
@@ -173,7 +174,7 @@
               />
             </svg>
           {:else}
-            <!-- Moon Icon -->
+            
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-5 h-5"
@@ -189,7 +190,7 @@
               />
             </svg>
           {/if}
-        </button>
+        </button> -->
 
         <!-- Mobile hamburger -->
         <button

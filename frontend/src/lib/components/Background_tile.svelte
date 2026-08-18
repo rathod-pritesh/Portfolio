@@ -6,7 +6,7 @@
 
 	const technologies = [
 		{ src: '/tech/Python.png',  pos: [-14,  7,   0],  scale: 1.9 },
-		{ src: '/tech/Docker.png',  pos: [ 18,  9,  -22], scale: 1.0 },
+		{ src: '/tech/LangChain.png',  pos: [ 18,  9,  -22], scale: 1.0 },
 		{ src: '/tech/Go.png',      pos: [  6, -4,  -10], scale: 1.5 },
 		{ src: '/tech/FastAPI.png', pos: [-20, -9,  -6],  scale: 1.3 },
 		{ src: '/tech/MongoDB.png', pos: [  2,  14, -28], scale: 0.95 },
