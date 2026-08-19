@@ -21,9 +21,9 @@
 <div class="relative z-10">
 	<Home home={data.home}/>
 	<About about={data.about} education={data.education}/>
+	<Experience experience={data.experience} />
+	<Projects projects={data.projects}/>
 	<Skills skills={data.skills} automations={data.automations} />
 	<Certification certifications={data.certifications} />
-	<Projects projects={data.projects}/>
-	<Experience experience={data.experience} />
 	<Contact />
 </div>
