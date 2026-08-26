@@ -1,0 +1,29 @@
+# Pritesh Rathod
+
+> Python Backend Developer specializing in FastAPI, LangChain, and LangGraph. Building scalable backend systems and AI/LLM-powered applications.
+
+Pritesh Rathod is a backend developer based in Ahmedabad, India, pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University. His recent work focuses on RAG pipelines, LLM-powered applications, and AI platforms such as Zentriom.
+
+## Profile
+
+- [About](https://priteshrathod.vercel.app/#about): Background, education, and current focus areas
+- [Experience](https://priteshrathod.vercel.app/#experience): IBM SkillsBuild AI & Cloud internship with Edunet Foundation, hands-on with Watsonx.ai and Watsonx Orchestrate
+- [Resume (PDF)](https://priteshrathod.vercel.app/resume/Pritesh_Rathod_resume.pdf): Full resume
+
+## Projects
+
+- [AI Voice Assistant](https://github.com/rathod-pritesh/ai-voice-assistant): Web-based AI voice assistant built with SvelteKit and FastAPI, using NLP (all-MiniLM-L6-v2) and the Web Speech API
+- [BuildTrack](https://github.com/rathod-pritesh/BuildTrack-construction-management-system): Role-based construction management system (Flask, MySQL, Bootstrap) covering planning, attendance, and cost estimation
+- [Netflix Watchlist API](https://github.com/rathod-pritesh/go-mongodb-crud-api): RESTful API in Go and MongoDB with CRUD operations and MVC-style architecture
+- [Medical RAG Chatbot](https://github.com/rathod-pritesh/end-to-end-medical-chatbot-generative-ai): AI medical chatbot using RAG, Pinecone vector search, and Groq/LLaMA 3
+
+## Contact
+
+- Email: rathodpritesh0712@gmail.com
+- LinkedIn: https://www.linkedin.com/in/rathodpritesh/
+- GitHub: https://github.com/rathod-pritesh
+
+## Optional
+
+- [Certifications](https://priteshrathod.vercel.app/#certifications): Credentials from Anthropic, Google, IBM, AWS Skill Builder, and Great Learning Academy
+- [Full details](https://priteshrathod.vercel.app/llms-full.txt): Complete portfolio content in a single file

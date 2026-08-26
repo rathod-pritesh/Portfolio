@@ -1,0 +1,68 @@
+# Pritesh Rathod
+
+> Python Backend Developer specializing in FastAPI, LangChain, and LangGraph. Building scalable backend systems and AI/LLM-powered applications.
+
+## About
+
+Pritesh Rathod is a Python Backend Developer with a growing focus on AI systems and production-ready applications. He is currently pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University, and specializes in building scalable backend solutions using FastAPI, LangChain, and LangGraph. His recent work has focused on RAG pipelines, LLM-powered applications, and AI platforms such as Zentriom, where he combined multiple AI tools into a single product. He is based in Ahmedabad, India.
+
+## Education
+
+- **2025 to Present, M.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology. Focused on backend systems, AI integrations, automation workflows, and scalable application development.
+- **2022 to 2025, B.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology. Built foundations in software engineering, databases, APIs, and modern web technologies.
+- **2021 to 2022, Higher Secondary Certificate**, J. C. Shah Prakash High School.
+- **2019 to 2020, Secondary School Certificate**, Anupam Vidhyavihar.
+
+## Experience
+
+### IBM SkillsBuild AI & Cloud Intern, Edunet Foundation x IBM (Jun 2026 to Jul 2026)
+
+Worked hands-on with IBM Watsonx.ai, Watsonx Orchestrate, and IBM Cloud services while gaining practical experience in AI and cloud technologies.
+
+- Explored Watsonx.ai, Watsonx Orchestrate, and IBM Cloud services
+- Applied AI and cloud concepts through hands-on projects and activities
+- Strengthened backend and AI development skills through practical work
+
+Certificate: https://priteshrathod.vercel.app/certificates/Pritesh_Rathod_Edunet_Internship_Certificate.pdf
+
+## Projects
+
+### AI Voice Assistant
+Web-based AI voice assistant that understands natural language commands. Built with SvelteKit, FastAPI, Python, NLP (all-MiniLM-L6-v2), and the Web Speech API.
+GitHub: https://github.com/rathod-pritesh/ai-voice-assistant
+
+### BuildTrack: Construction Management System
+A role-based construction management system that digitizes project planning, attendance tracking, cost estimation, and reporting, improving transparency and efficiency across admins, members, and clients. Built with Flask, Python, MySQL, and Bootstrap.
+GitHub: https://github.com/rathod-pritesh/BuildTrack-construction-management-system
+
+### Netflix Watchlist API
+RESTful API built with Go and MongoDB for managing a movie watchlist. Supports CRUD operations, watch status updates, and ObjectID handling using a clean MVC-style architecture. Built with Go, MongoDB, Python, Gorilla Mux.
+GitHub: https://github.com/rathod-pritesh/go-mongodb-crud-api
+
+### Medical RAG Chatbot
+AI medical chatbot using Retrieval-Augmented Generation, Pinecone vector search, and Groq LLM for accurate health Q&A. Built with Python, LangChain, Pinecone, Groq, LLaMA 3, Sentence Transformers.
+GitHub: https://github.com/rathod-pritesh/end-to-end-medical-chatbot-generative-ai
+
+## Skills
+
+- **Frontend**: Svelte, Bootstrap, TailwindCSS
+- **Backend**: FastAPI, Flask, Python, Go
+- **AI / ML**: LangChain, LangGraph, RAG pipelines, Pinecone, Groq, LLaMA 3, Sentence Transformers, NLP
+- **Databases**: MySQL, MongoDB
+
+## Certifications
+
+- AI Fluency: Framework & Foundations, Anthropic (Mar 2026)
+- Google AI Professional Certificate, Google (Jun 2026)
+- Getting Started with Artificial Intelligence, IBM (Jun 2026)
+- Learn Advanced Python Programming, Udemy (Jul 2024)
+- GO Programming Language, Great Learning Academy (May 2024)
+- Lab: Troubleshoot Your Code Using IBM Bob, IBM (Jul 2026)
+- Foundations of Prompt Engineering, AWS Skill Builder (May 2026)
+
+## Contact
+
+- Email: rathodpritesh0712@gmail.com
+- Location: Ahmedabad, India
+- LinkedIn: https://www.linkedin.com/in/rathodpritesh/
+- GitHub: https://github.com/rathod-pritesh
