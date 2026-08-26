@@ -59,7 +59,7 @@
                   <p
                     class="text-xs tracking-[0.35em] uppercase text-primary font-semibold"
                   >
-                    {edu.yearStart} — {edu.yearEnd}
+                    {edu.yearStart} to {edu.yearEnd}
                   </p>
 
                   <!-- degree -->

@@ -31,7 +31,7 @@ export const knowledgeBase = [
     tags: ["frontend", "ui", "svelte", "tailwind", "web design"],
     question: "What frontend technologies do you work with?",
     answer:
-      "For the frontend I mostly use SvelteKit paired with TailwindCSS — it's a combo I really enjoy because it keeps things fast and clean. I'm also comfortable with plain HTML/CSS, Bootstrap, JavaScript, and Vite for tooling. I care about building responsive, modern interfaces that complement the backend work.",
+      "For the frontend I mostly use SvelteKit paired with TailwindCSS. It's a combo I really enjoy because it keeps things fast and clean. I'm also comfortable with plain HTML/CSS, Bootstrap, JavaScript, and Vite for tooling. I care about building responsive, modern interfaces that complement the backend work.",
   },
   {
     tags: ["ai", "machine learning", "llm", "chatbot", "nlp", "rag", "langchain"],
@@ -75,7 +75,7 @@ export const knowledgeBase = [
     tags: ["buildtrack", "construction", "attendance", "face recognition", "management"],
     question: "What is BuildTrack?",
     answer:
-      "BuildTrack is a construction management system I built using Flask, MySQL, OpenCV, and Bootstrap. It handles project tracking, generates reports, and — the coolest part — uses face recognition to automate attendance monitoring on-site. It was a great project for combining traditional web dev with computer vision.",
+      "BuildTrack is a construction management system I built using Flask, MySQL, OpenCV, and Bootstrap. It handles project tracking, generates reports, and, the coolest part, uses face recognition to automate attendance monitoring on-site. It was a great project for combining traditional web dev with computer vision.",
   },
   {
     tags: ["image generator", "text to image", "pollinations", "ai art"],
@@ -87,13 +87,13 @@ export const knowledgeBase = [
     tags: ["portfolio", "personal site", "golang backend", "chatbot portfolio"],
     question: "Tell me about your personal portfolio project.",
     answer:
-      "My portfolio is a full-stack project — SvelteKit on the frontend and Golang powering the backend REST APIs. It's connected to MongoDB Atlas for data, includes smooth UI animations, showcases all my projects, and has an AI-powered chatbot assistant built right in (that's me — the chatbot you're talking to!). It's essentially a living demonstration of my skills.",
+      "My portfolio is a full-stack project: SvelteKit on the frontend and Golang powering the backend REST APIs. It's connected to MongoDB Atlas for data, includes smooth UI animations, showcases all my projects, and has an AI-powered chatbot assistant built right in (that's me, the chatbot you're talking to!). It's essentially a living demonstration of my skills.",
   },
   {
     tags: ["ecomtrack", "ecommerce", "analytics", "astradb", "nosql"],
     question: "What is EcomTrack?",
     answer:
-      "EcomTrack is a backend project I built to explore AstraDB — a cloud-native NoSQL database. It provides ecommerce analytics APIs and gave me hands-on experience with query-first data modelling and NoSQL architecture concepts. Think of it as a learning-driven project that turned into a solid backend system.",
+      "EcomTrack is a backend project I built to explore AstraDB, a cloud-native NoSQL database. It provides ecommerce analytics APIs and gave me hands-on experience with query-first data modelling and NoSQL architecture concepts. Think of it as a learning-driven project that turned into a solid backend system.",
   },
   {
     tags: ["automation", "n8n", "workflow", "google sheets", "news digest"],
@@ -115,7 +115,7 @@ export const knowledgeBase = [
     tags: ["certifications", "courses", "certificates", "achievements", "anthropic", "python"],
     question: "What certifications do you have?",
     answer:
-      "I've earned certifications in: AI Fluency: Framework & Foundations (by Anthropic), Advanced Python Programming, Go Programming Language, Figma UI/UX Design, and Java Mastery — Intermediate. I enjoy keeping my skills sharp through structured learning alongside real project work.",
+      "I've earned certifications in: AI Fluency: Framework & Foundations (by Anthropic), Advanced Python Programming, Go Programming Language, Figma UI/UX Design, and Java Mastery: Intermediate. I enjoy keeping my skills sharp through structured learning alongside real project work.",
   },
 
   // ─── Interests & Career ───────────────────────────────────────────────────
@@ -151,7 +151,7 @@ export const knowledgeBase = [
     tags: ["golang", "go language", "go backend"],
     question: "Do you work with Golang?",
     answer:
-      "Yes! Golang is one of my backend languages. I used it to build the REST API layer for my personal portfolio, connecting to MongoDB Atlas. I love Go for its performance, simplicity, and how well it handles concurrency — it's a great fit for building fast, reliable backend services.",
+      "Yes! Golang is one of my backend languages. I used it to build the REST API layer for my personal portfolio, connecting to MongoDB Atlas. I love Go for its performance, simplicity, and how well it handles concurrency. It's a great fit for building fast, reliable backend services.",
   },
   {
     tags: ["python", "why python", "python experience"],

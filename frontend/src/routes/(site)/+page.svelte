@@ -11,10 +11,7 @@
 	export let data;
 </script>
 
-<svelte:head>
-	<title>Pritesh Rathod | {data.home.role}</title>
-	<meta name="description" content="Portfolio of Pritesh Rathod" />
-</svelte:head>
+
 
 <BackgroundTile />
 

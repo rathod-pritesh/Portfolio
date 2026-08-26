@@ -136,7 +136,7 @@
                     ⭐ Featured
                   </span>
                 {:else}
-                  <span class="text-slate-700 text-xs">—</span>
+                  <span class="text-slate-700 text-xs">-</span>
                 {/if}
               </td>
 

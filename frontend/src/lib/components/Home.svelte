@@ -44,7 +44,7 @@
 
               <img
                 src={home.profileImage}
-                alt={home.name}
+                alt="{home.name || 'Pritesh Rathod'} - Python Backend Developer"
                 class="w-full h-full object-cover object-top brightness-92 contrast-105 group-hover:scale-102 transition-transform duration-300 ease-out"
               />
 
@@ -66,9 +66,9 @@
           <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold bg-linear-to-r from-white via-slate-200 to-slate-400 gradient-text">
             {home.name}
           </h1>
-          <h2 class="text-xl sm:text-2xl md:text-3xl text-gray-300 font-light whitespace-nowrap">
+          <p class="text-xl sm:text-2xl md:text-3xl text-gray-300 font-light whitespace-nowrap">
             <span bind:this={typedElement} aria-label="Role"></span>
-          </h2>
+          </p>
         </div>
 
         <p class="text-base md:text-xl text-gray-400 leading-relaxed">

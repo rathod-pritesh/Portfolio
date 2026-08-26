@@ -66,7 +66,7 @@
 </script>
 
 <svelte:head>
-    <title>About — Admin Panel</title>
+    <title>About: Admin Panel</title>
 </svelte:head>
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6">

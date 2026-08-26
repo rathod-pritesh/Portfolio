@@ -85,7 +85,7 @@
                               border border-primary/25 rounded-xl
                               hover:scale-105 hover:border-primary/50
                               transition-all duration-300">
-                    <img src={item.img} alt={item.name} class="w-6 h-6 object-contain" />
+                    <img src={item.img} alt="{item.name} logo" loading="lazy" class="w-6 h-6 object-contain" />
                     <span class="text-sm font-medium text-gray-200">{item.name}</span>
                   </div>
                 {/each}

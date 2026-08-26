@@ -208,7 +208,8 @@
               >
                 <img
                   src={social.icon}
-                  alt={social.name}
+                  alt="{social.name} logo"
+                  loading="lazy"
                   class={`w-6 h-6 object-contain
           transition-all duration-300
           group-hover:brightness-0 group-hover:invert

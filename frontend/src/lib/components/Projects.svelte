@@ -26,7 +26,7 @@
 					<div class="relative w-full md:w-[45%] shrink-0 overflow-hidden" style="min-height: 260px;">
 						<img
 							src={project.image}
-							alt={project.title}
+							alt={project.title ? `${project.title} project screenshot showing interface` : 'Project screenshot'}
 							loading="lazy"
 							decoding="async"
 							class="absolute inset-0 w-full h-full object-cover

@@ -136,7 +136,7 @@
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-white font-semibold text-sm leading-snug line-clamp-2">{cert.name}</p>
-              <p class="text-gray-400 text-xs mt-0.5">{cert.company || '—'}</p>
+              <p class="text-gray-400 text-xs mt-0.5">{cert.company || '-'}</p>
             </div>
           </div>
 

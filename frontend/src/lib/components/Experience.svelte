@@ -31,7 +31,7 @@
         class="rounded-2xl border border-secondary/15 bg-primary/[0.03] p-6 md:p-8 transition-all duration-300 hover:border-secondary/30 hover:-translate-y-1"
       >
         <p class="text-xs tracking-widest uppercase text-secondary/80 font-medium">
-          Jun 2026 – Jul 2026
+          Jun 2026 to Jul 2026
         </p>
 
         <h3 class="text-xl md:text-2xl font-bold text-primary mt-2">
