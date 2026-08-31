@@ -1,22 +1,22 @@
-# 🌐 Personal Portfolio – Pritesh Rathod
+# Personal Portfolio – Pritesh Rathod
 A modern full-stack developer portfolio built with **Svelte (Frontend)** and **Golang (Backend)** showcasing projects, skills, resume, and an AI-powered chatbot assistant.
 
 ---
 
-## 🚀 Live Features
-- 🎨 Interactive UI with smooth animations
-- 🤖 Personal chatbot assistant
-- 📂 Projects showcase section
-- 🧠 Skills visualization
-- 📄 Resume download
-- 📱 Fully responsive design
-- ⚡ Fast performance (Vite + SvelteKit)
-- 🔐 Backend APIs in Golang
-- 🧑‍💻 Admin panel (in progress)
+## Live Features
+- Interactive UI with smooth animations
+- Personal chatbot assistant
+- Projects showcase section
+- Skills visualization
+- Resume download
+- Fully responsive design
+- Fast performance (Vite + SvelteKit)
+- Backend APIs in Golang
+- Admin panel (in progress)
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - SvelteKit
@@ -31,7 +31,7 @@ A modern full-stack developer portfolio built with **Svelte (Frontend)** and **G
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```
 Portfolio
 ├── frontend              # Svelte frontend
@@ -40,7 +40,7 @@ Portfolio
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1️⃣ Clone Repo
 ```bash
@@ -77,11 +77,11 @@ go run main.go
 
 ---
 
-## 📜 License
+## License
 This project is open-source and available under the MIT License.
 
 ---
 
-## 👤 Author
+## Author
 Pritesh Rathod
 - GitHub: https://github.com/rathod-pritesh
