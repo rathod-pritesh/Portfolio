@@ -26,11 +26,16 @@
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Skills", href: "#skills", id: "skills" },
     { label: "Contact", href: "#contact", id: "contact" },
+    { label: "View Credentials", href: "credentials.html", id: null }
   ];
 
   function toggleTheme() {
     isDark = !isDark;
-    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+
+    const theme = isDark ? "dark" : "light";
+
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("theme", theme)
   }
 
   onMount(() => {
@@ -48,7 +53,21 @@
       }
     };
 
-    document.documentElement.dataset.theme = "light";
+    const restoreTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (savedTheme) {
+        isDark = savedTheme === "dark";
+        document.documentElement.dataset.theme = savedTheme;
+      } else {
+        isDark = false;
+        document.documentElement.dataset.theme = "light";
+      }
+    };
+
+    restoreTheme();
+    window.addEventListener("pageshow", restoreTheme)
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
@@ -152,45 +171,19 @@
           {/each}
         </ul>
 
-        <button
+        <!-- <button
           on:click={toggleTheme}
           class="flex items-center justify-center w-9 h-9 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors"
           aria-label="Toggle theme"
         >
           {#if isDark}
             
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z"
-              />
-            </svg>
+            <img src="/icons/sun.svg" alt="Switch to light theme" class="w-5 h-5">
           {:else}
             
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 12.79A9 9 0 1111.21 3c0 .34.02.67.05 1A7 7 0 0020 13c.33.03.66.05 1 .05z"
-              />
-            </svg>
+            <img src="/icons/moon.svg" alt="Switch to dark theme" class="w-5 h-5">
           {/if}
-        </button>
+        </button> -->
 
         <!-- Mobile hamburger -->
         <button
