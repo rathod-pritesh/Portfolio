@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "portfolio-assistant",
+      "description": "Access, query, and interact with Pritesh Rathod's developer portfolio, projects, backend architecture, and technical qualifications.",
+      "type": "skill-md",
+      "url": "https://priteshrathod.vercel.app/SKILL.md",
+      "digest": "sha256:c6d00ea2d913f54db4dd778136bed30850a0f76f87d0ebb4cd5ce667783954f4"
+    }
+  ]
+}

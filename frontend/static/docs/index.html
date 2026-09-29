@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Developer Documentation & API Reference | Pritesh Rathod</title>
+  <meta name="description" content="Official API documentation and integration guide for Pritesh Rathod's developer portfolio APIs, OpenAPI spec, and MCP servers." />
+  <link rel="canonical" href="https://priteshrathod.vercel.app/docs" />
+  <link rel="alternate" type="text/markdown" href="/docs/index.md" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #222; background: #fafafa; }
+    h1, h2, h3 { color: #111; }
+    pre { background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 6px; overflow-x: auto; }
+    code { font-family: monospace; background: #f1f5f9; padding: 2px 5px; border-radius: 4px; }
+    pre code { background: none; padding: 0; }
+    a { color: #2563eb; }
+    .card { background: white; padding: 32px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 24px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; }
+    th { background: #f8fafc; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <h1>Pritesh Rathod API Documentation</h1>
+      <p>Machine and developer reference for programmatic access to projects, skills, and portfolio services.</p>
+    </header>
+
+    <main>
+      <h2>Base URLs</h2>
+      <ul>
+        <li><strong>Production API:</strong> <code>https://portfolio-i5x9.onrender.com</code></li>
+        <li><strong>Frontend Edge Proxy:</strong> <code>https://priteshrathod.vercel.app/api</code></li>
+      </ul>
+
+      <h2>Specifications & Catalogs</h2>
+      <ul>
+        <li><strong>OpenAPI 3.1.0 Specification:</strong> <a href="/openapi.json"><code>/openapi.json</code></a> (<a href="/api/openapi.yaml">YAML</a>)</li>
+        <li><strong>Agent Authentication Guide:</strong> <a href="/auth.md"><code>/auth.md</code></a></li>
+        <li><strong>ARD Discovery:</strong> <a href="/.well-known/ard.json"><code>/.well-known/ard.json</code></a></li>
+        <li><strong>RFC 9727 API Catalog:</strong> <a href="/.well-known/api-catalog"><code>/.well-known/api-catalog</code></a></li>
+        <li><strong>MCP Server Card:</strong> <a href="/.well-known/mcp/server-card.json"><code>/.well-known/mcp/server-card.json</code></a></li>
+      </ul>
+
+      <h2>Endpoints Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Path</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/health</code></td>
+            <td>API health check and heartbeat status</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/home</code></td>
+            <td>Hero profile summary, title, and social links</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/about</code></td>
+            <td>Bio, background, and academic history</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/skills</code></td>
+            <td>Categorized technical skills (Python, Go, LangChain, RAG)</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/projects</code></td>
+            <td>Showcase projects with tech stacks and GitHub links</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/certifications</code></td>
+            <td>Credentials from Anthropic, Google, IBM, AWS</td>
+          </tr>
+          <tr>
+            <td><code>GET</code></td>
+            <td><code>/api/education</code></td>
+            <td>Educational timeline (M.Sc., B.Sc.)</td>
+          </tr>
+          <tr>
+            <td><code>POST</code></td>
+            <td><code>/api/contact</code></td>
+            <td>Submit a contact message (name, email, message)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Quickstart Request Example</h2>
+      <pre><code>curl -s https://portfolio-i5x9.onrender.com/api/projects | jq .</code></pre>
+
+      <h2>Sending a Contact Message</h2>
+      <pre><code>curl -X POST https://portfolio-i5x9.onrender.com/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "message": "Interested in collaborating on a FastAPI project!"
+  }'</code></pre>
+
+      <p><a href="/">← Return to Homepage</a> | <a href="/openapi.json">View OpenAPI Spec</a></p>
+    </main>
+  </div>
+</body>
+</html>

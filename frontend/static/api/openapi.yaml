@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Pritesh Rathod Developer Portfolio API
+  version: 1.0.0
+  description: Public REST API for Pritesh Rathod's developer portfolio, showcasing projects, skills, education, and contact.
+  contact:
+    name: Pritesh Rathod
+    email: rathodpritesh0712@gmail.com
+    url: https://priteshrathod.vercel.app
+servers:
+  - url: https://portfolio-i5x9.onrender.com
+    description: Production API Server
+  - url: https://priteshrathod.vercel.app/api
+    description: Frontend Edge API
+paths:
+  /health:
+    get:
+      summary: Health Check
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service Healthy
+  /api/home:
+    get:
+      summary: Get Home Profile
+      operationId: getHomeProfile
+      responses:
+        '200':
+          description: Home profile data
+  /api/about:
+    get:
+      summary: Get About Info
+      operationId: getAbout
+      responses:
+        '200':
+          description: About bio data
+  /api/skills:
+    get:
+      summary: Get Skills
+      operationId: getSkills
+      responses:
+        '200':
+          description: Skills categories
+  /api/projects:
+    get:
+      summary: Get Projects
+      operationId: getProjects
+      responses:
+        '200':
+          description: List of projects
+  /api/certifications:
+    get:
+      summary: Get Certifications
+      operationId: getCertifications
+      responses:
+        '200':
+          description: Certifications
+  /api/education:
+    get:
+      summary: Get Education
+      operationId: getEducation
+      responses:
+        '200':
+          description: Education history
+  /api/contact:
+    post:
+      summary: Submit Contact Message
+      operationId: submitContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, message]
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                message:
+                  type: string
+      responses:
+        '200':
+          description: Contact message received

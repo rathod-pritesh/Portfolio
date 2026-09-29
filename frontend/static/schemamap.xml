@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema>
+    <loc>https://priteshrathod.vercel.app/feeds/schema.jsonld</loc>
+    <lastmod>2026-09-29</lastmod>
+  </schema>
+  <schema>
+    <loc>https://priteshrathod.vercel.app/openapi.json</loc>
+    <lastmod>2026-09-29</lastmod>
+  </schema>
+</schemalist>

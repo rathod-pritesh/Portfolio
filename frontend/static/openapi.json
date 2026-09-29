@@ -1,0 +1,536 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Pritesh Rathod Developer Portfolio API",
+    "version": "1.0.0",
+    "description": "Public REST API providing access to Pritesh Rathod's developer portfolio, showcasing projects, technical skills, certifications, work experience, education, and contact channels.",
+    "contact": {
+      "name": "Pritesh Rathod",
+      "email": "rathodpritesh0712@gmail.com",
+      "url": "https://priteshrathod.vercel.app"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://portfolio-i5x9.onrender.com",
+      "description": "Production API Server"
+    },
+    {
+      "url": "https://priteshrathod.vercel.app/api",
+      "description": "Frontend Proxy / Edge API"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "API Health Check",
+        "description": "Returns operational health status of the backend API service.",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "API is healthy and operational.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/home": {
+      "get": {
+        "summary": "Get Home Profile",
+        "description": "Returns hero section profile metadata including name, titles, tagline, and social profile links.",
+        "operationId": "getHomeProfile",
+        "responses": {
+          "200": {
+            "description": "Home profile retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HomeProfile"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/about": {
+      "get": {
+        "summary": "Get About Bio",
+        "description": "Returns biographical background, focus areas, and personal summary.",
+        "operationId": "getAbout",
+        "responses": {
+          "200": {
+            "description": "About section data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutProfile"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/skills": {
+      "get": {
+        "summary": "Get Skills",
+        "description": "Returns structured technical skill categories and proficiencies (Languages, Frameworks, AI/LLM, Databases, DevOps).",
+        "operationId": "getSkills",
+        "responses": {
+          "200": {
+            "description": "Skills retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillsData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/automations": {
+      "get": {
+        "summary": "Get Automation Workflows",
+        "description": "Returns list of automation workflows and demos built with n8n and AI tools.",
+        "operationId": "getAutomations",
+        "responses": {
+          "200": {
+            "description": "Automations list retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AutomationItem"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "summary": "Get Projects",
+        "description": "Returns all featured projects with titles, descriptions, tech stack tags, live links, and repository links.",
+        "operationId": "getProjects",
+        "responses": {
+          "200": {
+            "description": "List of projects retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectItem"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certifications": {
+      "get": {
+        "summary": "Get Certifications",
+        "description": "Returns professional certifications and credentials from Anthropic, IBM, Google, AWS, etc.",
+        "operationId": "getCertifications",
+        "responses": {
+          "200": {
+            "description": "Certifications list retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CertificationItem"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/education": {
+      "get": {
+        "summary": "Get Education",
+        "description": "Returns educational history and academic degree qualifications.",
+        "operationId": "getEducation",
+        "responses": {
+          "200": {
+            "description": "Education timeline retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EducationItem"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact": {
+      "post": {
+        "summary": "Submit Contact Message",
+        "description": "Submits a contact inquiry directly to Pritesh Rathod.",
+        "operationId": "submitContact",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message submitted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error or missing fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to submit message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["status"]
+      },
+      "HomeProfile": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "home"
+          },
+          "name": {
+            "type": "string",
+            "example": "Pritesh Rathod"
+          },
+          "role": {
+            "type": "string",
+            "example": "Python Backend Developer"
+          },
+          "tagline": {
+            "type": "string",
+            "example": "Building scalable backend systems and AI-powered applications"
+          },
+          "resumeUrl": {
+            "type": "string",
+            "example": "/resume/Pritesh_Rathod_resume.pdf"
+          }
+        },
+        "required": ["name", "role"]
+      },
+      "AboutProfile": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "about"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string",
+            "example": "Ahmedabad, India"
+          }
+        }
+      },
+      "SkillsData": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "skills"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "AutomationItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "ProjectItem": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string",
+            "example": "VideoRedact"
+          },
+          "description": {
+            "type": "string",
+            "example": "Automated face and license plate blurring using YOLO and OpenCV."
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "github": {
+            "type": "string",
+            "format": "uri"
+          },
+          "liveUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": ["title", "description"]
+      },
+      "CertificationItem": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "issuer": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "credentialUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "EducationItem": {
+        "type": "object",
+        "properties": {
+          "degree": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "ContactSubmission": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "example": "Agent Smith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "agent@example.com"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 5,
+            "example": "Inquiry regarding backend collaboration or full-time opportunities."
+          }
+        },
+        "required": ["name", "email", "message"]
+      },
+      "SuccessStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok"
+          }
+        },
+        "required": ["status"]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Detailed error message"
+          },
+          "code": {
+            "type": "string",
+            "example": "INVALID_REQUEST"
+          }
+        },
+        "required": ["error"]
+      }
+    }
+  }
+}

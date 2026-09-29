@@ -1,0 +1,10 @@
+# Pritesh Rathod - API Services
+
+> Direct links and specifications for portfolio REST endpoints.
+
+- [OpenAPI Specification](https://priteshrathod.vercel.app/openapi.json): Full machine-readable API contract
+- [Protected Resource Metadata](https://priteshrathod.vercel.app/.well-known/oauth-protected-resource): RFC 9728 discovery
+- [Home Endpoint](https://portfolio-i5x9.onrender.com/api/home): GET /api/home
+- [Projects Endpoint](https://portfolio-i5x9.onrender.com/api/projects): GET /api/projects
+- [Skills Endpoint](https://portfolio-i5x9.onrender.com/api/skills): GET /api/skills
+- [Contact Endpoint](https://portfolio-i5x9.onrender.com/api/contact): POST /api/contact

@@ -1,0 +1,16 @@
+# Pritesh Rathod - Developer Documentation
+
+> Machine-readable guide to the APIs, schemas, and developer resources of Pritesh Rathod.
+
+## APIs & Specs
+- [OpenAPI Specification](https://priteshrathod.vercel.app/openapi.json): Complete OpenAPI 3.1.0 JSON schema
+- [OpenAPI YAML](https://priteshrathod.vercel.app/api/openapi.yaml): OpenAPI specification in YAML format
+- [Agent Authentication](https://priteshrathod.vercel.app/auth.md): Auth walkthrough per WorkOS auth.md spec
+- [API Catalog](https://priteshrathod.vercel.app/.well-known/api-catalog): RFC 9727 linkset document
+- [MCP Server Card](https://priteshrathod.vercel.app/.well-known/mcp/server-card.json): Model Context Protocol tools
+
+## Endpoints
+- [Health Check](https://portfolio-i5x9.onrender.com/health): GET /health
+- [Projects API](https://portfolio-i5x9.onrender.com/api/projects): GET /api/projects
+- [Skills API](https://portfolio-i5x9.onrender.com/api/skills): GET /api/skills
+- [Contact API](https://portfolio-i5x9.onrender.com/api/contact): POST /api/contact

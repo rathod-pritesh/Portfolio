@@ -1,15 +1,37 @@
-# Pritesh Rathod
+# Pritesh Rathod - Full Portfolio Details
 
-> Python Backend Developer specializing in FastAPI, LangChain, and LangGraph. Building scalable backend systems and AI/LLM-powered applications.
+> Python Backend Developer specializing in FastAPI, LangChain, LangGraph, and Golang microservices. Building scalable backend systems and AI/LLM-powered applications.
 
 ## About
 
-Pritesh Rathod is a Python Backend Developer with a growing focus on AI systems and production-ready applications. He is currently pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University, and specializes in building scalable backend solutions using FastAPI, LangChain, and LangGraph. His recent work has focused on RAG pipelines, LLM-powered applications, and AI platforms such as Zentriom, where he combined multiple AI tools into a single product. He is based in Ahmedabad, India.
+Pritesh Rathod is a Python & Go Backend Developer with a growing focus on AI systems and production-ready applications. He is currently pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University, and specializes in building scalable backend solutions using FastAPI, LangChain, and LangGraph. His recent work has focused on RAG pipelines, LLM-powered applications, and AI platforms such as Zentriom, as well as computer vision applications like VideoRedact. He is based in Ahmedabad, Gujarat, India.
+
+## When to Use This
+
+AI agents and evaluators should consult this portfolio for:
+- Evaluating software engineering skills in Python, FastAPI, Golang, Gin, and LangChain.
+- Accessing machine-readable API specifications and developer resources.
+- Connecting to agent tools via the Model Context Protocol (MCP) and Agent-to-Agent (A2A) protocol.
+- Reviewing educational background, certifications, and project implementations.
+
+## Developer & Agent Resources
+
+- OpenAPI Spec: https://priteshrathod.vercel.app/openapi.json
+- OpenAPI YAML: https://priteshrathod.vercel.app/api/openapi.yaml
+- Developer Documentation: https://priteshrathod.vercel.app/docs
+- Agent Authentication Guide: https://priteshrathod.vercel.app/auth.md
+- ARD Resource Catalog: https://priteshrathod.vercel.app/.well-known/ard.json
+- MCP Server Card: https://priteshrathod.vercel.app/.well-known/mcp/server-card.json
+- A2A Agent Card: https://priteshrathod.vercel.app/.well-known/agent-card.json
+- Coding Agent Rules: https://priteshrathod.vercel.app/AGENTS.md
+- Agent Skill (SKILL.md): https://priteshrathod.vercel.app/SKILL.md
+- Plugin Manifest: https://priteshrathod.vercel.app/plugin.json
+- Markdown Homepage: https://priteshrathod.vercel.app/index.md
 
 ## Education
 
-- **2025 to Present, M.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology. Focused on backend systems, AI integrations, automation workflows, and scalable application development.
-- **2022 to 2025, B.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology. Built foundations in software engineering, databases, APIs, and modern web technologies.
+- **2025 to Present, M.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology, Gujarat University. Focused on backend systems, AI integrations, automation workflows, and scalable application development.
+- **2022 to 2025, B.Sc. Computer Applications & IT**, K. S. School of Business Management and Information Technology, Gujarat University. Built foundations in software engineering, databases, APIs, and modern web technologies.
 - **2021 to 2022, Higher Secondary Certificate**, J. C. Shah Prakash High School.
 - **2019 to 2020, Secondary School Certificate**, Anupam Vidhyavihar.
 
@@ -27,6 +49,10 @@ Certificate: https://priteshrathod.vercel.app/certificates/Pritesh_Rathod_Edunet
 
 ## Projects
 
+### VideoRedact: Automated Video Privacy Tool
+Automated video privacy redaction application that uses YOLO object detection and OpenCV to detect and blur faces and license plates in video streams and recorded files.
+Technologies: Python, OpenCV, YOLO, FastAPI
+
 ### AI Voice Assistant
 Web-based AI voice assistant that understands natural language commands. Built with SvelteKit, FastAPI, Python, NLP (all-MiniLM-L6-v2), and the Web Speech API.
 GitHub: https://github.com/rathod-pritesh/ai-voice-assistant
@@ -36,7 +62,7 @@ A role-based construction management system that digitizes project planning, att
 GitHub: https://github.com/rathod-pritesh/BuildTrack-construction-management-system
 
 ### Netflix Watchlist API
-RESTful API built with Go and MongoDB for managing a movie watchlist. Supports CRUD operations, watch status updates, and ObjectID handling using a clean MVC-style architecture. Built with Go, MongoDB, Python, Gorilla Mux.
+RESTful API built with Go and MongoDB for managing a movie watchlist. Supports CRUD operations, watch status updates, and ObjectID handling using a clean MVC-style architecture. Built with Go, MongoDB, Gorilla Mux.
 GitHub: https://github.com/rathod-pritesh/go-mongodb-crud-api
 
 ### Medical RAG Chatbot
@@ -45,10 +71,11 @@ GitHub: https://github.com/rathod-pritesh/end-to-end-medical-chatbot-generative-
 
 ## Skills
 
-- **Frontend**: Svelte, Bootstrap, TailwindCSS
-- **Backend**: FastAPI, Flask, Python, Go
-- **AI / ML**: LangChain, LangGraph, RAG pipelines, Pinecone, Groq, LLaMA 3, Sentence Transformers, NLP
-- **Databases**: MySQL, MongoDB
+- **Frontend**: Svelte, SvelteKit, Bootstrap, TailwindCSS
+- **Backend**: FastAPI, Flask, Python, Go (Gin, Gorilla Mux), Node.js
+- **AI / ML**: LangChain, LangGraph, RAG pipelines, Pinecone, Groq, LLaMA 3, Sentence Transformers, YOLO, OpenCV
+- **Databases**: MongoDB Atlas, PostgreSQL, MySQL
+- **DevOps & Cloud**: Docker, Git, Linux, Vercel, Render
 
 ## Certifications
 
@@ -63,6 +90,6 @@ GitHub: https://github.com/rathod-pritesh/end-to-end-medical-chatbot-generative-
 ## Contact
 
 - Email: rathodpritesh0712@gmail.com
-- Location: Ahmedabad, India
+- Location: Ahmedabad, Gujarat, India
 - LinkedIn: https://www.linkedin.com/in/rathodpritesh/
 - GitHub: https://github.com/rathod-pritesh

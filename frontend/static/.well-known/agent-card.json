@@ -1,0 +1,51 @@
+{
+  "name": "Pritesh Rathod Portfolio Agent",
+  "version": "1.0.0",
+  "description": "Agent-to-Agent interface for Pritesh Rathod's engineering portfolio, capabilities, and contact point.",
+  "url": "https://priteshrathod.vercel.app",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["application/json", "text/markdown"],
+  "skills": [
+    {
+      "id": "query-projects",
+      "name": "Query Developer Projects",
+      "description": "Returns full details on projects built by Pritesh Rathod (VideoRedact, BuildTrack, Netflix Watchlist API, Medical RAG Chatbot).",
+      "tags": ["projects", "python", "golang", "fastapi", "rag", "yolo"],
+      "examples": [
+        "What projects has Pritesh Rathod developed?",
+        "Tell me about the VideoRedact privacy project."
+      ]
+    },
+    {
+      "id": "query-skills",
+      "name": "Query Technical Skills",
+      "description": "Provides verified technical competencies in backend systems, AI workflows, and cloud databases.",
+      "tags": ["skills", "backend", "fastapi", "golang", "langchain"],
+      "examples": [
+        "What technologies does Pritesh work with?",
+        "Does Pritesh have experience with LangChain and LangGraph?"
+      ]
+    },
+    {
+      "id": "send-inquiry",
+      "name": "Send Contact Inquiry",
+      "description": "Submits a collaboration message or job opportunity to Pritesh Rathod.",
+      "tags": ["contact", "message", "hire"],
+      "examples": [
+        "Send a message to Pritesh Rathod about a backend engineering role."
+      ]
+    }
+  ],
+  "supportedInterfaces": [
+    {
+      "url": "https://priteshrathod.vercel.app/api/contact",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0.0"
+    }
+  ]
+}

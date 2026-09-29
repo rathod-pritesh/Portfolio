@@ -1,0 +1,86 @@
+{
+  "name": "pritesh-rathod-portfolio",
+  "displayName": "Pritesh Rathod Portfolio MCP Server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server providing tools to discover and query Pritesh Rathod's developer projects, skills, education, and credentials.",
+  "icon": "https://priteshrathod.vercel.app/images/profile_photo.png",
+  "iconUrl": "https://priteshrathod.vercel.app/images/profile_photo.png",
+  "serverUrl": "https://priteshrathod.vercel.app/api/mcp",
+  "transport": "streamable-http",
+  "tools": [
+    {
+      "name": "get_portfolio_summary",
+      "description": "Retrieves the complete profile overview, biography, and professional focus areas for developer Pritesh Rathod.",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "includeEducation": {
+            "type": "boolean",
+            "description": "Whether to include academic education history.",
+            "default": true
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "list_developer_projects",
+      "description": "Retrieves the showcase list of featured developer projects including technologies used, repository links, and descriptions.",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "Filter projects by technology tag (e.g., Python, Go, FastAPI, RAG, YOLO)."
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "get_technical_skills",
+      "description": "Returns structured technical skills, tools, frameworks, and domain expertise in backend and AI engineering.",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Category of skills to inspect (e.g. backend, ai, databases, languages)."
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "send_contact_message",
+      "description": "Sends a direct contact inquiry or collaboration proposal to Pritesh Rathod.",
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The sender's name or agent identity."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The sender's contact email address."
+          },
+          "message": {
+            "type": "string",
+            "description": "The message body or inquiry details."
+          }
+        },
+        "required": ["name", "email", "message"]
+      }
+    }
+  ]
+}

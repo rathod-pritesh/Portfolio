@@ -1,0 +1,58 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Pritesh Rathod Portfolio",
+    "identifier": "did:web:priteshrathod.vercel.app"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:priteshrathod.vercel.app:api:portfolio",
+      "displayName": "Pritesh Rathod Portfolio REST API",
+      "type": "application/openapi+json",
+      "url": "https://priteshrathod.vercel.app/openapi.json",
+      "description": "Full OpenAPI 3.1.0 specification for Pritesh Rathod's developer portfolio, projects, skills, education, and contact API.",
+      "representativeQueries": [
+        "what projects has Pritesh Rathod built",
+        "what are Pritesh Rathod's backend skills in Python and Go",
+        "Pritesh Rathod resume and educational background",
+        "how to send a contact message to Pritesh Rathod"
+      ],
+      "trustManifest": {
+        "publisherIdentity": "did:web:priteshrathod.vercel.app",
+        "issuer": "https://priteshrathod.vercel.app",
+        "serviceLevel": "production",
+        "compliance": ["MIT-License"]
+      }
+    },
+    {
+      "identifier": "urn:air:priteshrathod.vercel.app:mcp:server-card",
+      "displayName": "Pritesh Rathod MCP Server Card",
+      "type": "application/mcp-server-card+json",
+      "url": "https://priteshrathod.vercel.app/.well-known/mcp/server-card.json",
+      "description": "Model Context Protocol (MCP) server card defining tools to query projects, skills, and portfolio information.",
+      "representativeQueries": [
+        "connect to Pritesh Rathod's MCP server",
+        "find MCP tools for querying developer projects"
+      ],
+      "trustManifest": {
+        "publisherIdentity": "did:web:priteshrathod.vercel.app",
+        "issuer": "https://priteshrathod.vercel.app"
+      }
+    },
+    {
+      "identifier": "urn:air:priteshrathod.vercel.app:agent-card:portfolio",
+      "displayName": "Pritesh Rathod A2A Agent Card",
+      "type": "application/json",
+      "url": "https://priteshrathod.vercel.app/.well-known/agent-card.json",
+      "description": "Agent-to-Agent (A2A) protocol business card declaring agent capabilities, modalities, and interfaces.",
+      "representativeQueries": [
+        "discover Pritesh Rathod's agent-to-agent capabilities",
+        "connect agent to agent with portfolio assistant"
+      ],
+      "trustManifest": {
+        "publisherIdentity": "did:web:priteshrathod.vercel.app",
+        "issuer": "https://priteshrathod.vercel.app"
+      }
+    }
+  ]
+}

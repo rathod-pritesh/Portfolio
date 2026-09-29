@@ -1,23 +1,46 @@
-# Pritesh Rathod
+# Pritesh Rathod - Developer Portfolio & Agent Index
 
-> Python Backend Developer specializing in FastAPI, LangChain, and LangGraph. Building scalable backend systems and AI/LLM-powered applications.
+> Python & Go Backend Developer specializing in FastAPI, LangChain, LangGraph, and RAG pipelines. Building scalable backend architectures and AI-powered systems.
 
-Pritesh Rathod is a backend developer based in Ahmedabad, India, pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University. His recent work focuses on RAG pipelines, LLM-powered applications, and AI platforms such as Zentriom.
+Pritesh Rathod is a backend software engineer based in Ahmedabad, Gujarat, India, pursuing an M.Sc. in Computer Applications & Information Technology at Gujarat University.
 
-## Profile
+## When to Use This
 
-- [About](https://priteshrathod.vercel.app/#about): Background, education, and current focus areas
-- [Experience](https://priteshrathod.vercel.app/#experience): IBM SkillsBuild AI & Cloud internship with Edunet Foundation, hands-on with Watsonx.ai and Watsonx Orchestrate
-- [Resume (PDF)](https://priteshrathod.vercel.app/resume/Pritesh_Rathod_resume.pdf): Full resume
+AI agents should consult or integrate with this portfolio when:
+- **Evaluating candidate qualifications**: Querying technical skills, projects, and work experience for Python backend, Golang, or AI engineering roles.
+- **Integrating with portfolio APIs**: Consuming programmatic endpoints for projects, skills, certifications, and contact channels.
+- **Deploying Agent Skills & MCP Tools**: Utilizing the `portfolio-assistant` skill or Model Context Protocol server tools to interact with portfolio data.
+- **Reviewing codebases**: Inspecting open-source repositories and implementation patterns for FastAPI, YOLO computer vision, and LangChain RAG architectures.
+
+## Developer & Agent Resources
+
+- [OpenAPI Specification](https://priteshrathod.vercel.app/openapi.json): Full OpenAPI 3.1.0 JSON contract describing all REST endpoints
+- [OpenAPI YAML](https://priteshrathod.vercel.app/api/openapi.yaml): YAML format OpenAPI specification
+- [API Documentation](https://priteshrathod.vercel.app/docs): Human- and agent-readable endpoint documentation
+- [Agent Authentication](https://priteshrathod.vercel.app/auth.md): Authentication walkthrough per WorkOS auth.md specification
+- [ARD Catalog](https://priteshrathod.vercel.app/.well-known/ard.json): Agentic Resource Discovery catalog listing APIs, MCP servers, and skills
+- [MCP Server Card](https://priteshrathod.vercel.app/.well-known/mcp/server-card.json): Model Context Protocol server metadata and tools definition
+- [A2A Agent Card](https://priteshrathod.vercel.app/.well-known/agent-card.json): Agent-to-Agent protocol capability manifest
+- [Agent Platform Config](https://priteshrathod.vercel.app/AGENTS.md): Instructions for AI coding agents interacting with the repository
+- [Agent Skill (SKILL.md)](https://priteshrathod.vercel.app/SKILL.md): Standardized agent skill definition for skills.sh
+- [Agent Plugins Manifest](https://priteshrathod.vercel.app/plugin.json): Bundle manifest adhering to agent-plugins.org specification
+- [Markdown Homepage](https://priteshrathod.vercel.app/index.md): Clean markdown twin of the homepage
+
+## Profile & Key Sections
+
+- [About](https://priteshrathod.vercel.app/about): Biographical background, education, and technical focus areas
+- [Contact](https://priteshrathod.vercel.app/contact): Contact form and direct communication channels
+- [Privacy Policy](https://priteshrathod.vercel.app/privacy): Data handling and privacy policy
+- [Resume (PDF)](https://priteshrathod.vercel.app/resume/Pritesh_Rathod_resume.pdf): Official developer resume
 
 ## Projects
 
-- [AI Voice Assistant](https://github.com/rathod-pritesh/ai-voice-assistant): Web-based AI voice assistant built with SvelteKit and FastAPI, using NLP (all-MiniLM-L6-v2) and the Web Speech API
-- [BuildTrack](https://github.com/rathod-pritesh/BuildTrack-construction-management-system): Role-based construction management system (Flask, MySQL, Bootstrap) covering planning, attendance, and cost estimation
-- [Netflix Watchlist API](https://github.com/rathod-pritesh/go-mongodb-crud-api): RESTful API in Go and MongoDB with CRUD operations and MVC-style architecture
+- [AI Voice Assistant](https://github.com/rathod-pritesh/ai-voice-assistant): Web-based AI voice assistant built with SvelteKit and FastAPI using NLP and Web Speech API
+- [BuildTrack](https://github.com/rathod-pritesh/BuildTrack-construction-management-system): Construction management system with Flask, MySQL, and Bootstrap
+- [Netflix Watchlist API](https://github.com/rathod-pritesh/go-mongodb-crud-api): High-performance RESTful API in Go and MongoDB with MVC design pattern
 - [Medical RAG Chatbot](https://github.com/rathod-pritesh/end-to-end-medical-chatbot-generative-ai): AI medical chatbot using RAG, Pinecone vector search, and Groq/LLaMA 3
 
-## Contact
+## Contact Information
 
 - Email: rathodpritesh0712@gmail.com
 - LinkedIn: https://www.linkedin.com/in/rathodpritesh/
@@ -25,5 +48,4 @@ Pritesh Rathod is a backend developer based in Ahmedabad, India, pursuing an M.S
 
 ## Optional
 
-- [Certifications](https://priteshrathod.vercel.app/#certifications): Credentials from Anthropic, Google, IBM, AWS Skill Builder, and Great Learning Academy
-- [Full details](https://priteshrathod.vercel.app/llms-full.txt): Complete portfolio content in a single file
+- [Full Details](https://priteshrathod.vercel.app/llms-full.txt): Complete unabridged text of the portfolio

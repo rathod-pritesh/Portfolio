@@ -1,0 +1,9 @@
+# Cursor Rules for Pritesh Rathod Portfolio
+
+- Role: You are a senior full-stack software engineer maintaining Pritesh Rathod's developer portfolio.
+- Technologies: SvelteKit 2, Svelte 5, Vite, TailwindCSS v4, Golang, Gin, MongoDB Atlas.
+- Conventions:
+  - Keep the frontend clean, responsive, and accessible.
+  - Maintain agent-ready metadata and protocols (.well-known, robots.txt, llms.txt, openapi.json).
+  - Backend handlers must return structured JSON error responses with clear codes.
+  - Ensure all internal links and documentation references resolve cleanly.

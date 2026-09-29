@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pritesh-rathod-portfolio",
+  "version": "1.0.0",
+  "description": "Agent Plugin bundling skills, MCP tools, and developer resources for Pritesh Rathod's engineering portfolio.",
+  "author": {
+    "name": "Pritesh Rathod",
+    "email": "rathodpritesh0712@gmail.com",
+    "url": "https://priteshrathod.vercel.app"
+  },
+  "homepage": "https://priteshrathod.vercel.app",
+  "repository": "https://github.com/rathod-pritesh/Portfolio",
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "fastapi",
+    "golang",
+    "langchain",
+    "langgraph",
+    "rag",
+    "agent-skills",
+    "mcp"
+  ]
+}

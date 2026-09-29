@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://priteshrathod.vercel.app/#person",
+      "name": "Pritesh Rathod",
+      "url": "https://priteshrathod.vercel.app/",
+      "image": "https://priteshrathod.vercel.app/images/profile_photo.png",
+      "jobTitle": "Python Backend Developer",
+      "email": "mailto:rathodpritesh0712@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ahmedabad",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://github.com/rathod-pritesh",
+        "https://www.linkedin.com/in/rathodpritesh/"
+      ],
+      "knowsAbout": [
+        "Python",
+        "FastAPI",
+        "Golang",
+        "LangChain",
+        "LangGraph",
+        "RAG",
+        "REST APIs",
+        "MongoDB",
+        "PostgreSQL",
+        "Docker",
+        "MCP (Model Context Protocol)"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://priteshrathod.vercel.app/#website",
+      "url": "https://priteshrathod.vercel.app/",
+      "name": "Pritesh Rathod Portfolio",
+      "alternateName": [
+        "Pritesh Rathod",
+        "Pritesh Rathod Developer Portfolio"
+      ],
+      "description": "Portfolio and developer projects of Pritesh Rathod, Python & Go Backend Developer specializing in FastAPI, LangChain, RAG, and scalable systems.",
+      "author": {
+        "@id": "https://priteshrathod.vercel.app/#person"
+      }
+    }
+  ]
+}

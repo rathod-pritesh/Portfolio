@@ -1,0 +1,36 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://priteshrathod.vercel.app/api",
+      "service-desc": [
+        {
+          "href": "https://priteshrathod.vercel.app/openapi.json",
+          "type": "application/openapi+json"
+        },
+        {
+          "href": "https://priteshrathod.vercel.app/api/openapi.yaml",
+          "type": "application/yaml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://priteshrathod.vercel.app/docs",
+          "type": "text/html"
+        },
+        {
+          "href": "https://priteshrathod.vercel.app/llms.txt",
+          "type": "text/plain"
+        }
+      ]
+    },
+    {
+      "anchor": "https://portfolio-i5x9.onrender.com",
+      "service-desc": [
+        {
+          "href": "https://priteshrathod.vercel.app/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ]
+    }
+  ]
+}
