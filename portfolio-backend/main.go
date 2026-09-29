@@ -32,6 +32,9 @@ func main() {
 		AllowCredentials: true,
 	}))
 
+	// Health check for portfolio APIs
+	r.GET("/health", controllers.HealthCheck)
+
 	// Portfolio
 	r.GET("/api/home", controllers.GetHome)
 	r.GET("/api/about", controllers.GetAbout)
