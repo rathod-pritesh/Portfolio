@@ -1,7 +1,7 @@
 {
   "linkset": [
     {
-      "anchor": "https://priteshrathod.vercel.app/api",
+      "anchor": "https://priteshrathod.vercel.app",
       "service-desc": [
         {
           "href": "https://priteshrathod.vercel.app/openapi.json",

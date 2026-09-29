@@ -16,12 +16,12 @@
   },
   "servers": [
     {
-      "url": "https://portfolio-i5x9.onrender.com",
-      "description": "Production API Server"
+      "url": "https://priteshrathod.vercel.app",
+      "description": "Primary Edge API Server"
     },
     {
-      "url": "https://priteshrathod.vercel.app/api",
-      "description": "Frontend Proxy / Edge API"
+      "url": "https://portfolio-i5x9.onrender.com",
+      "description": "Production Backend Service"
     }
   ],
   "paths": {

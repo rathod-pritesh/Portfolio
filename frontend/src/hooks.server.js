@@ -33,11 +33,22 @@ export async function handle({ event, resolve }) {
 				mcp_server: 'https://priteshrathod.vercel.app/.well-known/mcp/server-card.json',
 				agent_card: 'https://priteshrathod.vercel.app/.well-known/agent-card.json',
 				skills: 'https://priteshrathod.vercel.app/SKILL.md',
-				home: 'https://portfolio-i5x9.onrender.com/api/home',
-				projects: 'https://portfolio-i5x9.onrender.com/api/projects',
-				skills_data: 'https://portfolio-i5x9.onrender.com/api/skills',
-				contact: 'https://portfolio-i5x9.onrender.com/api/contact'
+				health: 'https://priteshrathod.vercel.app/health',
+				home: 'https://priteshrathod.vercel.app/api/home',
+				projects: 'https://priteshrathod.vercel.app/api/projects',
+				skills_data: 'https://priteshrathod.vercel.app/api/skills',
+				contact: 'https://priteshrathod.vercel.app/api/contact'
 			},
+			servers: [
+				{
+					url: 'https://priteshrathod.vercel.app',
+					description: 'Primary Edge API Server'
+				},
+				{
+					url: 'https://portfolio-i5x9.onrender.com',
+					description: 'Direct Backend Service'
+				}
+			],
 			capabilities: [
 				'FastAPI Backend Engineering',
 				'Golang REST APIs',
@@ -76,7 +87,39 @@ export async function handle({ event, resolve }) {
 
 	const response = await resolve(event);
 
-	// 3. Agent-friendly 404 with markdown body if client specifically requested markdown
+	// 3. JSON error responses for API paths or clients requesting JSON (RFC 7807 Problem Details)
+	const isApiRequest = url.pathname.startsWith('/api/') || url.pathname === '/health';
+	const prefersJson = acceptHeader.includes('application/json') || acceptHeader.includes('application/problem+json');
+
+	if (response.status >= 400 && (isApiRequest || (prefersJson && !acceptHeader.includes('text/html')))) {
+		const problem = {
+			type: `https://priteshrathod.vercel.app/docs/errors#${response.status}`,
+			title: response.status === 404 ? 'Not Found' : response.status === 405 ? 'Method Not Allowed' : 'API Error',
+			status: response.status,
+			detail: response.status === 404
+				? `The requested API endpoint '${url.pathname}' was not found on this server.`
+				: `An error occurred processing the request to '${url.pathname}'.`,
+			instance: url.pathname,
+			recovery_resources: {
+				openapi: 'https://priteshrathod.vercel.app/openapi.json',
+				docs: 'https://priteshrathod.vercel.app/docs',
+				health: 'https://priteshrathod.vercel.app/health'
+			}
+		};
+
+		return new Response(JSON.stringify(problem, null, 2), {
+			status: response.status,
+			headers: {
+				'Content-Type': 'application/problem+json; charset=utf-8',
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+				'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept',
+				Vary: 'Accept, Accept-Encoding'
+			}
+		});
+	}
+
+	// 4. Agent-friendly 404 with markdown body if client specifically requested markdown
 	if (response.status === 404 && acceptHeader.includes('text/markdown') && !acceptHeader.includes('text/html')) {
 		return new Response(NOT_FOUND_MARKDOWN, {
 			status: 404,

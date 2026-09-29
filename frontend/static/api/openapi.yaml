@@ -8,10 +8,10 @@ info:
     email: rathodpritesh0712@gmail.com
     url: https://priteshrathod.vercel.app
 servers:
+  - url: https://priteshrathod.vercel.app
+    description: Primary Edge API Server
   - url: https://portfolio-i5x9.onrender.com
-    description: Production API Server
-  - url: https://priteshrathod.vercel.app/api
-    description: Frontend Edge API
+    description: Production Backend Service
 paths:
   /health:
     get:
