@@ -26,7 +26,6 @@
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Skills", href: "#skills", id: "skills" },
     { label: "Contact", href: "#contact", id: "contact" },
-    { label: "API Docs", href: "/docs", id: null },
     { label: "View Credentials", href: "credentials.html", id: null }
   ];
 
@@ -256,24 +255,24 @@
   </main>
 
   <!-- Footer with Trust Anchors & Developer Resources -->
-  <footer class="border-t border-gray-800 bg-black/80 py-10 px-6 text-gray-400 relative z-20">
+  <footer class="site-footer py-10 px-6 relative z-20">
     <div class="container-max flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
       <div class="text-center md:text-left">
-        <p class="text-white font-semibold text-base">Pritesh Rathod</p>
-        <p class="text-gray-400 text-xs mt-1">Python & Go Backend Developer | FastAPI, LangChain, RAG</p>
+        <p class="footer-title font-semibold text-base">Pritesh Rathod</p>
+        <p class="footer-subtitle text-xs mt-1">Python & Go Backend Developer | FastAPI, LangChain, RAG</p>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm">
-        <a href="/about" class="hover:text-primary transition-colors">About</a>
-        <a href="/contact" class="hover:text-primary transition-colors">Contact</a>
-        <a href="/privacy" class="hover:text-primary transition-colors">Privacy</a>
-        <a href="/docs" class="hover:text-primary transition-colors">API Docs</a>
-        <a href="/openapi.json" target="_blank" class="hover:text-primary transition-colors">OpenAPI</a>
-        <a href="/llms.txt" target="_blank" class="hover:text-primary transition-colors">llms.txt</a>
-        <a href="https://github.com/rathod-pritesh/Portfolio" target="_blank" rel="noopener" class="hover:text-primary transition-colors">GitHub Repo</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/docs">API Docs</a>
+        <a href="/openapi.json" target="_blank" rel="noopener">OpenAPI</a>
+        <a href="/llms.txt" target="_blank" rel="noopener">llms.txt</a>
+        <a href="https://github.com/rathod-pritesh/Portfolio" target="_blank" rel="noopener">GitHub</a>
       </div>
 
-      <p class="text-xs text-gray-400">© 2026 Pritesh Rathod. MIT License.</p>
+      <p class="footer-copy text-xs">© 2026 Pritesh Rathod. MIT License.</p>
     </div>
   </footer>
 

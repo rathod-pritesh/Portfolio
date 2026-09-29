@@ -248,3 +248,51 @@
 [data-theme="light"] .automation-card .toggle-btn:hover {
   background: #d9ddd4;
 }
+
+/* Footer theme styling */
+.site-footer {
+  background-color: #0e1210;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #96a190;
+}
+
+.site-footer a {
+  color: #96a190;
+  transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: #eceeea;
+}
+
+.site-footer .footer-title {
+  color: #ffffff;
+}
+
+.site-footer .footer-subtitle,
+.site-footer .footer-copy {
+  color: #96a190;
+}
+
+[data-theme="light"] .site-footer {
+  background-color: #f6f7f4 !important;
+  border-top: 1px solid #d9ddd4 !important;
+  color: #556052 !important;
+}
+
+[data-theme="light"] .site-footer .footer-title {
+  color: #181c16 !important;
+}
+
+[data-theme="light"] .site-footer .footer-subtitle,
+[data-theme="light"] .site-footer .footer-copy {
+  color: #556052 !important;
+}
+
+[data-theme="light"] .site-footer a {
+  color: #4a5544 !important;
+}
+
+[data-theme="light"] .site-footer a:hover {
+  color: #5f7355 !important;
+}
