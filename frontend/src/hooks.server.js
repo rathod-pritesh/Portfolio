@@ -1,18 +1,5 @@
 import { MARKDOWN_HOMEPAGE } from '$lib/markdownHome.js';
 
-const KNOWN_BOT_UAS = [
-	'gptbot',
-	'claudebot',
-	'chatgpt-user',
-	'claude-user',
-	'perplexitybot',
-	'perplexity-user',
-	'google-extended',
-	'applebot-extended',
-	'ora-agent',
-	'deepseekbot'
-];
-
 const NOT_FOUND_MARKDOWN = `# 404 Not Found
 
 The requested resource was not found on this domain.
@@ -30,9 +17,6 @@ The requested resource was not found on this domain.
 export async function handle({ event, resolve }) {
 	const { url, request } = event;
 	const acceptHeader = request.headers.get('accept') || '';
-	const userAgent = (request.headers.get('user-agent') || '').toLowerCase();
-	const isBot = KNOWN_BOT_UAS.some((bot) => userAgent.includes(bot));
-	const wantsMarkdown = acceptHeader.includes('text/markdown');
 	const isAgentMode = url.searchParams.get('mode') === 'agent';
 
 	// 1. Agent Mode View (?mode=agent)
@@ -78,8 +62,8 @@ export async function handle({ event, resolve }) {
 		});
 	}
 
-	// 2. Markdown Content Negotiation & Bot-UA markdown serving for homepage
-	if (url.pathname === '/' && (wantsMarkdown || isBot)) {
+	// 2. Explicit Markdown Negotiation (only if client explicitly asks for markdown and not HTML)
+	if (url.pathname === '/' && acceptHeader.includes('text/markdown') && !acceptHeader.includes('text/html')) {
 		return new Response(MARKDOWN_HOMEPAGE, {
 			status: 200,
 			headers: {
@@ -92,8 +76,8 @@ export async function handle({ event, resolve }) {
 
 	const response = await resolve(event);
 
-	// 3. Agent-friendly 404 with markdown body when requested or for bots
-	if (response.status === 404 && (wantsMarkdown || isBot)) {
+	// 3. Agent-friendly 404 with markdown body if client specifically requested markdown
+	if (response.status === 404 && acceptHeader.includes('text/markdown') && !acceptHeader.includes('text/html')) {
 		return new Response(NOT_FOUND_MARKDOWN, {
 			status: 404,
 			headers: {
@@ -104,7 +88,7 @@ export async function handle({ event, resolve }) {
 		});
 	}
 
-	// Ensure Vary: Accept is set
+	// Ensure Vary header is set so CDNs respect content negotiation
 	response.headers.set('Vary', 'Accept, Accept-Encoding');
 
 	return response;
