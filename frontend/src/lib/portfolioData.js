@@ -109,15 +109,31 @@ export const defaultEducation = [
     institution: "K. S. School of Business Management and Information Technology",
     yearStart: "2025",
     yearEnd: "PRESENT",
-    focus: "Focused on backend systems, AI integrations, automation workflows, and scalable application development.",
-    order: 2
+    focus: "",
+    order: 4
   },
   {
     degree: "B.Sc Computer Applications & IT",
     institution: "K. S. School of Business Management and Information Technology",
     yearStart: "2022",
     yearEnd: "2025",
-    focus: "Built strong foundations in software engineering, databases, APIs, and modern web technologies.",
+    focus: "",
+    order: 3
+  },
+  {
+    degree: "Higher Secondary Certificate (HSC)",
+    institution: "JC Shah Prakash High School",
+    yearStart: "2021",
+    yearEnd: "2022",
+    focus: "",
+    order: 2
+  },
+  {
+    degree: "Secondary School Certificate (SSC)",
+    institution: "Anupam Vidhyavihar",
+    yearStart: "2019",
+    yearEnd: "2020",
+    focus: "",
     order: 1
-  }
+  },
 ];
