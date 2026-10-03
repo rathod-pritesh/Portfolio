@@ -50,9 +50,11 @@
 
               <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></div>
 
-              <div class="absolute bottom-0 left-0 right-0 pt-7 pb-3 px-3.5 bg-gradient-to-t from-slate-950/50 to-transparent flex items-center gap-2 translate-y-1 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                <span class="size-2 rounded-full bg-slate-400 shrink-0 animate-[pulse-dot_2s_ease-in-out_infinite]"></span>
-                <span class="text-sm font-semibold text-white tracking-wider">{home.name}</span>
+              <div class="absolute bottom-0 left-0 right-0 pt-10 pb-3 px-3 bg-gradient-to-t from-black/85 via-black/45 to-transparent flex items-center translate-y-1 opacity-95 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 shadow-lg">
+                  <span class="size-2 rounded-full bg-emerald-400 shrink-0 animate-[pulse-dot_2s_ease-in-out_infinite]"></span>
+                  <span class="profile-image-caption text-xs sm:text-sm font-semibold tracking-wider">{home.name}</span>
+                </div>
               </div>
 
             </div>
@@ -123,5 +125,9 @@
   @keyframes pulse-dot {
     0%, 100% { opacity: 1;   transform: scale(1); }
     50%       { opacity: 0.4; transform: scale(0.75); }
+  }
+  .profile-image-caption {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   }
 </style>

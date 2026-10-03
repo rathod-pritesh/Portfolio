@@ -296,3 +296,10 @@
 [data-theme="light"] .site-footer a:hover {
   color: #5f7355 !important;
 }
+
+/* Profile image caption badge - ensure pure white text in all themes */
+.profile-image-caption,
+[data-theme="light"] .profile-image-caption {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
